@@ -3,7 +3,7 @@ session_start();
 /*
  * Định nghĩa các url cần thiết được sử dụng trong website
  */
-define('ROOT','http://localhost/Ass_DA1/');
+define('ROOT','http://localhost/Duan1/');
 
 function check_session(){
     if(isset($_SESSION['user'])){
