@@ -164,26 +164,6 @@ function count_row($table){
         $num_row = $sql->fetchColumn();
         return $num_row;
 }
-//Hàm kiểm tra size file
-//$size = $fileUpload['size]
-// $min = 100 *1024
-function checkSize($size,$min,$max){
-    $flag = false;
-    if($size >= $min && $size <= $max) $flag = true;
-    return $flag;
-}
-// checkSize($fileUpload['size'],5*1024,5*1024*1024);
-
-
-//$fileName =$fileUpload['type']
-function checkType($fileName,$arrType){
-    $ext = pathinfo($fileName,PATHINFO_EXTENSION);
-    $flag = false;
-    if(in_array(strtolower($ext),$arrType)==true) $flag = true;
-    return $flag;
-}
-// checkType($fileUpload['name'],array('jpg','png','gif','tiff'));
-
 
 //Phương thức thực thi câu lệnh sql
 //Trả về giá trị là bản ghi lấy được
@@ -219,20 +199,4 @@ function query_where($table, $arr,$limit,$nRows)
     } finally {
         unset($conn);
     }
-}
-
-//Lay url cua trang hiện tại
-function getCurURL()
-{
-    if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
-        $pageURL = "https://";
-    } else {
-      $pageURL = 'http://';
-    }
-    if (isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] != "80") {
-        $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-    } else {
-        $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-    }
-    return $pageURL;
 }

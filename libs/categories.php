@@ -7,8 +7,8 @@ function list_all_category(){
 }
 
 //Hàm lấy ra 1 bản ghi
-function list_one_category($id,$value){
-    return listOne('categories',$id,$value);
+function list_one_category($id){
+    return listOne('categories','id',$id);
 }
 //Thêm dữ liệu vào bảng
 function insert_category($name,$images){
@@ -26,7 +26,17 @@ function category_update($id, $name,$images) {
 }
 //function Xóa dữ liệu loại hàng
 function category_delete($id) {
-    delete('categories', 'id', $id);
+    $row = list_one_category($id);
+    
+    if ( $row ) {
+        //Xóa cả hình khi xóa dữ liệu
+        $images = "../images/categories/" . $row['images'];
+        
+        if ( file_exists($images)) {
+            unlink($images);
+        } 
+        delete('categories', 'id', $id);
+    }
 }
 
 //Ham tim kiem theo ten danh muc

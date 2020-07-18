@@ -1,5 +1,5 @@
 <?php
-$result = list_all_product();
+$result = product_list_all();
 ?>
 
 <!-- Begin Page Content -->

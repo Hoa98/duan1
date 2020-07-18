@@ -3,45 +3,45 @@ require_once "database.php";
 
 //hàm lấy ra dữ liệu danh sách hàng hóa
 function product_list_all() {
-    $sql = "SELECT products.*,categories.name as name_cate from products inner join categories on categories.id = products.id_cate 
+    $sql = "SELECT products.*,categories.name as name_cate from products inner join categories on categories.id = products.id_category 
     ORDER BY id DESC";
     return query_exe($sql);
 }
 
 //function lấy ra dữ liệu theo loại hàng
 //$id_cate là dữ liệu được lọc
-function product_list_cate($id_cate) {
-    $sql = "SELECT * from products Where id_cate=$id_cate ORDER BY id DESC";
+function product_list_cate($id_category) {
+    $sql = "SELECT * from products Where id_category=$id_category ORDER BY id DESC";
     return query_exe($sql);
 }
 
 //hàm lấy ra dữ liệu danh sách hàng hóa theo danh mục và giới hạn
-function product_list_categories($id_cate,$limit, $nRows) {
-    $sql = "SELECT products.id,id_cate,products.name,price,sale,images,description,status,view,created_at from products inner join categories on products.id_cate = categories.id 
-    Where id_cate=$id_cate or parent_id = $id_cate 
+function product_list_categories($id_category,$limit, $nRows) {
+    $sql = "SELECT products.id,id_category,products.name,price,sale,images,description,status,views from products inner join categories on products.id_category = categories.id 
+    Where id_category=$id_category
     ORDER BY products.id DESC limit $limit,$nRows";
     return query_exe($sql);
 }
 
 //Ham tinh tong so ban ghi trong bảng products theo dieu kien
-function num_row($id_cate){
+function num_row($id_category){
     $conn = connection();
-    $sql = $conn->prepare("SELECT COUNT(*) from products inner join categories on products.id_cate = categories.id 
-    Where id_cate=$id_cate or parent_id = $id_cate");
+    $sql = $conn->prepare("SELECT COUNT(*) from products inner join categories on products.id_category = categories.id 
+    Where id_category=$id_category");
     $sql->execute(); 
     $num_row = $sql->fetchColumn();
     return $num_row;
 }
 
 //Sản phẩm liên quan
-function product_list_category($id_cate,$id) {
-    $sql = "SELECT products.id,id_cate,products.name,price,sale,images,description,status,view,created_at from products inner join categories on products.id_cate = categories.id Where id_cate=$id_cate and products.id != $id ORDER BY products.id DESC";
+function product_list_category($id_category,$id) {
+    $sql = "SELECT * from products  Where id_category=$id_category and id != $id ORDER BY id DESC";
     return query_exe($sql);
 }
 
 //Hiển thị sản phẩm theo trạng thái
 function product_list($status) {
-    $sql = "SELECT products.*,categories.name as name_cate from products inner join categories on categories.id = products.id_cate 
+    $sql = "SELECT products.*,categories.name as name_cate from products inner join categories on categories.id = products.id_category 
      Where status=$status ORDER BY id DESC";
     return query_exe($sql);
 }
@@ -54,11 +54,11 @@ function product_list_limit($limit, $nRows) {
 
 //Hiển thị những sản phẩm có lượt view cao
 function product_list_view($limit, $nRows) {
-    $sql = "SELECT * from products order by view desc limit $limit, $nRows";
+    $sql = "SELECT * from products order by views desc limit $limit, $nRows";
     return query($sql);
 }
 
-//Lấy ra 1 bản ghi hàng hóa the điều kiện id
+//Lấy ra 1 bản ghi hàng hóa theo điều kiện id
 function product_list_one($id) {
     return listOne('products', 'id', $id);
 }
@@ -80,30 +80,30 @@ function count_sale(){
 }
 
 //Chỉnh sửa dữ liệu hàng hóa
-function product_update($id, $name, $price, $sale, $images, $id_cate, $status, $view, $description) {
+function product_update($id, $name, $price, $sale, $images, $id_category, $status, $views, $description) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
         "sale"=>$sale,
         "images"=>$images,
-        "id_cate"=>$id_cate,
+        "id_category"=>$id_category,
         "status"=>$status,
-        "view"=>$view,
+        "views"=>$views,
         "description"=>$description
     ];
     return update('products', $data,'id', $id);
 }
 
 //function thêm hàng hóa vào bảng hàng hóa
-function product_insert($name, $price, $sale, $images, $id_cate, $status, $view, $description) {
+function product_insert($name, $price, $sale, $images, $id_category, $status, $views, $description) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
         "sale"=>$sale,
         "images"=>$images,
-        "id_cate"=>$id_cate,
+        "id_category"=>$id_category,
         "status"=>$status,
-        "view"=>$view,
+        "views"=>$views,
         "description"=>$description
     ];
     return insert('products', $data);
@@ -126,14 +126,14 @@ function product_delete($id) {
 
 //hàm cập nhật số lượt xem
 function update_view($id){
-    $sql = "UPDATE products SET view=view+1 where id=$id";
+    $sql = "UPDATE products SET views=views+1 where id=$id";
     return query_exe($sql);
 }
 
 //Tìm kiếm theo tên sản phẩm
 function search_product($name){
-    $sql = "SELECT p.id, p.name, p.images, status, price, description ,sale, view
-    FROM products p INNER JOIN categories c on p.id_cate = c.id 
+    $sql = "SELECT p.id, p.name, p.images, status, price, description ,sale, views
+    FROM products p INNER JOIN categories c on p.id_category = c.id 
     Where p.name Like '%$name%'";
     return query_exe($sql);
 }
@@ -141,7 +141,7 @@ function search_product($name){
 //Thống kê hàng hóa theo danh mục
 function statistical_product(){
     $sql = "SELECT c.id, c.name, COUNT(*) so_luong, MIN(p.price) gia_min, MAX(p.price) gia_max, AVG(p.price) gia_avg
-     FROM products p inner JOIN categories c ON c.id=p.id_cate
+     FROM products p inner JOIN categories c ON c.id=p.id_category
      GROUP BY c.id, c.name";
 return query_exe($sql);
 }

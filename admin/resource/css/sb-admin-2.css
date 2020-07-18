@@ -10996,3 +10996,9 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+.icon-3x{
+  font-size: 85px;
+}
+.qty-3x{
+  font-size: 30px;
+}

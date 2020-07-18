@@ -21,14 +21,14 @@ $cate = list_all_category();
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <?php if (isset($_SESSION['message'])) : ?>
-        <div class="card-header py-3 bg-success">
-            <h6 class="font-weight-bold text-white"><?= $_SESSION['message'] ?></h6>
+        <div class="card-header py-3 text-success">
+            <h6 class="font-weight-bold"><?= $_SESSION['message'] ?></h6>
         </div>
     <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách danh mục <a href="<?= ROOT ?>admin/?page=category&action=add" class="btn btn-primary">Thêm mới</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách danh mục <a href="<?= ROOT ?>admin/?page=category&action=add" class="btn btn-primary ml-3">Thêm mới</a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,7 +48,7 @@ $cate = list_all_category();
                         <tfoot>
                             <tr>
                             <th>
-                                    <input type="checkbox" name="checkall" class="checkall">
+                                <input type="checkbox" name="checkall" class="checkall">
                                 </th>
                                 <th>Mã danh mục</th>
                                 <th>Tên danh mục</th>

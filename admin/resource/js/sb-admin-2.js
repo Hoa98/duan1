@@ -46,4 +46,45 @@
     e.preventDefault();
   });
 
+//Chức năng chọn tất cả các mục
+  $('.checkall').change(function() {
+    $('input:checkbox').prop('checked', $(this).prop('checked'));
+})
+$('#btndel-category').click(function() {
+    if ($('input:checked').length === 0) {
+        alert("Bạn cần chọn ít nhất một danh mục");
+        return false;
+    }
+})
+$('.status').change(function() {
+    if ($(this).prop('checked')) {
+        $('#span').html('Còn hàng')
+    } else {
+        $('#span').html('Hết hàng')
+    }
+})
 })(jQuery); // End of use strict
+
+ //Thêm trình soạn thảo văn bản tinymce vào phần nội dung của sản phẩm
+ tinymce.init({
+  selector: '#detail'
+});
+
+//Validate form
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
