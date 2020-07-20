@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$cate = list_one_category($id);
+$type = list_one_type($id);
 if (isset($_POST['btnUpdate'])) {
     extract($_REQUEST);
     $okUpload = false;
@@ -14,12 +14,12 @@ if (isset($_POST['btnUpdate'])) {
         $errors['errors_img'] = 'File không đúng định dạng';
     }
     if(array_filter($errors)==false){
-    category_update($id, $name, $images);
+        type_update($id, $name, $images);
     if($okUpload){
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/categories/'.$images);
     }
     $_SESSION['message']= 'Cập nhật dữ liệu thành công';
-    header('Location:'. ROOT . 'admin/?page=category');
+    header('Location:'. ROOT . 'admin/?page=type');
     die();
     }
 }
@@ -30,20 +30,20 @@ if (isset($_POST['btnUpdate'])) {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Sửa danh mục sản phẩm </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật loại dịch vụ</h6>
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data"  class="needs-validation" novalidate>
                 <div class="form-group">
-                    <label for="name">Tên danh mục</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên danh mục" required value="<?=isset($name)?$name:$cate['name']?>">
+                    <label for="name">Tên loại dịch vụ</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên loại dịch vụ" required value="<?=isset($name)?$name:$type['name']?>">
                     <div class="invalid-feedback">
-                                Vui lòng nhập tên danh mục sản phẩm
+                                Vui lòng nhập tên loại dịch vụ
                                 </div>
                 </div>
-                <?php if ($cate['images'] != '') : ?>
-                    <img src="../images/categories/<?= $cate['images'] ?>" width="120" alt="">
-                    <input type="hidden" name="image" value="<?= $cate['images'] ?>">
+                <?php if ($type['images'] != '') : ?>
+                    <img src="../images/categories/<?= $type['images'] ?>" width="120" alt="">
+                    <input type="hidden" name="image" value="<?= $type['images'] ?>">
                 <?php endif; ?>
 
                 <div class="form-group">
@@ -52,7 +52,7 @@ if (isset($_POST['btnUpdate'])) {
                                 <p class="text-danger mt-2"><?= $errors['errors_img'] ?></p>
                             <?php endif; ?>
                 </div>
-                <input type="hidden" name="id" value="<?= $cate['id'] ?>">
+                <input type="hidden" name="id" value="<?= $type['id'] ?>">
                 <button type="submit" name="btnUpdate" class="btn btn-primary">Ghi lại</button>
             </form>
         </div>

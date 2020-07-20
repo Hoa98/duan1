@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once '../libs/user.php';
-require_once '../config/config.php';
+require_once '../golbal.php';
+require_once '../libs/members.php';
 //Nếu đã đăng nhập rồi thì check_session
 check_session();
 extract($_REQUEST);
@@ -36,14 +35,14 @@ if (isset($btnlogin)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dự án mẫu - Login</title>
+  <title>PolyBarber - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="resource/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="resource/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -115,7 +114,7 @@ if (isset($btnlogin)) {
   <script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="resource/js/sb-admin-2.min.js"></script>
+  <script src="resource/js/sb-admin-2.js"></script>
 
 </body>
 

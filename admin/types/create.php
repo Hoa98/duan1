@@ -10,15 +10,15 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_img'] = 'File không đúng định dạng';
     }
     if (!file_exists($_FILES["images"]["tmp_name"])){
-        $errors['errors_img'] = 'Vui lòng chọn ảnh danh mục';
+        $errors['errors_img'] = 'Vui lòng chọn ảnh loại dịch vụ';
     }
     if(array_filter($errors)==false){
-    insert_category($name, $images);
+        insert_type($name, $images);
     if ($okUpload) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/categories/' . $images);
     }
     $_SESSION['message'] = "Thêm dữ liệu thành công";
-    header('Location:' . ROOT . 'admin/?page=category');
+    header('Location:' . ROOT . 'admin/?page=type');
     die();
 }
 }
@@ -29,15 +29,15 @@ if (isset($_POST['btnsave'])) {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Thêm danh mục sản phẩm </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Thêm loại dịch vụ </h6>
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data"  class="needs-validation" novalidate>
                 <div class="form-group">
-                    <label for="name">Tên danh mục</label>
-                    <input type="text" name="name" id="name"  value="<?=isset($name)?$name:''?>" class="form-control" placeholder="Nhập tên danh mục" required>
+                    <label for="name">Tên loại dịch vụ</label>
+                    <input type="text" name="name" id="name"  value="<?=isset($name)?$name:''?>" class="form-control" placeholder="Nhập tên loại dịch vụ" required>
                     <div class="invalid-feedback">
-                                Vui lòng nhập tên danh mục sản phẩm
+                                Vui lòng nhập tên loại dịch vụ
                                 </div>
                 </div>
                 <div class="form-group">

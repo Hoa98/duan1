@@ -58,9 +58,9 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Quản lý loại dịch vụ</a>
-                        <a class="collapse-item" href="register.html">Quản lý dịch vụ</a>
-                        <a class="collapse-item" href="register.html">Quản lý khung giờ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=type">Quản lý loại dịch vụ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=service">Quản lý dịch vụ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=time">Quản lý khung giờ</a>
                     </div>
                 </div>
             </li>
@@ -79,8 +79,8 @@
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Quản lý thành viên</a>
-                        <a class="collapse-item" href="login.html">Quản lý khách hàng</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=member">Quản lý thành viên</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=custom">Quản lý khách hàng</a>
                     </div>
                 </div>
             </li>
@@ -92,21 +92,21 @@
                 </a>
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Bình luận sản phẩm</a>
-                        <a class="collapse-item" href="login.html">Đánh giá dịch vụ</a>
-                        <a class="collapse-item" href="login.html">Quản lý liên hệ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=comment">Bình luận sản phẩm</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=evaluate">Đánh giá dịch vụ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=contact">Quản lý liên hệ</a>
                     </div>
                 </div>
             </li>
                <!-- Nav Item - Charts -->
                <li class="nav-item">
-                <a class="nav-link" href="<?= ROOT ?>admin/?page=">
+                <a class="nav-link" href="<?= ROOT ?>admin/?page=new">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Tin tức</span></a>
             </li>
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-                <a class="nav-link" href="<?= ROOT ?>admin/?page=">
+                <a class="nav-link" href="<?= ROOT ?>admin/?page=slider">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sliders</span></a>
             </li>
@@ -127,7 +127,7 @@
            
                <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= ROOT ?>admin/?page=">
+                <a class="nav-link" href="<?= ROOT ?>admin/?page=order">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Hóa đơn</span></a>
             </li>

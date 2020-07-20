@@ -17,7 +17,7 @@ function product_list_cate($id_category) {
 
 //hàm lấy ra dữ liệu danh sách hàng hóa theo danh mục và giới hạn
 function product_list_categories($id_category,$limit, $nRows) {
-    $sql = "SELECT products.id,id_category,products.name,price,sale,images,description,status,views from products inner join categories on products.id_category = categories.id 
+    $sql = "SELECT products.* from products inner join categories on products.id_category = categories.id 
     Where id_category=$id_category
     ORDER BY products.id DESC limit $limit,$nRows";
     return query_exe($sql);
@@ -80,7 +80,7 @@ function count_sale(){
 }
 
 //Chỉnh sửa dữ liệu hàng hóa
-function product_update($id, $name, $price, $sale, $images, $id_category, $status, $views, $description) {
+function product_update($id, $name, $price, $sale, $images, $id_category, $status, $description) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
@@ -88,14 +88,13 @@ function product_update($id, $name, $price, $sale, $images, $id_category, $statu
         "images"=>$images,
         "id_category"=>$id_category,
         "status"=>$status,
-        "views"=>$views,
         "description"=>$description
     ];
     return update('products', $data,'id', $id);
 }
 
 //function thêm hàng hóa vào bảng hàng hóa
-function product_insert($name, $price, $sale, $images, $id_category, $status, $views, $description) {
+function product_insert($name, $price, $sale, $images, $id_category, $status, $description) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
@@ -103,7 +102,7 @@ function product_insert($name, $price, $sale, $images, $id_category, $status, $v
         "images"=>$images,
         "id_category"=>$id_category,
         "status"=>$status,
-        "views"=>$views,
+        "views"=>0,
         "description"=>$description
     ];
     return insert('products', $data);

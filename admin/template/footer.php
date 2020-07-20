@@ -42,7 +42,7 @@
 </div>
 
 <!--Trình soạn thảo văn bản cho phần nội dung của sản phẩm tinymce-->
-<script src="https://cdn.tiny.cloud/1/ld34vclndumv7xny2s3pnsrpxwoe9floxn96fpbl57r085kv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="resource/js/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="resource/vendor/jquery/jquery.min.js"></script>
 <script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
