@@ -4,11 +4,11 @@
 */
 require_once "database.php";
 //Kiểm tra user đã tồn tại chưa, lấy ra 1 bản ghi theo id
-function custom_check($id, $value){
-    return listOne('customers', $id, $value);
+function custom_check($id){
+    return listOne('customers','id', $id);
 }
 //Lay ra tat ca khách hàng
-function custom_list($id){
+function custom_list(){
     $sql = "SELECT * from customers ORDER BY id DESC";
     return query_exe($sql);
 }

@@ -46,8 +46,8 @@ function new_delete($id) {
     }
 }
 
-//Ham tim kiem theo ten danh muc
-function search_new($name){
-    $sql = "SELECT *  FROM news Where name Like '%$name%'";
+//Ham tim kiem theo tieu de
+function search_new($title){
+    $sql = "SELECT *  FROM news Where title Like '%$title%'";
     return query_exe($sql);
 }
