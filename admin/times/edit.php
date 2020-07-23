@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$time = list_one_time($id);
+$times = list_one_time($id);
 if (isset($_POST['btnUpdate'])) {
     extract($_REQUEST);
     time_update($id, $time);
@@ -21,12 +21,12 @@ if (isset($_POST['btnUpdate'])) {
             <form action="" method="POST" enctype="multipart/form-data"  class="needs-validation" novalidate>
                 <div class="form-group">
                     <label for="time">Khung giờ</label>
-                    <input type="text" name="time" id="time" class="form-control" placeholder="Nhập tên danh mục" required value="<?=isset($time)?$time:$time['time']?>">
+                    <input type="text" name="time" id="time" class="form-control" placeholder="Nhập tên danh mục" required value="<?=isset($time)?$time:$times['time']?>">
                     <div class="invalid-feedback">
                                 Vui lòng nhập khung giờ
                                 </div>
                 </div>
-                <input type="hidden" name="id" value="<?= $time['id'] ?>">
+                <input type="hidden" name="id" value="<?= $times['id'] ?>">
                 <button type="submit" name="btnUpdate" class="btn btn-primary">Ghi lại</button>
             </form>
         </div>

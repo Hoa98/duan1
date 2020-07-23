@@ -86,8 +86,9 @@ $result = product_list_all();
                                     <td><?=$r['views']?></td>
                                     <td><?=substr($r['description'], 0, 150).$str=(strlen($r['description'])>150?'...':'')?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-warning d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&action=image&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-images"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

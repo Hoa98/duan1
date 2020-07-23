@@ -2,32 +2,33 @@
 require_once "database.php";
 //Hàm hiển thị toàn bộ danh mục
 function list_all_slider(){
-    return listAll('sliders');
+    return listAll('libraries');
 }
 //Ham hien thi danh muc theo gioi han
 function slider_list_limit($limit, $nRows) {
-    $sql = "SELECT * from sliders order by id desc limit $limit, $nRows";
+    $sql = "SELECT * from libraries order by id desc limit $limit, $nRows";
     return query($sql);
 }
 
 //Hàm lấy ra 1 bản ghi
 function list_one_slider($id){
-    return listOne('sliders','id',$id);
+    return listOne('libraries','id',$id);
 }
 //Thêm dữ liệu vào bảng
-function insert_slider($name,$images,$link){
+function insert_slider($name,$images,$link,$role){
     $data =[
         'name' => $name,
         'images' => $images,
-        'link' => $link
+        'link' => $link,
+        'role' => $role
     ];
-    return insert('sliders',$data);
+    return insert('libraries',$data);
 }
 
 //function cập nhật
-function slider_update($id, $name, $images,$link) {
-    $data = ['name'=>$name,'images'=>$images,'link'=>$link];
-    update('sliders', $data, 'id', $id);
+function slider_update($id, $name, $images,$link,$role) {
+    $data = ['name'=>$name,'images'=>$images,'link'=>$link,'role'=>$role];
+    update('libraries', $data, 'id', $id);
 }
 //function Xóa dữ liệu slide
 function slider_delete($id) {
@@ -40,6 +41,6 @@ function slider_delete($id) {
         if ( file_exists($images)) {
             unlink($images);
         } 
-        delete('sliders', 'id', $id);
+        delete('libraries', 'id', $id);
     }
 }

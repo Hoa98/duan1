@@ -8,6 +8,11 @@ function product_list_all() {
     return query_exe($sql);
 }
 
+//Lấy ra 1 bản ghi hàng hóa theo điều kiện id
+function product_list_one($id) {
+    return listOne('products', 'id', $id);
+}
+
 //function lấy ra dữ liệu theo loại hàng
 //$id_cate là dữ liệu được lọc
 function product_list_cate($id_category) {
@@ -56,11 +61,6 @@ function product_list_limit($limit, $nRows) {
 function product_list_view($limit, $nRows) {
     $sql = "SELECT * from products order by views desc limit $limit, $nRows";
     return query($sql);
-}
-
-//Lấy ra 1 bản ghi hàng hóa theo điều kiện id
-function product_list_one($id) {
-    return listOne('products', 'id', $id);
 }
 
 //San pham giam gia
