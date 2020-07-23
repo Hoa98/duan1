@@ -4,6 +4,7 @@ require_once '../golbal.php';
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 require_once '../libs/categories.php';
 require_once '../libs/products.php';
+require_once '../libs/gallery.php';
 require_once '../libs/types.php';
 require_once '../libs/services.php';
 require_once '../libs/word_time.php';
@@ -47,6 +48,20 @@ switch ($page) {
                 break;
         }
         break;
+        case 'gallery':
+            $action = isset($_GET['action']) ? $_GET['action'] : '';
+            switch ($action) {
+                case '':
+                    include_once 'products/gallery/index.php';
+                    break;
+                case 'add':
+                    include_once 'products/gallery/create.php';
+                    break;
+                case 'edit':
+                    include_once 'products/gallery/edit.php';
+                    break;
+            }
+            break;
         case 'type':
             //Lấy hành động trong categories
             $action = isset($_GET['action']) ? $_GET['action'] : '';

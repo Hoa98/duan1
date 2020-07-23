@@ -26,7 +26,7 @@ if (isset($_POST['btn-del'])) {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><?=$pro['name']?> <a href="<?= ROOT ?>admin/?page=category&action=add&id_product=<?=$pro['id']?>" class="btn btn-primary ml-3">Thêm mới</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$pro['name']?> <a href="<?= ROOT ?>admin/?page=gallery&action=add&id_product=<?=$pro['id']?>" class="btn btn-primary ml-3">Thêm mới</a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -66,8 +66,8 @@ if (isset($_POST['btn-del'])) {
                                         <img src="../images/products/<?= $g['images'] ?>" width="120" alt="">
                                     </td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=category&action=edit&id=<?= $g['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=category&action=delete&id=<?= $g['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=gallery&action=edit&id=<?= $g['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=gallery&action=delete&id=<?= $g['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

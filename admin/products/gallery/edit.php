@@ -20,7 +20,7 @@ if (isset($_POST['btnUpdate'])) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/products/'.$images);
     }
     $_SESSION['message']= 'Cập nhật dữ liệu thành công';
-    header('Location:'. ROOT . 'admin/?page=products');
+    header('Location:'. ROOT . 'admin/?page=gallery&id='.$id_product);
     die();
     }
 }
@@ -31,30 +31,29 @@ if (isset($_POST['btnUpdate'])) {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Sửa ảnh sản phẩm </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Sửa ảnh sản phẩm</h6>
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             <div class="form-group">
-                            <!--Load products -->
+                            <!--Load  sản phẩm)-->
                             <label for="id_product">Chọn sản phẩm</label>
-                            <input list="products" name="id_product" id="id_product" class="form-control" value="<?= ($pro['id'] == $product['id_product'])?$pro['id']:'' ?>">
-                            <datalist id="browsers">
+                            <select name="id_product" id="id_product" class="form-control">
                                 <?php foreach ($products as $pro) : ?>
-                                    <?php if ($pro['id'] == $product['id_product']) : ?>
-                                        <option value="<?= $pro['id'] ?>" selected></option>
+                                    <?php if ($pro['id'] == $gall['id_product']) : ?>
+                                        <option value="<?= $pro['id'] ?>" selected><?= $pro['name'] ?></option>
                                     <?php else : ?>
-                                        <option value="<?= $pro['id'] ?>"></option>
+                                        <option value="<?= $pro['id'] ?>"><?= $pro['name'] ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                </datalist>
+                            </select>
                         </div>
                 <div class="form-group">
                     <label for="name">Tên ảnh</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên ảnh" value="<?=isset($name)?$name:$gall['name']?>">
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Nhập tên ảnh" value="<?=isset($title)?$title:$gall['title']?>">
                 </div>
                 <?php if ($gall['images'] != '') : ?>
-                    <img src="../images/categories/<?= $gall['images'] ?>" width="120" alt="">
+                    <img src="../images/products/<?= $gall['images'] ?>" width="120" alt="">
                     <input type="hidden" name="image" value="<?= $gall['images'] ?>">
                 <?php endif; ?>
 

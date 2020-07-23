@@ -21,7 +21,7 @@ if (isset($_POST['btnsave'])) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/products/' . $images);
     }
     $_SESSION['message'] = "Thêm dữ liệu thành công";
-    header('Location:' . ROOT . 'admin/?page=category');
+    header('Location:' . ROOT . 'admin/?page=gallery&id='.$id_product);
     die();
 }
 }
