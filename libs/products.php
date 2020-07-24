@@ -131,7 +131,7 @@ function update_view($id){
 
 //Tìm kiếm theo tên sản phẩm
 function search_product($name){
-    $sql = "SELECT p.id, p.name, p.images, status, price, description ,sale, views
+    $sql = "SELECT p.id, p.name, p.images, status, price, description ,sale, views,c.name as name_cate
     FROM products p INNER JOIN categories c on p.id_category = c.id 
     Where p.name Like '%$name%'";
     return query_exe($sql);

@@ -3,23 +3,28 @@
     Các hàm làm việc với bảng khách hàng
 */
 require_once "database.php";
-//Kiểm tra user đã tồn tại chưa, lấy ra 1 bản ghi theo id
-function custom_check($id){
+// lấy ra 1 bản ghi theo id
+function custom_list_one($id){
     return listOne('customers','id', $id);
 }
+
+//Kiểm tra user đã tồn tại chưa
+function custom_check($id,$values){
+    return listOne('customers',$id, $values);
+}
 //Lay ra tat ca khách hàng
-function custom_list(){
+function custom_list_all(){
     $sql = "SELECT * from customers ORDER BY id DESC";
     return query_exe($sql);
 }
 
 //Thêm
-function custom_insert($name, $password, $phone,$adress, $email, $images) {
+function custom_insert($name, $password, $phone,$address, $email, $images) {
     $data = [
         'name'=>$name,
         'password'=>password_hash($password,PASSWORD_DEFAULT),
         'phone'=>$phone,
-        'adress'=>$adress,
+        'address'=>$address,
         'email'=>$email,
         'images'=>$images
     ];
@@ -48,10 +53,10 @@ function custom_change_phone($id, $phone) {
     update('customers', $data, 'id', $id);
 }
 //Đổi địa chỉ
-function custom_update($id, $name,$adress,$images) {
+function custom_update($id, $name,$address,$images) {
     $data = [
         'name'=>$name,
-        'adress'=>$adress,
+        'address'=>$address,
         'images'=>$images
     ];
     update('customers', $data, 'id', $id);
@@ -67,7 +72,7 @@ function search_custom($name){
 }
 
 //Update time_code
-function update_code($id,$code,$time_code){
+function update_code_custom($id,$code,$time_code){
     $data = [
         'code'=>$code,
         'time_code'=>$time_code

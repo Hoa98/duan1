@@ -1,6 +1,4 @@
 <?php
-extract($_REQUEST);
-$result = search_product($keyword);
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     product_delete($id);
@@ -17,15 +15,20 @@ if (isset($_POST['btn-del'])) {
     header('location:' . ROOT . 'admin/?page=product');
     die;
 }
+$result = product_list_all();
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+    <?php if (isset($_SESSION['message'])) : ?>
+        <div class="alert alert-success alert-bold">
+            <h6 class="font-weight-bold alert-text"><?= $_SESSION['message'] ?></h6>
+        </div>
+    <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm tìm được với từ khóa "<?=isset($keyword)?$keyword:''?>"</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm <a href="<?= ROOT ?>admin/?page=product&action=add" class="btn btn-primary ml-3">Thêm mới</a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +42,7 @@ if (isset($_POST['btn-del'])) {
                                 <th>Mã sản phẩm</th>
                                 <th>Tên danh mục</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Hình ảnh</th>
+                                <th>Ảnh sản phẩm</th>
                                 <th>Trạng thái</th>
                                 <th>Đơn giá</th>
                                 <th>Giảm giá</th>
@@ -56,7 +59,7 @@ if (isset($_POST['btn-del'])) {
                                 <th>Mã sản phẩm</th>
                                 <th>Tên danh mục</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Hình ảnh</th>
+                                <th>Ảnh sản phẩm</th>
                                 <th>Trạng thái</th>
                                 <th>Đơn giá</th>
                                 <th>Giảm giá</th>
@@ -69,7 +72,7 @@ if (isset($_POST['btn-del'])) {
                             <?php foreach ($result as $r) : ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id[]" id="" value="<?= $r['id'] ?>">
+                                        <input type="checkbox" name="id[]"  value="<?= $r['id'] ?>">
                                     </td>
                                     <td><?= $r['id'] ?></td>
                                     <td><?= $r['name_cate'] ?></td>
@@ -83,8 +86,9 @@ if (isset($_POST['btn-del'])) {
                                     <td><?=$r['views']?></td>
                                     <td><?=substr($r['description'], 0, 150).$str=(strlen($r['description'])>150?'...':'')?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-warning d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=gallery&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-images"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

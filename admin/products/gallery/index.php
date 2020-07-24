@@ -10,7 +10,7 @@ if (isset($_POST['btn-del'])) {
         gallery_delete($id_gallery);
     }
     $_SESSION['message'] = "Xóa dữ liệu thành công";
-    header('location:' . ROOT . 'admin/?page=gallery');
+    header('location:' . ROOT . 'admin/?page=gallery&id='.$pro['id']);
     die;
 }
 
@@ -67,7 +67,7 @@ if (isset($_POST['btn-del'])) {
                                     </td>
                                     <td>
                                         <a href="<?= ROOT ?>admin/?page=gallery&action=edit&id=<?= $g['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=gallery&action=delete&id=<?= $g['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=gallery&action=delete&id=<?= $g['id'] ?>&id_product=<?=$pro['id']?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

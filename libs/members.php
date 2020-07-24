@@ -9,8 +9,13 @@ function list_one_member($id){
     return listOne('members','id',$id);
 }
 //Lay ra tat ca member tru tai khoan dang nhap
-function member_list($id){
+function member_list_all($id){
     $sql = "SELECT * from members Where id != $id ORDER BY id DESC";
+    return query_exe($sql);
+}
+
+function member_list(){
+    $sql = "SELECT * from members ORDER BY id DESC";
     return query_exe($sql);
 }
 //Hàm lấy ra danh sách members theo role
@@ -19,6 +24,9 @@ function member_list_role($role){
     return query_exe($sql);
 }
 
+function member_check($id,$value){
+    return listOne('members',$id,$value);
+}
 
 
 //Phân trang nếu có nhiều tài khoản
@@ -28,12 +36,12 @@ function member_list_limit($limit, $nRows) {
 }
 
 //Thêm
-function member_insert($account, $password, $fullname,$adress,$phone, $email, $images, $role) {
+function member_insert($account, $password, $fullname,$address,$phone, $email, $images, $role) {
     $data = [
         'account'=>$account,
         'password'=>password_hash($password,PASSWORD_DEFAULT),
         'fullname'=>$fullname,
-        'adress'=>$adress,
+        'address'=>$address,
         'phone'=>$phone,
         'email'=>$email,
         'images'=>$images,
@@ -72,10 +80,10 @@ function member_change_phone($id, $phone) {
     update('members', $data, 'id', $id);
 }
 //Đổi địa chỉ
-function member_update_limit($id, $fullname,$adress,$images) {
+function member_update_limit($id, $fullname,$address,$images) {
     $data = [
         'fullname'=>$fullname,
-        'adress'=>$adress,
+        'address'=>$address,
         'images'=>$images
     ];
     update('members', $data, 'id', $id);
@@ -91,7 +99,7 @@ function search_member($name,$id,$value){
 }
 
 //Update time_code
-function update_code($id,$code,$time_code){
+function update_code_member($id,$code,$time_code){
     $data = [
         'code'=>$code,
         'time_code'=>$time_code
