@@ -2,13 +2,13 @@
 require_once "database.php";
 //Hàm hiển thị toàn bộ danh mục
 function list_all_library($role){
-    $sql = "SELECT * from libraries where role == $role order by id desc";
-    return query($sql);
+    $sql = "SELECT * from libraries where role = $role order by id desc";
+    return query_exe($sql);
 }
 //Ham hien thi mẫu tóc theo gioi han
 function library_list_limit($limit, $nRows) {
-    $sql = "SELECT * from libraries where role == 1 order by id desc limit $limit, $nRows";
-    return query($sql);
+    $sql = "SELECT * from libraries where role = 1 order by id desc limit $limit, $nRows";
+    return query_exe($sql);
 }
 
 //Hàm lấy ra 1 bản ghi

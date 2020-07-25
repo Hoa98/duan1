@@ -161,22 +161,39 @@ switch ($page) {
                 case 'edit':
                     include_once 'news/edit.php';
                     break;
+                    case 'search':
+                        include_once 'news/search.php';
+                        break;
             }
             break;
-            case 'library':
+            case 'slider':
                 $action = isset($_GET['action']) ? $_GET['action'] : '';
                 switch ($action) {
                     case '':
-                        include_once 'libraries/index.php';
+                        include_once 'libraries/sliders/index.php';
                         break;
                     case 'add':
-                        include_once 'libraries/create.php';
+                        include_once 'libraries/sliders/create.php';
                         break;
                     case 'edit':
-                        include_once 'libraries/edit.php';
+                        include_once 'libraries/sliders/edit.php';
                         break;
                 }
                 break;
+                case 'hair':
+                    $action = isset($_GET['action']) ? $_GET['action'] : '';
+                    switch ($action) {
+                        case '':
+                            include_once 'libraries/hairs/index.php';
+                            break;
+                        case 'add':
+                            include_once 'libraries/hairs/create.php';
+                            break;
+                        case 'edit':
+                            include_once 'libraries/hairs/edit.php';
+                            break;
+                    }
+                    break;
     case 'logout':
         unset($_SESSION['user']);
         header('location:' . ROOT . 'admin/login.php');

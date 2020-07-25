@@ -54,13 +54,13 @@ function product_list($status) {
 //$sql câu lệnh select
 function product_list_limit($limit, $nRows) {
     $sql = "SELECT * from products order by id desc limit $limit, $nRows";
-    return query($sql);
+    return query_exe($sql);
 }
 
 //Hiển thị những sản phẩm có lượt view cao
 function product_list_view($limit, $nRows) {
     $sql = "SELECT * from products order by views desc limit $limit, $nRows";
-    return query($sql);
+    return query_exe($sql);
 }
 
 //San pham giam gia

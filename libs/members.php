@@ -110,7 +110,7 @@ function update_code_member($id,$code,$time_code){
 //Kiểm tra membername khi login
 function check_member($account){
     $sql = "SELECT * from members WHERE account='$account' or phone='$account' or email='$account'";
-    $member = query($sql);
+    $member = query_exe($sql);
     if(count($member)>0){
         return $member[0];
     }

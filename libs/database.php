@@ -165,22 +165,6 @@ function count_row($table){
         return $num_row;
 }
 
-//Phương thức thực thi câu lệnh sql
-//Trả về giá trị là bản ghi lấy được
-function query($sql)
-{
-    $conn = connection();
-    try {
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    } catch (PDOException $e) {
-        echo "Lỗi dữ liệu" . $e->getMessage();
-    } finally {
-        unset($conn);
-    }
-}
 //thuc thi cau lenh sql co dieu kien
 function query_where($table, $arr,$limit,$nRows)
 {

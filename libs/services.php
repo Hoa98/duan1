@@ -47,7 +47,7 @@ function service_list_type($id_type,$id) {
 //$sql câu lệnh select
 function service_list_limit($limit, $nRows) {
     $sql = "SELECT * from services order by id desc limit $limit, $nRows";
-    return query($sql);
+    return query_exe($sql);
 }
 
 

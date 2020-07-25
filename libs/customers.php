@@ -83,7 +83,7 @@ function update_code_custom($id,$code,$time_code){
 //Kiểm tra customname khi login
 function check_custom($name){
     $sql = "SELECT * from customers WHERE phone='$name' or email='$name'";
-    $custom = query($sql);
+    $custom = query_exe($sql);
     if(count($custom)>0){
         return $custom[0];
     }

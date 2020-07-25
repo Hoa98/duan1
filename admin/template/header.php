@@ -104,13 +104,19 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Tin tức</span></a>
             </li>
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-                <a class="nav-link" href="<?= ROOT ?>admin/?page=library">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Thư viện ảnh</span></a>
+  <!-- Nav Item - Charts -->
+  <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Thư viện ảnh</span>
+                </a>
+                <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=slider">Quản lý slider</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=hair">Quản lý mẫu tóc</a>
+                    </div>
+                </div>
             </li>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">

@@ -15,7 +15,7 @@ if (isset($_POST['btn-del'])) {
     header('location:' . ROOT . 'admin/?page=hair');
     die;
 }
-$result = list_all_library(1);
+$result = list_all_library(true);
 ?>
 
 <!-- Begin Page Content -->
