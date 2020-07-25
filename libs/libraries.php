@@ -1,21 +1,22 @@
 <?php 
 require_once "database.php";
 //Hàm hiển thị toàn bộ danh mục
-function list_all_slider(){
-    return listAll('libraries');
+function list_all_library($role){
+    $sql = "SELECT * from libraries where role == $role order by id desc";
+    return query($sql);
 }
-//Ham hien thi danh muc theo gioi han
-function slider_list_limit($limit, $nRows) {
-    $sql = "SELECT * from libraries order by id desc limit $limit, $nRows";
+//Ham hien thi mẫu tóc theo gioi han
+function library_list_limit($limit, $nRows) {
+    $sql = "SELECT * from libraries where role == 1 order by id desc limit $limit, $nRows";
     return query($sql);
 }
 
 //Hàm lấy ra 1 bản ghi
-function list_one_slider($id){
+function list_one_library($id){
     return listOne('libraries','id',$id);
 }
 //Thêm dữ liệu vào bảng
-function insert_slider($name,$images,$link,$role){
+function insert_library($name,$images,$link,$role){
     $data =[
         'name' => $name,
         'images' => $images,
@@ -26,17 +27,17 @@ function insert_slider($name,$images,$link,$role){
 }
 
 //function cập nhật
-function slider_update($id, $name, $images,$link,$role) {
-    $data = ['name'=>$name,'images'=>$images,'link'=>$link,'role'=>$role];
+function library_update($id, $name, $images,$link) {
+    $data = ['name'=>$name,'images'=>$images,'link'=>$link];
     update('libraries', $data, 'id', $id);
 }
 //function Xóa dữ liệu slide
-function slider_delete($id) {
-    $row = list_one_slider($id);
+function library_delete($id) {
+    $row = list_one_library($id);
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu
-        $images = "../images/slider/" . $row['images'];
+        $images = "../images/sliders/" . $row['images'];
         
         if ( file_exists($images)) {
             unlink($images);

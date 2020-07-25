@@ -1,21 +1,21 @@
 <?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    product_delete($id);
+    new_delete($id);
     $_SESSION['message'] = "Xóa dữ liệu thành công";
-    header('location:' . ROOT . 'admin/?page=product');
+    header('location:' . ROOT . 'admin/?page=new');
     die;
 }
 if (isset($_POST['btn-del'])) {
     extract($_REQUEST);
-    foreach ($id as $id_pro) {
-        product_delete($id_pro);
+    foreach ($id as $id_new) {
+        new_delete($id_new);
     }
     $_SESSION['message'] = "Xóa dữ liệu thành công";
-    header('location:' . ROOT . 'admin/?page=product');
+    header('location:' . ROOT . 'admin/?page=new');
     die;
 }
-$result = product_list_all();
+$result = list_all_new();
 ?>
 
 <!-- Begin Page Content -->
@@ -28,7 +28,7 @@ $result = product_list_all();
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm <a href="<?= ROOT ?>admin/?page=product&action=add" class="btn btn-primary ml-3">Thêm mới</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách tin tức <a href="<?= ROOT ?>admin/?page=new&action=add" class="btn btn-primary ml-3">Thêm mới</a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,15 +39,11 @@ $result = product_list_all();
                                 <th>
                                     <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên danh mục</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th>Trạng thái</th>
-                                <th>Đơn giá</th>
-                                <th>Giảm giá</th>
-                                <th>Lượt xem</th>
-                                <th>Mô tả</th>
+                                <th>Mã tin tức</th>
+                                <th>Tiêu đề</th>
+                                <th>Chi tiết</th>
+                                <th>Hình ảnh</th>
+                                <th>Người đăng</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -56,15 +52,11 @@ $result = product_list_all();
                             <th>
                                     <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên danh mục</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th>Trạng thái</th>
-                                <th>Đơn giá</th>
-                                <th>Giảm giá</th>
-                                <th>Lượt xem</th>
-                                <th>Mô tả</th>
+                                <th>Mã tin tức</th>
+                                <th>Tiêu đề</th>
+                                <th>Chi tiết</th>
+                                <th>Hình ảnh</th>
+                                <th>Người đăng</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
@@ -75,20 +67,15 @@ $result = product_list_all();
                                         <input type="checkbox" name="id[]"  value="<?= $r['id'] ?>">
                                     </td>
                                     <td><?= $r['id'] ?></td>
-                                    <td><?= $r['name_cate'] ?></td>
-                                    <td><?= $r['name'] ?></td>
+                                    <td><?= $r['title'] ?></td>
+                                    <td><?= $r['content'] ?></td>
                                     <td>
-                                        <img src="../images/products/<?= $r['images'] ?>" width="90" alt="">
+                                        <img src="../images/sliders/<?= $r['images'] ?>" width="90" alt="">
                                     </td>
-                                    <td><?= ($r['status']) ? 'Có hàng' : 'Hết hàng' ?></td>
-                                    <td><?= number_format($r['price'],0,',','.').'đ' ?></td>
-                                    <td><?=($r['sale']*100).'%'?></td>
-                                    <td><?=$r['views']?></td>
-                                    <td><?=substr($r['description'], 0, 150).$str=(strlen($r['description'])>150?'...':'')?></td>
+                                    <td><?=$r['member']?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-warning d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=gallery&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-images"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=new&action=edit&id=<?= $r['id'] ?>" class="btn btn-warning d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=new&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

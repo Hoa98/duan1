@@ -3,7 +3,9 @@ require_once "database.php";
 
 //Hàm hiển thị toàn bộ danh mục
 function list_all_new(){
-    return listAll('news');
+    $sql = "SELECT news.*,members.fullname as member from news inner join members on members.id = news.id_member 
+    ORDER BY id DESC";
+    return query_exe($sql);
 }
 
 //Hàm lấy ra 1 bản ghi
@@ -22,11 +24,10 @@ function insert_new($title,$content,$images,$id_member){
 }
 
 //function cập nhật loại hàng
-function new_update($id, $title,$content,$images,$id_member) {
+function new_update($id, $title,$content,$images) {
     $data = [
         'title' => $title,
         'content' => $content,
-        'id_member' => $id_member,
         'images'=>$images
     ];
     update('news', $data, 'id', $id);
@@ -37,7 +38,7 @@ function new_delete($id) {
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu
-        $images = "../images/products/" . $row['images'];
+        $images = "../images/sliders/" . $row['images'];
         
         if ( file_exists($images)) {
             unlink($images);
