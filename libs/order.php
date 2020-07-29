@@ -13,7 +13,6 @@ function list_user_order($id_customer){
     return query_exe($sql);
 }
 
-
 //Hamf lấy 1 dòng hóa đơn mới thêm vào theo
 function list_top_order($id_customer){
     $sql = "SELECT * from orders  where id_customer =$id_customer ORDER BY id DESC limit 0,1";

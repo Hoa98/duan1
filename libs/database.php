@@ -157,6 +157,7 @@ function list_where_one($table, $codition = array()) {
         unset($conn);
     }
 }
+//ham dem slg ban ghi trong bang
 function count_row($table){
     $conn = connection();
     $sql = $conn->prepare("SELECT COUNT(*) FROM $table"); 

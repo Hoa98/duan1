@@ -67,7 +67,7 @@
 
                 <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= ROOT ?>admin/?page=">
+                <a class="nav-link" href="<?= ROOT ?>admin/?page=appointment">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Lịch hẹn</span></a>
             </li>

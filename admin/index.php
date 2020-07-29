@@ -12,6 +12,10 @@ require_once '../libs/customers.php';
 require_once '../libs/members.php';
 require_once '../libs/news.php';
 require_once '../libs/libraries.php';
+require_once '../libs/appointments.php';
+require_once '../libs/order.php';
+require_once "../libs/order-detail.php";
+                                      
 
 include_once 'template/header.php';
 // check_role();
@@ -103,38 +107,38 @@ switch ($page) {
                 break;
         }
         break;
-        case 'member':
-            $action = isset($_GET['action']) ? $_GET['action'] : '';
-            switch ($action) {
-                case '':
-                    include_once 'members/index.php';
-                    break;
-                case 'add':
-                    include_once 'members/create.php';
-                    break;
-                case 'search':
-                    include_once 'members/search.php';
-                    break;
-                case 'edit':
-                    include_once 'members/edit.php';
-                    break;
-            }
-            break;
-            case 'custom':
-                $action = isset($_GET['action']) ? $_GET['action'] : '';
-                switch ($action) {
-                    case '':
-                        include_once 'customers/index.php';
-                        break;
-                    case 'add':
-                        include_once 'customers/create.php';
-                        break;
-                    case 'search':
-                        include_once 'customers/search.php';
-                        break;
-                }
+    case 'member':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'members/index.php';
                 break;
-                
+            case 'add':
+                include_once 'members/create.php';
+                break;
+            case 'search':
+                include_once 'members/search.php';
+                break;
+            case 'edit':
+                include_once 'members/edit.php';
+                break;
+        }
+        break;
+    case 'custom':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'customers/index.php';
+                break;
+            case 'add':
+                include_once 'customers/create.php';
+                break;
+            case 'search':
+                include_once 'customers/search.php';
+                break;
+        }
+        break;
+
     case 'time':
         $action = isset($_GET['action']) ? $_GET['action'] : '';
         switch ($action) {
@@ -149,51 +153,79 @@ switch ($page) {
                 break;
         }
         break;
-        case 'new':
+    case 'new':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'news/index.php';
+                break;
+            case 'add':
+                include_once 'news/create.php';
+                break;
+            case 'edit':
+                include_once 'news/edit.php';
+                break;
+            case 'search':
+                include_once 'news/search.php';
+                break;
+        }
+        break;
+    case 'slider':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'libraries/sliders/index.php';
+                break;
+            case 'add':
+                include_once 'libraries/sliders/create.php';
+                break;
+            case 'edit':
+                include_once 'libraries/sliders/edit.php';
+                break;
+        }
+        break;
+    case 'hair':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'libraries/hairs/index.php';
+                break;
+            case 'add':
+                include_once 'libraries/hairs/create.php';
+                break;
+            case 'edit':
+                include_once 'libraries/hairs/edit.php';
+                break;
+        }
+        break;
+    case 'appointment':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'appointments/index.php';
+                break;
+            case 'add':
+                include_once 'appointments/create.php';
+                break;
+            case 'edit':
+                include_once 'appointments/edit.php';
+                break;
+        }
+        break;
+        case 'order':
             $action = isset($_GET['action']) ? $_GET['action'] : '';
             switch ($action) {
                 case '':
-                    include_once 'news/index.php';
+                    include_once 'orders/index.php';
                     break;
-                case 'add':
-                    include_once 'news/create.php';
+                case 'detail':
+                    include_once 'orders/order_detail.php';
                     break;
                 case 'edit':
-                    include_once 'news/edit.php';
+                    include_once 'orders/edit.php';
                     break;
-                    case 'search':
-                        include_once 'news/search.php';
-                        break;
             }
             break;
-            case 'slider':
-                $action = isset($_GET['action']) ? $_GET['action'] : '';
-                switch ($action) {
-                    case '':
-                        include_once 'libraries/sliders/index.php';
-                        break;
-                    case 'add':
-                        include_once 'libraries/sliders/create.php';
-                        break;
-                    case 'edit':
-                        include_once 'libraries/sliders/edit.php';
-                        break;
-                }
-                break;
-                case 'hair':
-                    $action = isset($_GET['action']) ? $_GET['action'] : '';
-                    switch ($action) {
-                        case '':
-                            include_once 'libraries/hairs/index.php';
-                            break;
-                        case 'add':
-                            include_once 'libraries/hairs/create.php';
-                            break;
-                        case 'edit':
-                            include_once 'libraries/hairs/edit.php';
-                            break;
-                    }
-                    break;
     case 'logout':
         unset($_SESSION['user']);
         header('location:' . ROOT . 'admin/login.php');

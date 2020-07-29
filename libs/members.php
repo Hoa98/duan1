@@ -18,6 +18,13 @@ function member_list(){
     $sql = "SELECT * from members ORDER BY id DESC";
     return query_exe($sql);
 }
+//Ham lay thợ cắt có giờ rảnh 
+function member_list_time($id_time,$day) {
+    $sql = "SELECT * from members WHERE role= 3 and id not in (SELECT id_member from appointments WHERE id_time=$id_time and day='$day')";
+    return query_exe($sql);
+}
+
+
 //Hàm lấy ra danh sách members theo role
 function member_list_role($role){
     $sql = "SELECT * from members Where role = $role";

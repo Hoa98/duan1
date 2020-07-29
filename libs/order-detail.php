@@ -1,7 +1,7 @@
 <?php 
 //Hàm hiển thị toàn bộ danh mục
 function list_all_detail($order){
-    $sql = "SELECT order_detail.*, name,images,price from order_detail inner join products on products.id= order_detail.id_product
+    $sql = "SELECT order_detail.*, name,images,price,sale from order_detail inner join products on products.id= order_detail.id_product
     where id_order = $order
      ORDER BY id DESC";
     return query_exe($sql);
