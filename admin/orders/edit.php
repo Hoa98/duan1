@@ -15,7 +15,7 @@ if (isset($_POST['btnUpdate'])) {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Cập nhật hóa đơn</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật đơn hàng</h6>
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data"  class="needs-validation" novalidate>

@@ -41,11 +41,15 @@ if (isset($_POST['btnsave'])) {
                                 </div>
                 </div>
                 <div class="form-group">
-                    <input type="file" name="images" class="form-file-input border" id="">
-                    <?php if (isset($errors['errors_img'])) : ?>
+                            <label for="images">Ảnh danh mục</label>
+                            <input type="file" class="form-control-file border" id="images" name="images" required>
+                            <div class="invalid-feedback">
+                                Vui lòng chọn ảnh danh mục sản phẩm
+                                </div>
+                                <?php if (isset($errors['errors_img'])) : ?>
                                 <p class="text-danger mt-2"><?= $errors['errors_img'] ?></p>
                             <?php endif; ?>
-                </div>
+                        </div>
                 <button type="submit" name="btnsave" class="btn btn-primary">Ghi lại</button>
             </form>
         </div>

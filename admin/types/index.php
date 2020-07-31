@@ -65,7 +65,7 @@ $type = list_all_type();
                                     <td><?= $t['id'] ?></td>
                                     <td><?= $t['name'] ?></td>
                                     <td>
-                                        <img src="../images/categories/<?= $t['images'] ?>" width="120" alt="">
+                                        <img src="../images/categories/<?= $t['images'] ?>" width="90" alt="">
                                     </td>
                                     <td>
                                         <a href="<?= ROOT ?>admin/?page=type&action=edit&id=<?= $t['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>

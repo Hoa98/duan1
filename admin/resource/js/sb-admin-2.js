@@ -62,7 +62,8 @@ $('.status').change(function() {
     } else {
         $('#span').html('Hết hàng')
     }
-})
+});
+
 })(jQuery); // End of use strict
 
  //Thêm trình soạn thảo văn bản tinymce vào phần nội dung của sản phẩm

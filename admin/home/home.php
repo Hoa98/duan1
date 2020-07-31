@@ -6,6 +6,11 @@ $appointments = count_row('appointments');
 $appointment = list_all_appointment();
 $app_com = appointment_list_cancel('0');
 $app_cancel = appointment_list_cancel('1');
+$order = list_all_order();
+$order_wait =list_status_order('Chờ lấy hàng');
+$order_delivery = list_status_order('Đang giao');
+$order_delivered = list_status_order('Đã giao');
+$order_cancelled =list_status_order('Đã hủy');
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -25,15 +30,15 @@ $app_cancel = appointment_list_cancel('1');
                         <i class="fas fa-users icon-3x"></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?=$custom?></p>
+                        <p class="qty-3x"><?= $custom ?></p>
                         Khách hàng
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?=ROOT?>/admin/?page=custom" class="text-success">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?=ROOT?>/admin/?page=custom" class="text-success"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=custom" class="text-success">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=custom" class="text-success"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -46,15 +51,15 @@ $app_cancel = appointment_list_cancel('1');
                         <i class="fas fa-cut icon-3x"></i></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?=$service?></p>
+                        <p class="qty-3x"><?= $service ?></p>
                         Dịch vụ
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?=ROOT?>/admin/?page=service" class="text-primary">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?=ROOT?>/admin/?page=service" class="text-primary"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=service" class="text-primary">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=service" class="text-primary"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -66,15 +71,15 @@ $app_cancel = appointment_list_cancel('1');
                         <i class="fas fa-users icon-3x"></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?=$member?></p>
+                        <p class="qty-3x"><?= $member ?></p>
                         Nhân viên
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?=ROOT?>/admin/?page=member" class="text-warning">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?=ROOT?>/admin/?page=member" class="text-warning"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=member" class="text-warning">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=member" class="text-warning"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -86,15 +91,15 @@ $app_cancel = appointment_list_cancel('1');
                         <i class="far fa-calendar-alt icon-3x"></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?=$appointments?></p>
+                        <p class="qty-3x"><?= $appointments ?></p>
                         Lịch hẹn
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?=ROOT?>/admin/?page=appointment" class="text-danger">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?=ROOT?>/admin/?page=appointment" class="text-danger"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=appointment" class="text-danger">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=appointment" class="text-danger"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -113,7 +118,7 @@ $app_cancel = appointment_list_cancel('1');
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <form action="<?=ROOT?>/admin/?page=appointment" method="POST" class="col-md-12">
+                        <form action="<?= ROOT ?>/admin/?page=appointment" method="POST" class="col-md-12">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -125,7 +130,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -140,7 +145,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -159,7 +164,7 @@ $app_cancel = appointment_list_cancel('1');
                                             <td><?= $ac['time'] ?></td>
                                             <td><?= ($ac['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
                                             <td>
-                                                <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $ac['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $ac['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $ac['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -176,7 +181,7 @@ $app_cancel = appointment_list_cancel('1');
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <form action="<?=ROOT?>/admin/?page=appointment" method="POST" class="col-md-12">
+                        <form action="<?= ROOT ?>/admin/?page=appointment" method="POST" class="col-md-12">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -188,7 +193,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -203,7 +208,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -222,7 +227,7 @@ $app_cancel = appointment_list_cancel('1');
                                             <td><?= $a['time'] ?></td>
                                             <td><?= ($a['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
                                             <td>
-                                                <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $a['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $a['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -239,7 +244,7 @@ $app_cancel = appointment_list_cancel('1');
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <form action="<?=ROOT?>/admin/?page=appointment" method="POST" class="col-md-12">
+                        <form action="<?= ROOT ?>/admin/?page=appointment" method="POST" class="col-md-12">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -251,7 +256,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -266,7 +271,7 @@ $app_cancel = appointment_list_cancel('1');
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
                                         <th>Ngày cắt</th>
-                                        <th>Thời gian</th>
+                                        <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -285,7 +290,7 @@ $app_cancel = appointment_list_cancel('1');
                                             <td><?= $cancel['time'] ?></td>
                                             <td><?= ($cancel['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
                                             <td>
-                                                <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $cancel['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $cancel['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $cancel['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -299,5 +304,372 @@ $app_cancel = appointment_list_cancel('1');
             </div>
         </div>
     </div>
+    <h2>Danh sách đơn hàng</h2>
+    <!-- Bang don hang  -->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="order-all" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Tất cả đơn hàng</a>
+            <a class="nav-item nav-link active" id="order-wait" data-toggle="tab" href="#wait" role="tab" aria-controls="wait" aria-selected="true">Chờ lấy hàng</a>
+            <a class="nav-item nav-link" id="order-delivery" data-toggle="tab" href="#delivery" role="tab" aria-controls="delivery" aria-selected="false">Đang giao</a>
+            <a class="nav-item nav-link" id="order-delivered" data-toggle="tab" href="#delivered" role="tab" aria-controls="delivered" aria-selected="false">Đã giao</a>
+            <a class="nav-item nav-link" id="order-cancelled" data-toggle="tab" href="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">Đã hủy</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="wait" role="tabpanel" aria-labelledby="order-wait">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="<?=ROOT?>/admin/?page=order" method="POST" class="col-md-12">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php foreach ($order_wait as $wait) : ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" id="" value="<?= $wait['id'] ?>">
+                                            </td>
+                                            <td><?= $wait['id'] ?></td>
+                                            <td><?= $wait['name'] ?></td>
+                                            <td><?= $wait['phone'] ?></td>
+                                            <td><?= $wait['address'] ?></td>
+                                            <td><?= $wait['status'] ?></td>
+                                            <td><?= $wait['created_at'] ?></td>
+                                            <?php $detail = list_all_detail($wait['id']);
+                                            $total = 0;
+                                            foreach ($detail as $d) {
+                                                $price_new = $d['price'] - ($d['price'] * $d['sale']);
+                                                $total += $d['quantity'] * $price_new;
+                                            }
+                                            ?>
+                                            <td><?= number_format($total, 0, ',', '.') . ' đ'; ?></td>
+                                            <td>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=edit&id=<?= $wait['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=detail&id=<?= $wait['id'] ?>" class="btn btn-primary d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&id=<?= $wait['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary" id="btndel-category" name="btn-del">Xóa mục đánh dấu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="order-all"><div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="<?=ROOT?>/admin/?page=order" method="POST" class="col-md-12">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php foreach ($order as $o) : ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" id="" value="<?= $o['id'] ?>">
+                                            </td>
+                                            <td><?= $o['id'] ?></td>
+                                            <td><?= $o['name'] ?></td>
+                                            <td><?= $o['phone'] ?></td>
+                                            <td><?= $o['address'] ?></td>
+                                            <td><?= $o['status'] ?></td>
+                                            <td><?= $o['created_at'] ?></td>
+                                            <?php $detail = list_all_detail($o['id']);
+                                            $total = 0;
+                                            foreach ($detail as $d) {
+                                                $price_new = $d['price'] - ($d['price'] * $d['sale']);
+                                                $total += $d['quantity'] * $price_new;
+                                            }
+                                            ?>
+                                            <td><?= number_format($total, 0, ',', '.') . ' đ'; ?></td>
+                                            <td>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=edit&id=<?= $o['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=detail&id=<?= $o['id'] ?>" class="btn btn-primary d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&id=<?= $o['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary" id="btndel-category" name="btn-del">Xóa mục đánh dấu</button>
+                        </form>
+                    </div>
+                </div>
+            </div></div>
+        <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="order-delivery">
+        <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="<?=ROOT?>/admin/?page=order" method="POST" class="col-md-12">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php foreach ($order_delivery as $delivery) : ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" id="" value="<?= $delivery['id'] ?>">
+                                            </td>
+                                            <td><?= $delivery['id'] ?></td>
+                                            <td><?= $delivery['name'] ?></td>
+                                            <td><?= $delivery['phone'] ?></td>
+                                            <td><?= $delivery['address'] ?></td>
+                                            <td><?= $delivery['status'] ?></td>
+                                            <td><?= $delivery['created_at'] ?></td>
+                                            <?php $detail = list_all_detail($delivery['id']);
+                                            $total = 0;
+                                            foreach ($detail as $d) {
+                                                $price_new = $d['price'] - ($d['price'] * $d['sale']);
+                                                $total += $d['quantity'] * $price_new;
+                                            }
+                                            ?>
+                                            <td><?= number_format($total, 0, ',', '.') . ' đ'; ?></td>
+                                            <td>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=edit&id=<?= $delivery['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=detail&id=<?= $delivery['id'] ?>" class="btn btn-primary d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&id=<?= $delivery['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary" id="btndel-category" name="btn-del">Xóa mục đánh dấu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="delivered" role="tabpanel" aria-labelledby="order-delivered">
+        <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="<?=ROOT?>/admin/?page=order" method="POST" class="col-md-12">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php foreach ($order_delivered as $delivered) : ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" id="" value="<?= $delivered['id'] ?>">
+                                            </td>
+                                            <td><?= $delivered['id'] ?></td>
+                                            <td><?= $delivered['name'] ?></td>
+                                            <td><?= $delivered['phone'] ?></td>
+                                            <td><?= $delivered['address'] ?></td>
+                                            <td><?= $delivered['status'] ?></td>
+                                            <td><?= $delivered['created_at'] ?></td>
+                                            <?php $detail = list_all_detail($delivered['id']);
+                                            $total = 0;
+                                            foreach ($detail as $d) {
+                                                $price_new = $d['price'] - ($d['price'] * $d['sale']);
+                                                $total += $d['quantity'] * $price_new;
+                                            }
+                                            ?>
+                                            <td><?= number_format($total, 0, ',', '.') . ' đ'; ?></td>
+                                            <td>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=edit&id=<?= $delivered['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=detail&id=<?= $delivered['id'] ?>" class="btn btn-primary d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&id=<?= $delivered['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary" id="btndel-category" name="btn-del">Xóa mục đánh dấu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="order-cancelled">
+        <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="<?=ROOT?>/admin/?page=order" method="POST" class="col-md-12">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="checkall" class="checkall">
+                                        </th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ nhận hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php foreach ($order_cancelled as $cancelled) : ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" id="" value="<?= $cancelled['id'] ?>">
+                                            </td>
+                                            <td><?= $cancelled['id'] ?></td>
+                                            <td><?= $cancelled['name'] ?></td>
+                                            <td><?= $cancelled['phone'] ?></td>
+                                            <td><?= $cancelled['address'] ?></td>
+                                            <td><?= $cancelled['status'] ?></td>
+                                            <td><?= $cancelled['created_at'] ?></td>
+                                            <?php $detail = list_all_detail($cancelled['id']);
+                                            $total = 0;
+                                            foreach ($detail as $d) {
+                                                $price_new = $d['price'] - ($d['price'] * $d['sale']);
+                                                $total += $d['quantity'] * $price_new;
+                                            }
+                                            ?>
+                                            <td><?= number_format($total, 0, ',', '.') . ' đ'; ?></td>
+                                            <td>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=edit&id=<?= $cancelled['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&action=detail&id=<?= $cancelled['id'] ?>" class="btn btn-primary d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=order&id=<?= $cancelled['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary" id="btndel-category" name="btn-del">Xóa mục đánh dấu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- /.container-fluid -->

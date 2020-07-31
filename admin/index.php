@@ -15,7 +15,7 @@ require_once '../libs/libraries.php';
 require_once '../libs/appointments.php';
 require_once '../libs/order.php';
 require_once "../libs/order-detail.php";
-                                      
+require_once "../libs/app_detail.php";
 
 include_once 'template/header.php';
 // check_role();
@@ -210,22 +210,25 @@ switch ($page) {
             case 'edit':
                 include_once 'appointments/edit.php';
                 break;
+            case 'detail':
+                include_once 'appointments/app_detail.php';
+                break;
         }
         break;
-        case 'order':
-            $action = isset($_GET['action']) ? $_GET['action'] : '';
-            switch ($action) {
-                case '':
-                    include_once 'orders/index.php';
-                    break;
-                case 'detail':
-                    include_once 'orders/order_detail.php';
-                    break;
-                case 'edit':
-                    include_once 'orders/edit.php';
-                    break;
-            }
-            break;
+    case 'order':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'orders/index.php';
+                break;
+            case 'detail':
+                include_once 'orders/order_detail.php';
+                break;
+            case 'edit':
+                include_once 'orders/edit.php';
+                break;
+        }
+        break;
     case 'logout':
         unset($_SESSION['user']);
         header('location:' . ROOT . 'admin/login.php');

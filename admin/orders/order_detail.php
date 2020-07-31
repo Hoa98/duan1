@@ -24,7 +24,7 @@ if(isset($_GET['id'])){
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Chi tiết hóa đơn</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Chi tiết đơn hàng</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,8 +35,8 @@ if(isset($_GET['id'])){
                                 <th>
                                     <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã hóa đơn chi tiết</th>
-                                <th>Mã hóa đơn</th>
+                                <th>Mã đơn hàng chi tiết</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Ảnh sản phẩm</th>
                                 <th>Đơn giá</th>
@@ -50,8 +50,8 @@ if(isset($_GET['id'])){
                             <th>
                                 <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã hóa đơn chi tiết</th>
-                                <th>Mã hóa đơn</th>
+                                <th>Mã đơn hàng chi tiết</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Ảnh sản phẩm</th>
                                 <th>Đơn giá</th>
@@ -85,4 +85,3 @@ if(isset($_GET['id'])){
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->

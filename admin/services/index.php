@@ -80,8 +80,8 @@ $result = service_list_all();
                                     <td><?=$r['time']?></td>
                                     <td><?=substr($r['detail'], 0, 150).$str=(strlen($r['detail'])>150?'...':'')?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=service&action=edit&id=<?= $r['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=service&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=service&action=edit&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=service&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -28,7 +28,7 @@ $order = list_all_order();
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách hóa đơn</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách đơn hàng</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +39,7 @@ $order = list_all_order();
                                 <th>
                                     <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã hóa đơn</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ nhận hàng</th>
@@ -54,7 +54,7 @@ $order = list_all_order();
                             <th>
                                 <input type="checkbox" name="checkall" class="checkall">
                                 </th>
-                                <th>Mã hóa đơn</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ nhận hàng</th>

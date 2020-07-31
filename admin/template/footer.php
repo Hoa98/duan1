@@ -5,7 +5,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Dự án mẫu (WEB204) 2020</span>
+            <span>Copyright &copy; 2020 Poly-barber All Rights Reserved</span>
         </div>
     </div>
 </footer>

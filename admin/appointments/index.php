@@ -15,7 +15,6 @@ if (isset($_POST['btn-del'])) {
     header('location:' . ROOT . 'admin/?page=appointment');
     die;
 }
-
 $appointment = list_all_appointment();
 ?>
 <!-- Begin Page Content -->
@@ -44,7 +43,7 @@ $appointment = list_all_appointment();
                                 <th>Tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Ngày cắt</th>
-                                <th>Thời gian</th>
+                                <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -59,7 +58,7 @@ $appointment = list_all_appointment();
                                 <th>Tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Ngày cắt</th>
-                                <th>Thời gian</th>
+                                <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -78,7 +77,7 @@ $appointment = list_all_appointment();
                                     <td><?= $a['time'] ?></td>
                                     <td><?= ($a['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $a['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                         <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $a['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -91,4 +90,3 @@ $appointment = list_all_appointment();
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->

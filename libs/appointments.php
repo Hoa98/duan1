@@ -23,6 +23,11 @@ function appointment_list_cancel($cancel) {
 function list_one_appointment($id){
     return listOne('appointments','id',$id);
 }
+//Hamf lấy 1 dòng  mới thêm vào theo
+function list_top_app($id_customer){
+    $sql = "SELECT * from appointments  where id_customer =$id_customer ORDER BY id DESC limit 0,1";
+    return query_limit($sql);
+}
 //Thêm dữ liệu vào bảng
 function insert_appointment($id_member,$id_customer,$day,$id_time){
     $data =[
@@ -30,7 +35,7 @@ function insert_appointment($id_member,$id_customer,$day,$id_time){
         'id_customer'=>$id_customer,
         'day'=>$day,
         'id_time'=>$id_time,
-        'cancel'=>'0'
+        'cancel'=>false
     ];
     return insert('appointments',$data);
 }

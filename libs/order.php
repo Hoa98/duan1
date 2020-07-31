@@ -13,6 +13,11 @@ function list_user_order($id_customer){
     return query_exe($sql);
 }
 
+//Hàm hien thi don hàng theo trang thai
+function list_status_order($status){
+    $sql = "SELECT orders.*, name from orders inner join customers on customers.id= orders.id_customer where status like '%$status%' ORDER BY id DESC";
+    return query_exe($sql);
+}
 //Hamf lấy 1 dòng hóa đơn mới thêm vào theo
 function list_top_order($id_customer){
     $sql = "SELECT * from orders  where id_customer =$id_customer ORDER BY id DESC limit 0,1";
