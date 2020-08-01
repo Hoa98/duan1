@@ -13,7 +13,7 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_img'] = 'Vui lòng chọn ảnh tin tức';
     }
     if(array_filter($errors)==false){
-        $id_member =2; //lấy session member
+        $id_member =$_SESSION['member']['id']; //lấy session member
         insert_new($title,$content,$images,$id_member);
     if ($okUpload) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/sliders/' . $images);

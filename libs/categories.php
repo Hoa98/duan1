@@ -7,8 +7,8 @@ function list_all_category(){
 }
 
 //Hàm lấy ra 1 bản ghi
-function list_one_category($id){
-    return listOne('categories','id',$id);
+function list_one_category($id,$value){
+    return listOne('categories',$id,$value);
 }
 //Thêm dữ liệu vào bảng
 function insert_category($name,$images){
@@ -26,7 +26,7 @@ function category_update($id, $name,$images) {
 }
 //function Xóa dữ liệu loại hàng
 function category_delete($id) {
-    $row = list_one_category($id);
+    $row = list_one_category('id',$id);
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu

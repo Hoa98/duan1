@@ -6,7 +6,6 @@ function all_app_detail($appointment){
      ORDER BY id DESC";
     return query_exe($sql);
 }
-
 //Hàm lấy ra 1 bản ghi
 function one_app_detail($id,$value){
     return listOne('app_detail',$id,$value);
@@ -19,7 +18,10 @@ function insert_app_detail($id_appointment,$id_service){
     ];
     return insert('app_detail',$data);
 }
-
+//function xóa theo id_apppointment
+function app_book_delete($id) {
+    delete('app_detail', 'id_appointment', $id);
+}
 //function Xóa dữ liệu
 function app_detail_delete($id) {
     delete('app_detail', 'id', $id);

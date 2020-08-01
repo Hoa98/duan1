@@ -11,6 +11,8 @@ if (isset($_POST['btnsave'])) {
     }
     if (!file_exists($_FILES["images"]["tmp_name"])){
         $errors['errors_img'] = 'Vui lòng chọn ảnh loại dịch vụ';
+    }if (list_one_type('name', $name) > 0) {
+        $errors['errors_name'] = 'Tên loại dịch vụ đã tồn tại';
     }
     if(array_filter($errors)==false){
         insert_type($name, $images);
@@ -39,6 +41,9 @@ if (isset($_POST['btnsave'])) {
                     <div class="invalid-feedback">
                                 Vui lòng nhập tên loại dịch vụ
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                 </div>
                 <div class="form-group">
                             <label for="images">Ảnh loại dịch vụ</label>

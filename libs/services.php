@@ -8,9 +8,10 @@ function service_list_all() {
     return query_exe($sql);
 }
 
+
 //Lấy ra 1 bản ghi dịch vụ theo điều kiện id
-function service_list_one($id) {
-    return listOne('services', 'id', $id);
+function service_list_one($id,$value) {
+    return listOne('services',$id,$value);
 }
 //function lấy ra dữ liệu theo loại hàng
 //$id_cate là dữ liệu được lọc
@@ -79,7 +80,7 @@ function service_insert($name, $price, $images, $id_type, $detail, $time) {
 
 //Xóa dịch vụ
 function service_delete($id) {
-    $row = service_list_one($id);
+    $row = service_list_one('id',$id);
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu

@@ -14,6 +14,8 @@ if (isset($_POST['btnsave'])) {
     }
     if (!file_exists($_FILES["images"]["tmp_name"])){
         $errors['errors_img'] = 'Vui lòng chọn ảnh sản phẩm';
+    }if (product_list_one('name', $name) > 0) {
+        $errors['errors_name'] = 'Tên sản phẩm đã tồn tại';
     }
     if(array_filter($errors)==false){
         $status = isset($status) ? true : false;
@@ -60,6 +62,9 @@ if (isset($_POST['btnsave'])) {
                             <div class="invalid-feedback">
                                 Vui lòng nhập tên sản phẩm
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" name="status" class="form-check-input status" id="status"> 

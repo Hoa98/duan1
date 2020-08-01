@@ -5,7 +5,7 @@ $categories = list_all_category();
 //Lấy id từ url để sửa sản phẩm
 $id = $_GET['id'];
 //Câu lệnh sql lấy ra sản phẩm
-$product = product_list_one($id);
+$product = product_list_one('id',$id);
 if (isset($_POST['btnSave'])) {
     extract($_REQUEST);
     $okUpload = false;

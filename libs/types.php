@@ -7,9 +7,10 @@ function list_all_type(){
 }
 
 //Hàm lấy ra 1 bản ghi
-function list_one_type($id){
-    return listOne('types','id',$id);
+function list_one_type($id,$value){
+    return listOne('types',$id,$value);
 }
+
 //Thêm dữ liệu vào bảng
 function insert_type($name,$images){
     $data =[
@@ -26,7 +27,7 @@ function type_update($id, $name,$images) {
 }
 //function Xóa dữ liệu loại hàng
 function type_delete($id) {
-    $row = list_one_type($id);
+    $row = list_one_type('id',$id);
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu

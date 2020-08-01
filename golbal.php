@@ -6,19 +6,19 @@ session_start();
 define('ROOT','http://localhost/Duan1/');
 
 function check_session(){
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['member'])){
         header('location:'.ROOT.'admin');
         die;
     }
     return;
 }
 function check_role(){
-    if(isset($_SESSION['user'])){
-        if($_SESSION['user']['role']==1){
+    if(isset($_SESSION['member'])){
+        if($_SESSION['member']['role']==1){
             return;
         }
-        if($_SESSION['user']['role']==0){
-            header('location:'.ROOT);die;
+        if($_SESSION['member']['role']!=1){
+            header('location:'.ROOT);die();
         }
     }
     //TH người dùng chưa đăng nhập

@@ -16,9 +16,12 @@ require_once '../libs/appointments.php';
 require_once '../libs/order.php';
 require_once "../libs/order-detail.php";
 require_once "../libs/app_detail.php";
+require_once "../libs/comments.php";
+require_once "../libs/evaluates.php";
+require_once "../libs/contact.php";
 
 include_once 'template/header.php';
-// check_role();
+check_role();
 switch ($page) {
     case '':
     case 'home':
@@ -229,8 +232,53 @@ switch ($page) {
                 break;
         }
         break;
+    case 'comment':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'feedback/comments/index.php';
+                break;
+            case 'reply':
+                include_once 'feedback/comments/reply.php';
+                break;
+            case 'edit':
+                include_once 'feedback/comments/edit.php';
+                break;
+            case 'detail':
+                include_once 'feedback/comments/detail.php';
+                break;
+        }
+        break;
+    case 'contact':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'feedback/contacts/index.php';
+                break;
+            case 'reply':
+                include_once 'feedback/contacts/reply.php';
+                break;
+                case 'detail':
+                    include_once 'feedback/contacts/detail.php';
+                    break;
+        }
+        break;
+    case 'evaluate':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case '':
+                include_once 'feedback/evaluates/index.php';
+                break;
+            case 'reply':
+                include_once 'feedback/evaluates/reply.php';
+                break;
+            case 'detail':
+                include_once 'feedback/evaluates/detail.php';
+                break;
+        }
+        break;
     case 'logout':
-        unset($_SESSION['user']);
+        unset($_SESSION['member']);
         header('location:' . ROOT . 'admin/login.php');
         die;
         break;

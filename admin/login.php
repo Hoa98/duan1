@@ -2,25 +2,38 @@
 require_once '../golbal.php';
 require_once '../libs/members.php';
 //Nếu đã đăng nhập rồi thì check_session
+if (isset($_COOKIE['account'])) {
+  $account = $_COOKIE['account'];
+  $password = $_COOKIE['password'];
+}
 check_session();
 extract($_REQUEST);
 if (isset($btnlogin)) {
-  if (check_user($username)) {
-    //Trong trường hợp username tồn tại thì lấy ra dữ liệu
-    $user = check_user($username);
-    if (password_verify($password, $user['password'])) {
-      $_SESSION['user'] = $user;
-      if ($_SESSION['user']['role'] == 1000) {
+  if (check_member($account)) {
+    //Trong trường hợp account tồn tại thì lấy ra dữ liệu
+    $member = check_member($account);
+    if (password_verify($password, $member['password'])) {
+      $_SESSION['member'] = $member;
+      if ($_SESSION['member']['role'] == 1) {
         header('location:' . ROOT . 'admin');
       }
-      if ($_SESSION['user']['role'] == 100) {
+      if ($_SESSION['member']['role'] != 1) {
         header('location:' . ROOT);
+      }
+      if (isset($remember)) {
+        //Nếu người dùng nhớ mật khẩu thì lưu lại trong 30 ngày trong cookie
+        setcookie('account', $account, time() + 3600 * 30, "/");
+        setcookie('password', $password, time() + 3600 * 30, "/");
+      } else {
+        //Ngược lại thì xóa cookie cũ đi
+        setcookie('account', $account, time() - 3600 * 30, "/");
+        setcookie('password', $password, time() - 3600 * 30, "/");
       }
     } else {
       $error['password'] = "Mật khẩu không đúng!";
     }
   } else {
-    $error['username'] = "Username không đúng";
+    $error['account'] = "Tài khoản không đúng";
   }
 }
 ?>
@@ -67,16 +80,17 @@ if (isset($btnlogin)) {
                   </div>
                   <form class="user" action="" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" placeholder="Username..." name="username">
-                      <label for="">
-                        <?= isset($error['username']) ? $error['username'] : '' ?>
-                      </label>
+                      <input type="text" class="form-control form-control-user" value="<?= isset($account) ? $account : '' ?>" placeholder="Tài khoản..." name="account" autofocus>
+                      
+                      <?php if (isset($error['account'])) : ?>
+                                <p class="text-danger mt-2"><?= $error['account'] ?></p>
+                            <?php endif; ?>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
-                      <label for="">
-                        <?= isset($error['password']) ? $error['password'] : '' ?>
-                      </label>
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" value="<?= isset($password) ? $password : '' ?>" placeholder="Password" name="password">
+                      <?php if (isset($error['password'])) : ?>
+                                <p class="text-danger mt-2"><?= $error['password'] ?></p>
+                            <?php endif; ?>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -89,10 +103,7 @@ if (isset($btnlogin)) {
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="forgot-password.php">Quên mật khẩu</a>
                   </div>
                 </div>
               </div>

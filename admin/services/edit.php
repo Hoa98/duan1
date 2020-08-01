@@ -5,7 +5,7 @@ $types = list_all_type();
 //Lấy id từ url để sửa dịch vụ
 $id = $_GET['id'];
 //Câu lệnh sql lấy ra dịch vụ
-$service = service_list_one($id);
+$service = service_list_one('id',$id);
 if (isset($_POST['btnSave'])) {
     extract($_REQUEST);
     $okUpload = false;

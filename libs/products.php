@@ -9,8 +9,8 @@ function product_list_all() {
 }
 
 //Lấy ra 1 bản ghi hàng hóa theo điều kiện id
-function product_list_one($id) {
-    return listOne('products', 'id', $id);
+function product_list_one($id,$value) {
+    return listOne('products',$id,$value);
 }
 
 //function lấy ra dữ liệu theo loại hàng
@@ -110,7 +110,7 @@ function product_insert($name, $price, $sale, $images, $id_category, $status, $d
 
 //Xóa hàng hóa
 function product_delete($id) {
-    $row = product_list_one($id);
+    $row = product_list_one('id',$id);
     
     if ( $row ) {
         //Xóa cả hình khi xóa dữ liệu

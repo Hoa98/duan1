@@ -1,18 +1,38 @@
 <?php 
 require_once "database.php";
 
-//Hàm hiển thị toàn bộ danh mục
-function list_all_comment(){
-    $sql = "SELECT comments.id,content,	id_product,account,id_user,users.images,fullname,approve,parent_id,date,products.name as product_name from comments inner join users on comments.id_user = users.id
+//Hàm hiển thị toàn bộ bình luan cua khach
+function list_all_comment_custom(){
+    $sql = "SELECT comments.*,products.name as product_name,customers.name as custom_name,phone from comments 
+    inner join customers on comments.id_customer = customers.id
     inner join products on comments.id_product = products.id
      ORDER BY comments.id DESC";
     return query_exe($sql);
 }
-//$id_cate là dữ liệu được lọc
-function comment_list($approve) {
-    $sql = "SELECT comments.id,content,	id_product,account,id_user,users.images,fullname,approve,parent_id,date,products.name as product_name from comments inner join users on comments.id_user = users.id 
-   inner join products on comments.id_product = products.id
-    WHERE approve=$approve ORDER BY comments.id DESC";
+
+//Hàm hiển thị toàn bộ bình luan cua thanh vien
+function list_all_comment_member(){
+    $sql = "SELECT comments.*,products.name as product_name, phone, fullname from comments 
+    inner join products on comments.id_product = products.id
+    inner join members on comments.id_member = members.id
+     ORDER BY comments.id DESC";
+    return query_exe($sql);
+}
+
+//Hàm hiển thị toàn bộ bình luan cua thanh vien
+function list_parent_comment_member($parent_id){
+    $sql = "SELECT comments.*,products.name as product_name, phone, fullname from comments 
+    inner join products on comments.id_product = products.id
+    inner join members on comments.id_member = members.id where parent_id =$parent_id
+     ORDER BY comments.id DESC";
+    return query_exe($sql);
+}
+//Hàm hiển thị toàn bộ bình luan cua khach
+function list_parent_comment_custom($parent_id){
+    $sql = "SELECT comments.*,products.name as product_name,customers.name as custom_name,phone from comments 
+    inner join customers on comments.id_customer = customers.id
+    inner join products on comments.id_product = products.id where parent_id =$parent_id
+     ORDER BY comments.id DESC";
     return query_exe($sql);
 }
 //Hàm lấy ra 1 bản ghi
@@ -20,18 +40,20 @@ function list_one_comment($id,$value){
     return listOne('comments',$id,$value);
 }
 //Thêm dữ liệu vào bảng
-function insert_comment($content,$id_product,$id_user,$approve,$parent_id){
+function insert_comment($content,$id_product,$id_customer,$id_member,$rating,$approve,$parent_id){
     $data =[
         'content' => $content,
         'id_product' => $id_product,
-        'id_user' => $id_user,
+        'id_customer' => $id_customer,
+        'id_member' => $id_member,
+        'rating'=> $rating,
         'approve' => $approve,
         'parent_id' => $parent_id
     ];
     return insert('comments',$data);
 }
 
-//function cập nhật bình luận
+//function phê duyệt bình luận
 function comment_approve($id,$approve) {
     $data = ['approve'=>$approve];
     update('comments', $data, 'id', $id);
@@ -40,17 +62,18 @@ function comment_approve($id,$approve) {
 function comment_delete($id) {
     delete('comments', 'id', $id);
 }
-//Hiển thị tất cả comment đã được duyệt
-function comment_list_all($id_product) {
-    $sql = "SELECT comments.id,content,	id_product,id_user,images,fullname,approve,parent_id,date from comments inner join users on comments.id_user = users.id WHERE approve=1 and id_product=$id_product ORDER BY comments.id DESC";
+//Hiển thị tất cả comment thành viên đã được duyệt
+function comment_custom_list_approve($id_product) {
+    $sql = "SELECT comments.*,members.images as m_images,fullname from comments 
+    inner join members on members.id = comments.id_member
+    WHERE approve=1 and id_product=$id_product ORDER BY comments.id DESC";
     return query_exe($sql);
 }
-
-//Hàm hiển thị chi tiết bình luận theo mã hàng hóa
-function comment_select_by_pro($id_product){
-    $sql = "SELECT c.*,account, p.name FROM comments c inner JOIN products p ON p.id=c.id_product
-    inner join users on c.id_user= users.id
-     WHERE c.id_product=$id_product ORDER BY date DESC";
+//Khách
+function comment_member_list_approve($id_product) {
+    $sql = "SELECT comments.*,customers.images as c_images, name from comments 
+    inner join customers on comments.id_customer = customers.id
+    WHERE approve=1 and id_product=$id_product ORDER BY comments.id DESC";
     return query_exe($sql);
 }
 
@@ -64,9 +87,9 @@ function statistical_comment(){
     return query_exe($sql);
 }
 
-//Hiển thị comment sử dụng đệ quy
+//Hiển thị comment khach sử dụng đệ quy
 function comment_recursive($parent,$level,$id_product,&$newArray){
-    $source = comment_list_all($id_product);
+    $source = comment_custom_list_approve($id_product);
     if(count($source)>0){
         foreach ($source as $key => $value){
             if($value['parent_id'] == $parent){

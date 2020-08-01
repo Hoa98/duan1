@@ -45,6 +45,7 @@ $appointment = list_all_appointment();
                                 <th>Ngày cắt</th>
                                 <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
+                                <th>Thành tiền</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -60,6 +61,7 @@ $appointment = list_all_appointment();
                                 <th>Ngày cắt</th>
                                 <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
+                                <th>Thành tiền</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
@@ -75,10 +77,29 @@ $appointment = list_all_appointment();
                                     <td><?= $a['phone'] ?></td>
                                     <td><?= $a['day'] ?></td>
                                     <td><?= $a['time'] ?></td>
-                                    <td><?= ($a['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
+                                    <?php if($a['cancel']==0): ?>
+                                    <td>Sắp tới</td>
+                                    <?php elseif($a['cancel']==1): ?>
+                                        <td>Chờ phục vụ</td>
+                                        <?php elseif($a['cancel']==2): ?>
+                                        <td>Đang phục vụ</td>
+                                        <?php elseif($a['cancel']==3): ?>
+                                        <td>Hoàn thành</td>
+                                        <?php elseif($a['cancel']==4): ?>
+                                        <td>Đã hủy lịch</td>
+                                    <?php endif; ?>
+                                    <?php  $detail = all_app_detail($a['id']);
+                                    $total=0;
+                                    foreach($detail as $d){
+                                        $price=$d['price'];
+                                        $total += $price;
+                                    }
+                                    ?>
+                                    <td><?=number_format($total,0,',','.').' đ';?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $a['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $a['id'] ?>" class="btn btn-success  d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $a['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger  d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -41,7 +41,6 @@ $result = list_all_new();
                                 </th>
                                 <th>Mã tin tức</th>
                                 <th>Tiêu đề</th>
-                                <th>Chi tiết</th>
                                 <th>Hình ảnh</th>
                                 <th>Người đăng</th>
                                 <th>Thao tác</th>
@@ -54,7 +53,6 @@ $result = list_all_new();
                                 </th>
                                 <th>Mã tin tức</th>
                                 <th>Tiêu đề</th>
-                                <th>Chi tiết</th>
                                 <th>Hình ảnh</th>
                                 <th>Người đăng</th>
                                 <th>Thao tác</th>
@@ -68,7 +66,6 @@ $result = list_all_new();
                                     </td>
                                     <td><?= $r['id'] ?></td>
                                     <td><?= $r['title'] ?></td>
-                                    <td><?= $r['content'] ?></td>
                                     <td>
                                         <img src="../images/sliders/<?= $r['images'] ?>" width="90" alt="">
                                     </td>

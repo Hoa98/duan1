@@ -38,7 +38,7 @@ $customers = custom_list_all();
             <h6 class="m-0 font-weight-bold text-primary">Đặt lịch hẹn</h6>
         </div>
         <div class="card-body">
-            <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate  onsubmit="return check()">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
@@ -86,6 +86,7 @@ $customers = custom_list_all();
                             <?php if (isset($errors['errors_service'])) : ?>
                                 <p class="text-danger mt-2"><?= $errors['errors_service'] ?></p>
                             <?php endif; ?>
+                            <p class="text-danger mt-2" id="msg-service"></p>
                         </div>
                     </div>
                 </div>
@@ -113,4 +114,23 @@ $customers = custom_list_all();
       });
   });
 });
+function check(){
+  var flag = true;
+  console.log('dsss');
+  var service = document.getElementsByName("id_service[]");
+    var str = '';
+    for (var i = 0; i < service.length; i++) {
+        if (service[i].checked) {
+            str = service[i].value;
+        }
+    }
+    if (str == "" || str == null) {
+      document.getElementById('msg-service').innerHTML = "Vui lòng chọn ít nhất một dịch vụ";
+       flag=false;
+  } if (!flag) {
+     return false;
+} else {
+    return true;
+}
+}
 </script>

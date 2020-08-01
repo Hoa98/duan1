@@ -11,6 +11,8 @@ if (isset($_POST['btnsave'])) {
     }
     if (!file_exists($_FILES["images"]["tmp_name"])){
         $errors['errors_img'] = 'Vui lòng chọn ảnh danh mục';
+    }if (list_one_category('name', $name) > 0) {
+        $errors['errors_name'] = 'Tên danh mục sản phẩm đã tồn tại';
     }
     if(array_filter($errors)==false){
     insert_category($name, $images);
@@ -39,6 +41,9 @@ if (isset($_POST['btnsave'])) {
                     <div class="invalid-feedback">
                                 Vui lòng nhập tên danh mục sản phẩm
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                 </div>
                 <div class="form-group">
                             <label for="images">Ảnh danh mục</label>

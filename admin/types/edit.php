@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$type = list_one_type($id);
+$type = list_one_type('id',$id);
 if (isset($_POST['btnUpdate'])) {
     extract($_REQUEST);
     $okUpload = false;

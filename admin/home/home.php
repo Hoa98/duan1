@@ -5,7 +5,7 @@ $service = count_row('services');
 $appointments = count_row('appointments');
 $appointment = list_all_appointment();
 $app_com = appointment_list_cancel('0');
-$app_cancel = appointment_list_cancel('1');
+$app_cancel = appointment_list_cancel('4');
 $order = list_all_order();
 $order_wait =list_status_order('Chờ lấy hàng');
 $order_delivery = list_status_order('Đang giao');
@@ -144,7 +144,7 @@ $order_cancelled =list_status_order('Đã hủy');
                                         <th>Thợ cắt</th>
                                         <th>Tên khách hàng</th>
                                         <th>Số điện thoại</th>
-                                        <th>Ngày cắt</th>
+                                        <th width=100>Ngày cắt</th>
                                         <th>Thời gian bắt đầu</th>
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
@@ -162,10 +162,20 @@ $order_cancelled =list_status_order('Đã hủy');
                                             <td><?= $ac['phone'] ?></td>
                                             <td><?= $ac['day'] ?></td>
                                             <td><?= $ac['time'] ?></td>
-                                            <td><?= ($ac['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
+                                            <?php if($ac['cancel']==0): ?>
+                                    <td>Sắp tới</td>
+                                    <?php elseif($ac['cancel']==1): ?>
+                                        <td>Chờ phục vụ</td>
+                                        <?php elseif($ac['cancel']==2): ?>
+                                        <td>Đang phục vụ</td>
+                                        <?php elseif($ac['cancel']==3): ?>
+                                        <td>Hoàn thành</td>
+                                        <?php elseif($ac['cancel']==4): ?>
+                                        <td>Đã hủy lịch</td>
+                                    <?php endif; ?>
                                             <td>
-                                                <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $ac['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
-                                                <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $ac['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $ac['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                                <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $ac['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger  d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -225,7 +235,17 @@ $order_cancelled =list_status_order('Đã hủy');
                                             <td><?= $a['phone'] ?></td>
                                             <td><?= $a['day'] ?></td>
                                             <td><?= $a['time'] ?></td>
-                                            <td><?= ($a['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
+                                            <?php if($a['cancel']==0): ?>
+                                    <td>Sắp tới</td>
+                                    <?php elseif($a['cancel']==1): ?>
+                                        <td>Chờ phục vụ</td>
+                                        <?php elseif($a['cancel']==2): ?>
+                                        <td>Đang phục vụ</td>
+                                        <?php elseif($a['cancel']==3): ?>
+                                        <td>Hoàn thành</td>
+                                        <?php elseif($a['cancel']==4): ?>
+                                        <td>Đã hủy lịch</td>
+                                    <?php endif; ?>
                                             <td>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $a['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
@@ -288,7 +308,17 @@ $order_cancelled =list_status_order('Đã hủy');
                                             <td><?= $cancel['phone'] ?></td>
                                             <td><?= $cancel['day'] ?></td>
                                             <td><?= $cancel['time'] ?></td>
-                                            <td><?= ($cancel['cancel']) ? 'Đã hủy' : 'Sắp tới' ?></td>
+                                            <?php if($cancel['cancel']==0): ?>
+                                    <td>Sắp tới</td>
+                                    <?php elseif($cancel['cancel']==1): ?>
+                                        <td>Chờ phục vụ</td>
+                                        <?php elseif($cancel['cancel']==2): ?>
+                                        <td>Đang phục vụ</td>
+                                        <?php elseif($cancel['cancel']==3): ?>
+                                        <td>Hoàn thành</td>
+                                        <?php elseif($cancel['cancel']==4): ?>
+                                        <td>Đã hủy lịch</td>
+                                    <?php endif; ?>
                                             <td>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $cancel['id'] ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
                                                 <a href="<?= ROOT ?>admin/?page=appointment&id=<?= $cancel['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>

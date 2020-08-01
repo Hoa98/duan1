@@ -35,18 +35,14 @@ function insert_appointment($id_member,$id_customer,$day,$id_time){
         'id_customer'=>$id_customer,
         'day'=>$day,
         'id_time'=>$id_time,
-        'cancel'=>false
+        'cancel'=>0
     ];
     return insert('appointments',$data);
 }
 
 //function cập nhật loại hàng
-function appointment_update($id, $id_member,$id_customer,$day,$id_time,$cancel) {
+function appointment_update($id,$cancel) {
     $data = [
-    'id_member' => $id_member,
-    'id_customer'=>$id_customer,
-    'day'=>$day,
-    'id_time'=>$id_time,
     'cancel'=>$cancel
 ];
     update('appointments', $data, 'id', $id);

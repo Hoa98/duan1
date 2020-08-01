@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$cate = list_one_category($id);
+$cate = list_one_category('id',$id);
 if (isset($_POST['btnUpdate'])) {
     extract($_REQUEST);
     $okUpload = false;
