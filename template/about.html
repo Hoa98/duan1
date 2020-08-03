@@ -422,50 +422,70 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- form itself end-->
     <form id="test-form" class="white-popup-block mfp-hide">
-            <div class="popup_box ">
-                    <div class="popup_inner">
-                        <h3>Make an Appointment</h3>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-xl-6 col-md-6">
-                                    <input id="datepicker" placeholder="Date">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input id="timepicker" placeholder="time">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Choose services">Choose services 1</option>
-                                        <option value="1">Choose services 2</option>
-                                        <option value="2">Choose services 3</option>
-                                        <option value="3">Choose services 4</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Choose Barbers">Choose Barbers</option>
-                                        <option value="1">Zaki</option>
-                                        <option value="2">Ronky</option>
-                                        <option value="3">kalu</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input type="text" placeholder="Your name">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input type="text" placeholder="Phone no">
-                                </div>
-                                <div class="col-xl-12">
-                                    <input type="email" placeholder="Your email">
-                                </div>
-                                <div class="col-xl-12">
-                                    <button type="submit" class="boxed-btn3">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+        <div class="popup_box ">
+                <div class="popup_inner">
+                    <h3>Make an Appointment</h3>
+                    <form action="#">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <input id="datepicker" placeholder="Date">
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <input id="timepicker" placeholder="time">
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <h5 class="py-3 mr-0 text-left">Choose service</h5>
+                            <div class="custom-control  custom-checkbox">
+                                <input type="checkbox" class="custom-control-input ml-3" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Service 1</label>
+                              </div>
+                            <div class="custom-control mt-1 custom-checkbox">
+                                <input type="checkbox" class="custom-control-input ml-3" id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">Service 2</label>
+                              </div>
+                            <div class="custom-control mt-1 custom-checkbox">
+                                <input type="checkbox" class="custom-control-input ml-3" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">Service 3</label>
+                              </div>
+                            <div class="custom-control mt-1 custom-checkbox">
+                                <input type="checkbox" class="custom-control-input ml-3" id="customCheck4">
+                                <label class="custom-control-label" for="customCheck4">Service 4</label>
+                              </div>
+                            <div class="custom-control mt-1 custom-checkbox">
+                                <input type="checkbox" class="custom-control-input ml-3" id="customCheck5">
+                                <label class="custom-control-label" for="customCheck5">Service 5</label>
+                              </div>
+
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <select class="form-select wide" id="default-select" class="">
+                                <option data-display="Choose Barbers">Choose Barbers</option>
+                                <option value="1">Zaki</option>
+                                <option value="2">Ronky</option>
+                                <option value="3">kalu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-xl-6 col-md-6">
+                            <input type="text" placeholder="Your name">
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <input type="text" placeholder="Phone no">
+                        </div>
+                    </div>
+                            <div class="col-xl-12">
+                                <input type="email" placeholder="Your email">
+                            </div>
+                            <div class="col-xl-12">
+                                <button type="submit" class="boxed-btn3">Submit</button>
+                            </div>
+                    </form>
                 </div>
-        </form>
+            </div>
+    </form>
 <!-- form itself end -->
 
     <!-- JS here -->

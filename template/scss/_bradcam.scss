@@ -131,7 +131,6 @@
 #test-form {
     display: inline-block;
     margin: auto;
-    text-align: center;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -183,6 +182,16 @@
         position: absolute;
         right: -6px;
         color: #fff !important;
+    }
+    label{
+        font-size: 16px;
+    }
+    .custom-checkbox{
+        input[type=checkbox].custom-control-input{
+            &::checked{
+                background-color: #4A3600;
+            }
+        }
     }
 }
 
