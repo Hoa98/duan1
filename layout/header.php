@@ -47,12 +47,12 @@
                                     <div class="main-menu">
                                         <nav>
                                             <ul id="navigation" class="mt-3">
-                                                <li><a class="active" href="<?=ROOT?>">Trang chủ</a></li>
-                                                <li><a href="<?=ROOT?>?page=introduce">Giới thiệu</a></li>
-                                                <li><a href="<?=ROOT?>?page=service">Dịch vụ</a></li>
-                                                <li><a href="<?=ROOT?>?page=product-list">Sản phẩm</a></li>
-                                                <li><a href="<?=ROOT?>?page=blog">Tin tức</a></li>
-                                                <li><a href="<?=ROOT?>?page=contact">Liên hệ</a></li>
+                                                <li><a class="<?=($_GET['page']=='home'||$_GET['page']=='')?'active':''?>" href="<?=ROOT?>">Trang chủ</a></li>
+                                                <li><a class="<?=($_GET['page']=='introduce')?'active':''?>" href="<?=ROOT?>?page=introduce">Giới thiệu</a></li>
+                                                <li><a class="<?=($_GET['page']=='service')?'active':''?>" href="<?=ROOT?>?page=service">Dịch vụ</a></li>
+                                                <li><a class="<?=($_GET['page']=='product-list')?'active':''?>" href="<?=ROOT?>?page=product-list">Sản phẩm</a></li>
+                                                <li><a class="<?=($_GET['page']=='blog')?'active':''?>" href="<?=ROOT?>?page=blog">Tin tức</a></li>
+                                                <li><a class="<?=($_GET['page']=='contact')?'active':''?>" href="<?=ROOT?>?page=contact">Liên hệ</a></li>
                                             </ul>
                                         </nav>
                                     </div>

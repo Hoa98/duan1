@@ -36,9 +36,9 @@ function member_check($id,$value){
 }
 
 
-//Phân trang nếu có nhiều tài khoản
+//Lấy ra thợ cắt theo limit
 function member_list_limit($limit, $nRows) {
-    $sql = "SELECT * from members order by id desc limit $limit, $nRows";
+    $sql = "SELECT * from members where role = 3 order by id limit $limit, $nRows";
     return query_exe($sql);
 }
 

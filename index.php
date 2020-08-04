@@ -1,6 +1,10 @@
 <?php
 ob_start();
 require_once "golbal.php";
+require_once "libs/libraries.php";
+require_once "libs/members.php";
+require_once "libs/services.php";
+
 extract($_REQUEST);
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 switch ($page) {
