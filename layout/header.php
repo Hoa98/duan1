@@ -36,7 +36,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
-                                <a href="<?=ROOT?>">
+                                <a href="<?= ROOT ?>">
                                     <img src="images/logo1.png" alt="" width="100" height="80">
                                 </a>
                             </div>
@@ -47,31 +47,32 @@
                                     <div class="main-menu">
                                         <nav>
                                             <ul id="navigation" class="mt-3">
-                                                <li><a class="<?=($_GET['page']=='home'||$_GET['page']=='')?'active':''?>" href="<?=ROOT?>">Trang chủ</a></li>
-                                                <li><a class="<?=($_GET['page']=='introduce')?'active':''?>" href="<?=ROOT?>?page=introduce">Giới thiệu</a></li>
-                                                <li><a class="<?=($_GET['page']=='service')?'active':''?>" href="<?=ROOT?>?page=service">Dịch vụ</a></li>
-                                                <li><a class="<?=($_GET['page']=='product-list')?'active':''?>" href="<?=ROOT?>?page=product-list">Sản phẩm</a></li>
-                                                <li><a class="<?=($_GET['page']=='blog')?'active':''?>" href="<?=ROOT?>?page=blog">Tin tức</a></li>
-                                                <li><a class="<?=($_GET['page']=='contact')?'active':''?>" href="<?=ROOT?>?page=contact">Liên hệ</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'home' || $_GET['page'] == '') ? 'active' : '' ?>" href="<?= ROOT ?>">Trang chủ</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'introduce') ? 'active' : '' ?>" href="<?= ROOT ?>?page=introduce">Giới thiệu</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'service') ? 'active' : '' ?>" href="<?= ROOT ?>?page=service">Dịch vụ</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'product-list') ? 'active' : '' ?>" href="<?= ROOT ?>?page=product-list">Sản phẩm</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'blog') ? 'active' : '' ?>" href="<?= ROOT ?>?page=blog">Tin tức</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'contact') ? 'active' : '' ?>" href="<?= ROOT ?>?page=contact">Liên hệ</a></li>
                                             </ul>
                                         </nav>
                                     </div>
-                                   
+
                                     <div class="icon">
                                         <a href=""><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
                                         <a href=""><i class="fa fa-search text-white ml-2" aria-hidden="true"></i></a>
                                         <!-- <a href=""><i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i></a> -->
                                     </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i>
+
+                                    <div class="dropdown no-arrow mr-1">
+                                        <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
+                                        <i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                          <button class="dropdown-item" type="button">Action</button>
-                                          <button class="dropdown-item" type="button">Another</button>
-                                          <button class="dropdown-item" type="button">Đăng xuất</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
                                         </div>
-                                      </div>
+                                    </div>
                                     <div class="book_room">
                                         <div class="book_btn">
                                             <a class="popup-with-form" href="#test-form">Đặt lịch ngay</a>
@@ -80,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>

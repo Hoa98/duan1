@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $gallery = gallery_list($id);
-    $pro = product_list_one($id);
+    $pro = product_list_one('id',$id);
 }
 if (isset($_POST['btn-del'])) {
     extract($_REQUEST);

@@ -140,11 +140,6 @@
                      <div class="single_master">
                          <div class="thumb">
                              <img src="images/users/<?= $b['images'] ?>" alt="" />
-                             <div class="social_link">
-                                 <a href="#"><i class="fa fa-envelope"></i></a>
-                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                                 <a href="#"><i class="fa fa-linkedin"></i></a>
-                             </div>
                          </div>
                          <div class="master_name text-center">
                              <h3><?= $b['fullname'] ?></h3>

@@ -11,6 +11,11 @@ function library_list_limit($limit, $nRows) {
     return query_exe($sql);
 }
 
+//Ham hien thi slider
+function slider_list_limit($limit, $nRows) {
+    $sql = "SELECT * from libraries where role = 0 order by id desc limit $limit, $nRows";
+    return query_exe($sql);
+}
 //Hàm lấy ra 1 bản ghi
 function list_one_library($id){
     return listOne('libraries','id',$id);
