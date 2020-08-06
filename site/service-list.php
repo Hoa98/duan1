@@ -1,7 +1,10 @@
 <?php 
-$service = service_list_limit(0, 10);
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $service = service_list_types($id,0, 10);
 $i=0;
 $length = count($service);
+}
 ?>
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">
@@ -35,7 +38,7 @@ $length = count($service);
             <?php if($i==$length): ?>
                 <div class="tab-pane fade show active" id="v-pills-home<?=$s['id']?>" role="tabpanel" aria-labelledby="v-pills-home<?=$s['id']?>-tab">
                 <h2><?=$s['name']?></h2>
-               <p>Giá: <?php if($s['sale']>0):?>
+                <p>Giá: <?php if($s['sale']>0):?>
                 <span class="old-price">
                 <del class="text-gray-400"><?=number_format($s['price'],0,',','.').' đ';?></del>
                 </span>

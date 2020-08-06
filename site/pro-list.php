@@ -1,7 +1,10 @@
- <?php
-	$category = list_all_category();
-	$products = product_list_limit(0, 9);
+<?php
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $category = list_all_category();
+	$products = product_list_categories($id,0, 9);
 	$pro_view = product_list_view(0, 5);
+}
 	?>
  <!-- bradcam_area_start -->
  <div class="bradcam_area breadcam_bg overlay">
@@ -20,7 +23,7 @@
  							<div class="col-lg-4 col-sm-6">
  								<div class="product-item">
  									<div class="pi-pic">
-									 <a href="<?=ROOT?>?page=product-detail&id=<?=$p['id']?>">
+ 										<a href="<?=ROOT?>?page=product-detail&id=<?=$p['id']?>">
 										 <img src="images/products/<?= $p['images'] ?>" alt="<?= $p['name'] ?>" width="270" height="303" title="<?= $p['name'] ?>">
 										 </a>
  										<?php if ($p['sale'] > 0) : ?>

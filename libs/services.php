@@ -53,10 +53,11 @@ function service_list_limit($limit, $nRows) {
 
 
 //Chỉnh sửa dữ liệu dịch vụ
-function service_update($id, $name, $price, $images, $id_type, $detail, $time) {
+function service_update($id, $name, $price,$sale, $images, $id_type, $detail, $time) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
+        "sale"=>$sale,
         "time"=>$time,
         "images"=>$images,
         "id_type"=>$id_type,
@@ -66,10 +67,11 @@ function service_update($id, $name, $price, $images, $id_type, $detail, $time) {
 }
 
 //function thêm dịch vụ vào bảng dịch vụ
-function service_insert($name, $price, $images, $id_type, $detail, $time) {
+function service_insert($name, $price,$sale, $images, $id_type, $detail, $time) {
     $data = [        
         "name"=>$name,
         "price"=>$price,
+        "sale"=>$sale,
         "time"=>$time,
         "images"=>$images,
         "id_type"=>$id_type,

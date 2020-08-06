@@ -5,6 +5,11 @@ require_once "libs/libraries.php";
 require_once "libs/members.php";
 require_once "libs/services.php";
 require_once "libs/libraries.php";
+require_once "libs/products.php";
+require_once "libs/categories.php";
+require_once "libs/types.php";
+require_once "libs/news.php";
+require_once "libs/gallery.php";
 
 extract($_REQUEST);
 $page = isset($_GET['page']) ? $_GET['page'] : '';
@@ -21,6 +26,9 @@ switch ($page) {
     case 'product-list':
         $view_page = "site/product-list.php";
         break;
+        case 'pro-list':
+            $view_page = "site/pro-list.php";
+            break;
     case 'cart':
         $view_page = "site/cart.php";
         break;
@@ -33,6 +41,9 @@ switch ($page) {
     case 'service':
         $view_page = "site/service.php";
         break;
+        case 'service-list':
+            $view_page = "site/service-list.php";
+            break;
     case 'blog':
         $view_page = "site/blog.php";
         break;

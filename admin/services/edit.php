@@ -19,7 +19,7 @@ if (isset($_POST['btnSave'])) {
         $errors['errors_img'] = 'File không đúng định dạng';
     }
     if(array_filter($errors)==false){
-        service_update($id, $name, $price, $images, $id_type, $detail, $time);
+        service_update($id, $name, $price,$sale, $images, $id_type, $detail, $time);
     if ($okUpload) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/products/' . $images);
     }
@@ -71,6 +71,13 @@ if (isset($_POST['btnSave'])) {
                                 placeholder="Nhập giá dịch vụ" required>
                                 <div class="invalid-feedback">
                                 Đơn giá không đúng định dạng
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sale">Giá giảm</label>
+                            <input type="number" name="sale" id="sale" step="0.01" min="0" max="1" pattern="[-+]?[0-9]*[.,]?[0-9]+" title="Giảm giá là số thập phân từ 0 đến 1" class="form-control" placeholder="Nhập giảm giá" value="<?=isset($sale)?$sale:$service['sale']?>" required>
+                            <div class="invalid-feedback">
+                            Giảm giá không đúng định dạng
                                 </div>
                         </div>
                         <div class="form-group">

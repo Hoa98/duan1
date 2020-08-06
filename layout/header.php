@@ -1,3 +1,6 @@
+<?php
+$type = list_limit_type(0, 7);
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -23,6 +26,7 @@
     <link rel="stylesheet" href="content/css/gijgo.css" />
     <link rel="stylesheet" href="content/css/animate.css" />
     <link rel="stylesheet" href="content/css/slicknav.css" />
+    <link rel="stylesheet" href="content/css/pgwslideshow.min.css">
     <link rel="stylesheet" href="content/css/style.css" />
     <!-- <link rel="stylesheet" href="content/css/responsive.css"> -->
 </head>
@@ -49,18 +53,23 @@
                                             <ul id="navigation" class="mt-3">
                                                 <li><a class="<?= ($_GET['page'] == 'home' || $_GET['page'] == '') ? 'active' : '' ?>" href="<?= ROOT ?>">Trang chủ</a></li>
                                                 <li><a class="<?= ($_GET['page'] == 'introduce') ? 'active' : '' ?>" href="<?= ROOT ?>?page=introduce">Giới thiệu</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'service') ? 'active' : '' ?>" href="<?= ROOT ?>?page=service">Dịch vụ</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'product-list') ? 'active' : '' ?>" href="<?= ROOT ?>?page=product-list">Sản phẩm</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'blog') ? 'active' : '' ?>" href="<?= ROOT ?>?page=blog">Tin tức</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'service' || $_GET['page'] == 'service-list') ? 'active' : '' ?>" href="<?= ROOT ?>?page=service">Dịch vụ</a>
+                                                <ul class="submenu">
+                                                    <?php foreach($type as $t): ?>
+													<li><a href="<?=ROOT?>?page=service-list&id=<?=$t['id']?>"><img src="images/categories/<?=$t['images']?>" class="mr-2" alt="" width="20" height="20"><?=$t['name']?></a></li>
+                                                    <?php endforeach; ?>
+												</ul>
+                                            </li>
+                                                <li><a class="<?= ($_GET['page'] == 'product-list' || $_GET['page'] == 'pro-list' || $_GET['page'] == 'product-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=product-list">Sản phẩm</a></li>
+                                                <li><a class="<?= ($_GET['page'] == 'blog' || $_GET['page'] == 'blog-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=blog">Tin tức</a></li>
                                                 <li><a class="<?= ($_GET['page'] == 'contact') ? 'active' : '' ?>" href="<?= ROOT ?>?page=contact">Liên hệ</a></li>
                                             </ul>
                                         </nav>
                                     </div>
 
                                     <div class="icon">
-                                        <a href=""><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
+                                        <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
                                         <a href=""><i class="fa fa-search text-white ml-2" aria-hidden="true"></i></a>
-                                        <!-- <a href=""><i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i></a> -->
                                     </div>
 
                                     <div class="dropdown no-arrow mr-1">
@@ -68,9 +77,9 @@
                                         <i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <a class="dropdown-item" href="#">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" href="#">Lịch hẹn</a>
+                                            <a class="dropdown-item" href="#">Đăng xuất</a>
                                         </div>
                                     </div>
                                     <div class="book_room">

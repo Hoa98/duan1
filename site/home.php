@@ -97,7 +97,7 @@
              <div class="col-xl-12">
                  <div class="section_title2 text-center mb-90">
                      <i class="flaticon-scissors"></i>
-                     <h3>Our Gallery</h3>
+                     <h3>Bộ sưu tập của chúng tôi</h3>
                  </div>
              </div>
          </div>
@@ -130,7 +130,7 @@
              <div class="col-xl-12">
                  <div class="section_title2 text-center mb-90">
                      <i class="flaticon-scissors"></i>
-                     <h3>Team The Barber</h3>
+                     <h3>Liststyle của chúng tôi</h3>
                  </div>
              </div>
          </div>
@@ -171,7 +171,7 @@
                              <i class="flaticon-placeholder"></i>
                          </div>
                          <div class="find_text">
-                             <h3>Location</h3>
+                             <h3>Địa chỉ</h3>
                              <p>154, Cầu giấy, Hà Nội</p>
                          </div>
                      </div>
@@ -180,7 +180,7 @@
                              <i class="flaticon-phone-call"></i>
                          </div>
                          <div class="find_text">
-                             <h3>Call Us</h3>
+                             <h3>Gọi cho chúng tôi</h3>
                              <p>+10 378 478 2789</p>
                          </div>
                      </div>
@@ -189,13 +189,13 @@
                              <i class="flaticon-paper-plane"></i>
                          </div>
                          <div class="find_text">
-                             <h3>Mail Us</h3>
+                             <h3>Gửi thư cho chúng tôi</h3>
                              <p>contact@barbershop.com</p>
                          </div>
                      </div>
                      <div class="single_find">
                          <div class="book_btn">
-                             <a class="popup-with-form" href="#test-form">ĐẶt lịch ngay</a>
+                             <a class="popup-with-form" href="#test-form">Đặt lịch ngay</a>
                          </div>
                      </div>
                  </div>

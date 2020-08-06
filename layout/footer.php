@@ -6,10 +6,10 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Join With Us
+                                Tham gia với chúng tôi
                             </h3>
                             <p class="footer_text doanar">
-                                <a class="popup-with-form" href="#test-form">Make Appointment</a>
+                                <a class="popup-with-form" href="#test-form">Đặt lịch hẹn</a>
                                 <br />
                                 <a href="#">+10 378 478 2789</a>
                             </p>
@@ -18,12 +18,12 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                address
+                                Địa chỉ
                             </h3>
                             <p class="footer_text">
-                                200, A-block, Green road, USA <br />
+                            154, Cầu Giấy, Hà Nội <br />
                                 +10 367 267 2678 <br />
-                                <a class="domain" href="#">contact@nonprofit.com</a>
+                                <a class="domain" href="#">contact@barbershop.com</a>
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -49,27 +49,27 @@
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Navigation
+                               Menu
                             </h3>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">News</a></li>
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Giới thiệu</a></li>
+                                <li><a href="#">Dịch vụ</a></li>
+                                <li><a href="#">Tin tức</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Newsletter
+                                Bản tin
                             </h3>
                             <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail" />
-                                <button type="submit">Sign Up</button>
+                                <input type="text" placeholder="Nhập địa chỉ email của bạn" />
+                                <button type="submit">Đăng ký</button>
                             </form>
                             <p class="newsletter_text">
-                                Subscribe newsletter to get updates
+                                Đăng ký nhận tin mới của chúng tôi
                             </p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             </script>
                             All rights reserved | This template is made with
                             <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <a href="https://colorlib.com" target="_blank">Poly-barber</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -104,19 +104,19 @@
     <form id="test-form" class="white-popup-block mfp-hide">
         <div class="popup_box">
             <div class="popup_inner">
-                <h3>Make an Appointment</h3>
+                <h3>Đặt lịch hẹn</h3>
                 <form action="#">
                     <div class="row">
                         <div class="col-xl-6 col-md-6">
-                            <input id="datepicker" placeholder="Date" />
+                            <input id="datepicker" placeholder="Ngày" />
                         </div>
                         <div class="col-xl-6 col-md-6">
-                            <input id="timepicker" placeholder="time" />
+                            <input id="timepicker" placeholder="Giờ" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-6 col-md-6">
-                            <h5 class="py-3 mr-0 text-left">Choose service</h5>
+                            <h5 class="py-3 mr-0 text-left">Chọn dịch vụ</h5>
                             <div class="ml-2 custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input ml-3" id="customCheck1" />
                                 <label class="custom-control-label" for="customCheck1">Service 1</label>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-xl-6 col-md-6">
                             <select class="form-select wide" id="default-select" class="">
-                                <option data-display="Choose Barbers">Choose Barbers</option>
+                                <option data-display="Choose Barbers">Chọn stylelist</option>
                                 <option value="1">Zaki</option>
                                 <option value="2">Ronky</option>
                                 <option value="3">kalu</option>
@@ -149,20 +149,15 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-xl-6 col-md-6">
-                            <input type="text" placeholder="Your name" />
+                            <input type="text" placeholder="Tên của bạn" />
                         </div>
                         <div class="col-xl-6 col-md-6">
-                            <input type="text" placeholder="Phone no" />
+                            <input type="text" placeholder="Số điện thoại" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-12">
-                            <input type="email" placeholder="Your email" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <button type="submit" class="boxed-btn3">Submit</button>
+                            <button type="submit" class="boxed-btn3">Đặt lịch</button>
                         </div>
                     </div>
                 </form>
@@ -190,14 +185,14 @@
     <script src="content/js/jquery.magnific-popup.min.js"></script>
     <script src="content/js/plugins.js"></script>
     <script src="content/js/gijgo.min.js"></script>
-
+    <script src="content/js/pgwslideshow.min.js"></script>
     <!--contact js-->
     <script src="content/js/contact.js"></script>
     <script src="content/js/jquery.ajaxchimp.min.js"></script>
     <script src="content/js/jquery.form.js"></script>
     <script src="content/js/jquery.validate.min.js"></script>
     <script src="content/js/mail-script.js"></script>
-
+    <script src="content/js/bootstrap-input-spinner.js"></script>
     <script src="content/js/main.js"></script>
     <script>
         $("#datepicker").datepicker({

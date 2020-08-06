@@ -6,6 +6,11 @@ function list_all_type(){
     return listAll('types');
 }
 
+function list_limit_type($limit, $nRows){
+    $sql = "SELECT * from types order by id limit $limit, $nRows";
+    return query_exe($sql);
+}
+
 //Hàm lấy ra 1 bản ghi
 function list_one_type($id,$value){
     return listOne('types',$id,$value);

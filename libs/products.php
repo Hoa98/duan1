@@ -39,8 +39,8 @@ function num_row($id_category){
 }
 
 //Sản phẩm liên quan
-function product_list_category($id_category,$id) {
-    $sql = "SELECT * from products  Where id_category=$id_category and id != $id ORDER BY id DESC";
+function product_list_category($id_category,$id,$limit,$nRows) {
+    $sql = "SELECT * from products  Where id_category=$id_category and id != $id ORDER BY id DESC limit $limit,$nRows";
     return query_exe($sql);
 }
 

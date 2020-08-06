@@ -317,7 +317,15 @@ $(document).ready(function() {
 	});
 });
 
+//Slider anh detail
+$('.pgwSlideshow').pgwSlideshow({
+  autoSlide: false,
+  // adaptiveDuration : 5000,
+	displayControls : false
+  });
 
+  //input
+$("input[type='number']").inputSpinner();
 
 //------- Mailchimp js --------//  
 function mailChimp() {
@@ -364,4 +372,32 @@ mailChimp();
       }
       $button.parent().find('input').val(newVal);
     });
+
+    // slider san pham lien quan
+    $(".product-active").owlCarousel({
+      loop: true,
+      margin: 15,
+      // navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
+nav:false,
+dots:false,
+      responsiveClass: true,
+      responsive: {
+          0: {
+              items: 1,
+              nav: true
+          },
+          600: {
+              items: 3,
+              nav: false
+          },
+          1000: {
+              items: 4,
+              nav: true,
+              loop: false
+          }
+      }
+  });
+  $(".carousel").carousel({
+      interval: 2000
+  });
 })(jQuery);	

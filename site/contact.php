@@ -1,5 +1,5 @@
         <!-- bradcam_area_start -->
-        <div class="bradcam_area breadcam_bg overlay2">
+        <div class="bradcam_area breadcam_bg overlay">
                 <h3>contact us</h3>
             </div>
             <!-- bradcam_area_end -->

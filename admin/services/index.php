@@ -44,6 +44,7 @@ $result = service_list_all();
                                 <th>Tên dịch vụ</th>
                                 <th>Ảnh dịch vụ</th>
                                 <th>Đơn giá</th>
+                                <th>Giảm giá</th>
                                 <th>Thời gian</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -58,6 +59,7 @@ $result = service_list_all();
                                 <th>Tên dịch vụ</th>
                                 <th>Ảnh dịch vụ</th>
                                 <th>Đơn giá</th>
+                                <th>Giảm giá</th>
                                 <th>Thời gian</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -75,6 +77,7 @@ $result = service_list_all();
                                         <img src="../images/products/<?= $r['images'] ?>" width="90" alt="">
                                     </td>
                                     <td><?= number_format($r['price'],0,',','.').'đ' ?></td>
+                                    <td><?=($r['sale']*100).'%'?></td>
                                     <td><?=$r['time']?></td>
                                     <td>
                                         <a href="<?= ROOT ?>admin/?page=service&action=edit&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>

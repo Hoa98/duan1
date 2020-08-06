@@ -8,6 +8,12 @@ function list_all_new(){
     return query_exe($sql);
 }
 
+function list_limit_new($limit, $nRows){
+    $sql = "SELECT news.*,members.fullname as member from news inner join members on members.id = news.id_member 
+    ORDER BY id DESC limit $limit,$nRows";
+    return query_exe($sql);
+}
+
 //Hàm lấy ra 1 bản ghi
 function list_one_new($id){
     return listOne('news','id',$id);
