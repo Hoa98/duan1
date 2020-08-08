@@ -38,6 +38,12 @@ function new_update($id, $title,$content,$images) {
     ];
     update('news', $data, 'id', $id);
 }
+
+//hàm cập nhật số lượt xem
+function update_view_blog($id){
+    $sql = "UPDATE news SET views=views+1 where id=$id";
+    return query_exe($sql);
+}
 //function Xóa dữ liệu loại hàng
 function new_delete($id) {
     $row = list_one_new($id);

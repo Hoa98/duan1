@@ -400,4 +400,6 @@ dots:false,
   $(".carousel").carousel({
       interval: 2000
   });
+  //select 
+  
 })(jQuery);	

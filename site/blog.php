@@ -32,9 +32,10 @@ $gallery = library_list_limit(0, 10);
                                 <a class="d-inline-block" href="<?= ROOT ?>?page=blog-detail&id=<?= $b['id'] ?>">
                                     <h2><?= $b['title'] ?></h2>
                                 </a>
-                                <p><?= substr($b['content'], 0, 510) . $str = (strlen($b['content']) > 510 ? '...' : '') ?></p>
+                                <p><?= substr($b['content'], 0, 520) . $str = (strlen($b['content']) > 520 ? '...' : '') ?></p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="fa fa-user"></i> <?= $b['member'] ?></a></li>
+                                    <li><a href="#"><i class="fa fa-eye mr-1" aria-hidden="true"></i> <?= $b['views'] ?></a></li>
                                 </ul>
                             </div>
                         </article>

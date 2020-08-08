@@ -3,6 +3,7 @@ ob_start();
 require_once "golbal.php";
 require_once "libs/libraries.php";
 require_once "libs/members.php";
+require_once "libs/customers.php";
 require_once "libs/services.php";
 require_once "libs/libraries.php";
 require_once "libs/products.php";
@@ -10,6 +11,7 @@ require_once "libs/categories.php";
 require_once "libs/types.php";
 require_once "libs/news.php";
 require_once "libs/gallery.php";
+require_once "libs/word_time.php";
 
 extract($_REQUEST);
 $page = isset($_GET['page']) ? $_GET['page'] : '';

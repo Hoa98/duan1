@@ -4738,7 +4738,7 @@ h4.category-widget{
     background: #eee;
     width: 65px !important;
     margin-right: 5px;
-    padding: 23px 25px;
+    padding: 35px 25px;
 }
 .input-group-append .btn-outline-secondary:hover{
   color: #000;
@@ -4828,4 +4828,28 @@ time {
 }
 .old-price del {
   color: gray;
+}
+.dropdown-toggle::after {
+  content: none;
+}
+/* Select dịch vụ*/
+.mul-select{
+  width: 100%;
+}
+.nice-select.mul-select.select2-hidden-accessible{
+  display: none;
+}
+.select-service span:last-child{
+display: none;
+}
+.select-service span:first-child{
+  display: block;
+}
+span.select2.select2-container.select2-container--default{
+  width: 100% !important;
+}
+input.select2-search__field {
+  margin: 0;
+  width: 200px !important;
+  padding: 8px !important;
 }

@@ -62,7 +62,7 @@
  					</ul>
  					<div class="list-group mb-3 mt-3">
 					 <!-- sản phẩm yêu thích -->
- 						<h4 class="category-widget mt-3 rounded">Sản phẩm yêu thích</h4>
+ 						<h4 class="category-widget mt-3 rounded">Sản phẩm nổi bật</h4>
  						<div class="pro-top">
  							<?php foreach ($pro_view as $pv) : ?>
  								<div class="list-group-item-action">

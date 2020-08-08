@@ -1,6 +1,14 @@
 <?php
 $type = list_limit_type(0, 7);
-?>
+$member = member_list_role(3);
+$date = date_create();
+$service = service_list_all();
+$customers = custom_list_all();
+$time = list_all_time();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+$dateTime=date('H:i:s');
+$date_now=date("Y-m-d");
+ ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -14,9 +22,11 @@ $type = list_limit_type(0, 7);
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
     <!-- Place favicon.ico in the root directory -->
+   
 
     <!-- CSS here -->
     <link rel="stylesheet" href="content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" />
     <link rel="stylesheet" href="content/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="content/css/magnific-popup.css" />
     <link rel="stylesheet" href="content/css/font-awesome.min.css" />
@@ -69,12 +79,12 @@ $type = list_limit_type(0, 7);
 
                                     <div class="icon">
                                         <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-search text-white ml-2" aria-hidden="true"></i></a>
+                                        <!-- <a href=""><i class="fa fa-search text-white ml-2" aria-hidden="true"></i></a> -->
                                     </div>
 
                                     <div class="dropdown no-arrow mr-1">
-                                        <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
-                                        <i class="fa fa-user-o text-white ml-2" aria-hidden="true"></i>
+                                        <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
+                                        <i class="fa fa-user-o ml-2 mr-2" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                             <a class="dropdown-item" href="#">Tài khoản của tôi</a>
@@ -82,6 +92,7 @@ $type = list_limit_type(0, 7);
                                             <a class="dropdown-item" href="#">Đăng xuất</a>
                                         </div>
                                     </div>
+                                    <a href="<?=ROOT?>?page=cart" class="text-white text-uppercase">Đăng nhập</a>
                                     <div class="book_room">
                                         <div class="book_btn">
                                             <a class="popup-with-form" href="#test-form">Đặt lịch ngay</a>
