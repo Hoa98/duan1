@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Poly-barber</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -151,6 +151,12 @@
                         <a class="collapse-item" href="<?= ROOT ?>admin/?page=">Thống kê dịch vụ</a>
                     </div>
                 </div>
+            </li>
+               <!-- Nav Item - Charts -->
+               <li class="nav-item">
+                <a class="nav-link" href="<?= ROOT ?>admin/?page=setting">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Quản lý website</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

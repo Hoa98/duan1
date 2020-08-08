@@ -1,6 +1,6 @@
         <!-- bradcam_area_start -->
         <div class="bradcam_area breadcam_bg overlay">
-                <h3>contact us</h3>
+                <h3>Liên hệ</h3>
             </div>
             <!-- bradcam_area_end -->
 
@@ -8,8 +8,6 @@
     <section class="contact-section">
             <div class="container">
                 
-    
-    
                 <div class="row">
                     <div class="col-12">
                         <h2 class="contact-title">Get in Touch</h2>

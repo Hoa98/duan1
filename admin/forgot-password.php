@@ -50,13 +50,16 @@ extract($_REQUEST);
                     <h1 class="h4 text-gray-900 mb-2">Quên mật khẩu</h1>
                     <p class="mb-4">Chỉ cần nhập địa chỉ email của bạn dưới đây và chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu của bạn!</p>
                   </div>
-                  <form class="user">
+                  <form class="user needs-validation" action=""  method="POST" novalidate>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>
+                      <div class="invalid-feedback">
+                                Vui lòng nhập địa chỉ email
+                            </div>
                     </div>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block text-uppercase">
                      Đặt lại mật khẩu
-                    </a>
+                    </button>
                   </form>
                   <hr>
                   <div class="text-center">
@@ -83,7 +86,25 @@ extract($_REQUEST);
 
   <!-- Custom scripts for all pages-->
   <script src="resource/js/sb-admin-2.js"></script>
-
+<script>
+   (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
 </body>
 
 </html>

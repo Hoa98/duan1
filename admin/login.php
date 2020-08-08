@@ -76,21 +76,26 @@ if (isset($btnlogin)) {
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
                   </div>
-                  <form class="user" action="" method="POST">
+                  <form class="user needs-validation" action="" method="POST" novalidate >
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= isset($account) ? $account : '' ?>" placeholder="Tài khoản..." name="account" autofocus>
-                      
+                      <input type="text" class="form-control form-control-user" value="<?= isset($account) ? $account : '' ?>" placeholder="Tài khoản..." name="account" autofocus required>
                       <?php if (isset($error['account'])) : ?>
                                 <p class="text-danger mt-2"><?= $error['account'] ?></p>
                             <?php endif; ?>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập tài khoản
+                            </div>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" value="<?= isset($password) ? $password : '' ?>" placeholder="Password" name="password">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" title="Mật khẩu chứa ít nhất 6 ký tự" minlength="6" value="<?= isset($password) ? $password : '' ?>" placeholder="Password" name="password" required>
                       <?php if (isset($error['password'])) : ?>
                                 <p class="text-danger mt-2"><?= $error['password'] ?></p>
                             <?php endif; ?>
+                            <div class="invalid-feedback">
+                                Mật khẩu chứa ít nhất 6 ký tự
+                            </div>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -98,7 +103,7 @@ if (isset($btnlogin)) {
                         <label class="custom-control-label" for="customCheck">Nhớ mật khẩu</label>
                       </div>
                     </div>
-                    <button class="btn btn-primary btn-user btn-block" name="btnlogin">Đăng nhập</button>
+                    <button type="submit" class="btn btn-primary btn-user btn-block text-uppercase" name="btnlogin">Đăng nhập</button>
 
                   </form>
                   <hr>
@@ -118,15 +123,33 @@ if (isset($btnlogin)) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="resource/vendor/jquery/jquery.min.js"></script>
-  <script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resource/vendor/jquery/jquery.min.js"></script>
+<script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="resource/js/sb-admin-2.js"></script>
-
+<!-- Custom scripts for all pages-->
+<script src="resource/js/sb-admin-2.js"></script>
+<script>
+   (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
 </body>
 
 </html>

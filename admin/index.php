@@ -19,7 +19,7 @@ require_once "../libs/app_detail.php";
 require_once "../libs/comments.php";
 require_once "../libs/evaluates.php";
 require_once "../libs/contact.php";
-
+require_once "../libs/setting.php";
 include_once 'template/header.php';
 check_role();
 switch ($page) {
@@ -277,6 +277,9 @@ switch ($page) {
                 break;
         }
         break;
+        case 'setting':
+            include_once 'setting/setting.php';
+            break;
     case 'logout':
         unset($_SESSION['member']);
         header('location:' . ROOT . 'admin/login.php');
