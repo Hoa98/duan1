@@ -11,7 +11,7 @@
                     <?php if($i==0): ?>
                        <div class="carousel-item active">
                           <div class="overlay2">
-                          <a href="<?= ROOT ?>?page=detail&id=40"><img src="images/sliders/<?= $s['images'] ?>" class="img-fluid d-block w-100" alt="Responsive image"></a>
+                          <a href="<?= ROOT ?>?page=detail&id=40"><img style="height: 100vh;" src="images/sliders/<?= $s['images'] ?>" class="img-fluid d-block w-100" alt="Responsive image"></a>
                            <div class="slider_text text-center">
                                <h3 class="">
                                    <?= $s['name'] ?>
@@ -28,7 +28,7 @@
                        <?php else:?>
                         <div class="carousel-item">
                           <div class="overlay2">
-                          <a href="<?= ROOT ?>?page=detail&id=40"><img src="images/sliders/<?= $s['images'] ?>" class="img-fluid d-block w-100" alt="Responsive image"></a>
+                          <a href="<?= ROOT ?>?page=detail&id=40"><img style="height: 100vh;" src="images/sliders/<?= $s['images'] ?>" class="img-fluid d-block w-100" alt="Responsive image"></a>
                            <div class="slider_text text-center">
                                <h3 class="">
                                    <?= $s['name'] ?>
