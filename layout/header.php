@@ -92,7 +92,7 @@ $date_now=date("Y-m-d");
                                             <a class="dropdown-item" href="#">Đăng xuất</a>
                                         </div>
                                     </div>
-                                    <a href="<?=ROOT?>?page=cart" class="text-white text-uppercase">Đăng nhập</a>
+                                    <a href="#login-form" class="popup-with-form text-white text-uppercase">Đăng nhập</a>
                                     <div class="book_room">
                                         <div class="book_btn">
                                             <a class="popup-with-form" href="#test-form">Đặt lịch ngay</a>

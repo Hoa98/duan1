@@ -159,6 +159,51 @@
      </div>
  </form>
  <!-- form itself end -->
+ <!-- form-login -->
+ <form  action="" id="login-form" class="white-popup-block mfp-hide">
+        <div class="popup_box">
+            <div class="popup_inner">
+                <form action="">
+                    <h3>Welcome to PolyBarber</h3> 
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <img src="" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-xd-6 col-md-6">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="" placeholder="Tên đăng nhập hoặc số điện thoại ">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="password" class="" placeholder="Mật khẩu">
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input style="width:auto;height:auto; margin-right: 10px" id="my-input"  type="checkbox" name=""><label for="my-input">Nhớ đăng nhập</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <button  type="submit" class="btn boxed-btn3">Đăng nhập</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                <a  href="">Quên mật khẩu?</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+ <!-- form-login -->
 
  <script src="content/js/vendor/jquery-2.1.3.min.js"></script>
  <!-- JS here -->
