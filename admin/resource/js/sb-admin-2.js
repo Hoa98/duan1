@@ -89,3 +89,10 @@ $('.status').change(function() {
     });
   }, false);
 })();
+$(function() {
+  $(".mul-select").select2({
+          placeholder: "Chọn dịch vụ",
+          tags: true,
+          tokenSeparators: ['/', ',', ',', " "]
+      });
+});

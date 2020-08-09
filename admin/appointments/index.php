@@ -46,6 +46,7 @@ $appointment = list_all_appointment();
                                 <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
                                 <th>Thành tiền</th>
+                                <th>Ngày đặt</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -62,6 +63,7 @@ $appointment = list_all_appointment();
                                 <th>Thời gian bắt đầu</th>
                                 <th>Trạng thái</th>
                                 <th>Thành tiền</th>
+                                <th>Ngày đặt</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
@@ -75,7 +77,7 @@ $appointment = list_all_appointment();
                                     <td><?= $a['account'] ?></td>
                                     <td><?= $a['name'] ?></td>
                                     <td><?= $a['phone'] ?></td>
-                                    <td><?= $a['day'] ?></td>
+                                    <td width='95'><?= $a['day'] ?></td>
                                     <td><?= $a['time'] ?></td>
                                     <?php if($a['cancel']==0): ?>
                                     <td>Sắp tới</td>
@@ -96,6 +98,7 @@ $appointment = list_all_appointment();
                                     }
                                     ?>
                                     <td><?=number_format($total,0,',','.').' đ';?></td>
+                                    <td><?=$a['created_at']?></td>
                                     <td>
                                         <a href="<?= ROOT ?>admin/?page=appointment&action=detail&id=<?= $a['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
                                         <a href="<?= ROOT ?>admin/?page=appointment&action=edit&id=<?= $a['id'] ?>" class="btn btn-success  d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>

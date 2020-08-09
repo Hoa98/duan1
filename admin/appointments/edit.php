@@ -55,22 +55,23 @@ $service = service_list_all();
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <!--Load categories (danh mục sản phẩm)-->
-                            <label class="d-block">Chọn dịch vụ</label>
-                            <?php foreach ($service as $s) : ?>
+                        <label class="d-block">Chọn dịch vụ</label>
+                        <select class="mul-select form-control" name="id_service[]" multiple="true" required>
+                             <option value="">Chọn dịch vụ</option>
+                             <?php foreach ($service as $s) : ?>
                                 <?php foreach ($app_detail as $detail) : ?>
                                     <?php if($detail['id_service']==$s['id']): ?>
-                                        <input type="checkbox" id="service<?= $s['id'] ?>" checked name="id_service[]" value="<?= $s['id'] ?>">
-                                <label for="service<?= $s['id'] ?>"><?= $s['name'] ?></label><br>
-                                    <?php endif; ?>
+                                    <option value="<?= $s['id'] ?>" selected><?= $s['name'] ?></option>
+                                 <?php endif; ?>
                                 <?php endforeach; ?>
-                                <input type="checkbox" id="service<?= $s['id'] ?>" name="id_service[]" value="<?= $s['id'] ?>">
-                                <label for="service<?= $s['id'] ?>"><?= $s['name'] ?></label><br>
-                            <?php endforeach; ?>
-                            <?php if (isset($errors['errors_service'])) : ?>
-                                <p class="text-danger mt-2"><?= $errors['errors_service'] ?></p>
-                            <?php endif; ?>
-                            <p class="text-danger mt-2" id="msg-service"></p>
+                                <?php if($detail['id_service'] !== $s['id']): ?>
+                                    <option value="<?= $s['id'] ?>"><?= $s['name'] ?></option>
+                                 <?php endif; ?>
+                             <?php endforeach; ?>
+                         </select>
+                         <div class="invalid-feedback">
+                             Vui lòng chọn dịch vụ
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -80,25 +81,3 @@ $service = service_list_all();
     </div>
 
 </div>
-<script>
-    function check() {
-        var flag = true;
-        console.log('dsss');
-        var service = document.getElementsByName("id_service[]");
-        var str = '';
-        for (var i = 0; i < service.length; i++) {
-            if (service[i].checked) {
-                str = service[i].value;
-            }
-        }
-        if (str == "" || str == null) {
-            document.getElementById('msg-service').innerHTML = "Vui lòng chọn ít nhất một dịch vụ";
-            flag = false;
-        }
-        if (!flag) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-</script>

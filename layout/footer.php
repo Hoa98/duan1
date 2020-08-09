@@ -85,7 +85,7 @@
                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                          Copyright &copy;
                          <script>
-                         document.write(new Date().getFullYear());
+                             document.write(new Date().getFullYear());
                          </script>
                          All rights reserved | This template is made with
                          <i class="fa fa-heart-o" aria-hidden="true"></i> by
@@ -99,16 +99,13 @@
  </footer>
  <!-- footer -->
  <!-- link that opens popup -->
-
- <!-- form itself end-->
- <form id="test-form" class="white-popup-block mfp-hide">
+ <div id="test-form" class="white-popup-block mfp-hide">
      <div class="popup_box">
-         <div class="popup_inner">
-             <h3>Đặt lịch hẹn</h3>
-             <form action="" method="POST">
+     <h3>Đặt lịch hẹn</h3>
+             <form class="needs-validation form-contact" action="" method="POST" novalidate>
                  <div class="row">
-                     <div class="col-xl-6 col-md-6">
-                         <select name="day" id="day" class="form-select wide" required>
+                     <div class="col-xl-6 col-md-6 form-group">
+                         <select name="day" id="day" class="form-control" required>
                              <option value="">Chọn ngày hẹn</option>
                              <option value="<?= date("Y-m-d") ?>">Hôm nay: <?= date("Y-m-d") ?></option>
                              <option value="<?= $date1 = date_format(date_modify($date, "+1 day"), "Y-m-d") ?>">Ngày
@@ -120,89 +117,116 @@
                              Vui lòng chọn ngày hẹn
                          </div>
                      </div>
-
-                     <div class="col-xl-6 col-md-6">
-                         <select class="form-select wide" id="default-select" class="">
-                             <option data-display="Chọn stylelist">Chọn stylelist</option>
-                             <?php foreach($member as $m): ?>
-                             <option value="<?=$m['id']?>"><?=$m['fullname']?></option>
+                     <div class="col-xl-6 col-md-6 form-group">
+                         <select class="form-control" name="id_member" id="default-select" required>
+                             <option value="">Chọn stylelist</option>
+                             <?php foreach ($member as $m) : ?>
+                                 <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
                              <?php endforeach; ?>
                          </select>
+                         <div class="invalid-feedback">
+                             Vui lòng chọn stylelist
+                         </div>
                      </div>
                  </div>
                  <div class="row">
-                     <div class="col-xl-6 col-md-6 select-service">
-                         <select class="mul-select form-select wide" multiple="true">
-                             <?php foreach($service as $s): ?>
-                             <option value="<?=$s['id']?>"><?=$s['name']?></option>
+                     <div class="col-xl-6 col-md-6 select-service form-group">
+                         <select class="mul-select form-control" name="id_service[]" multiple="true" required>
+                             <option value="">Chọn dịch vụ</option>
+                             <?php foreach ($service as $s) : ?>
+                                 <option value="<?= $s['id'] ?>"><?= $s['name'] ?></option>
                              <?php endforeach; ?>
                          </select>
+                         <?php if (isset($errors['errors_service'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_service'] ?></p>
+                            <?php endif; ?>
+                         <div class="invalid-feedback">
+                             Vui lòng chọn dịch vụ
+                         </div>
                      </div>
-                     <div class="col-xl-6 col-md-6" id="result">
+                     <div class="col-xl-6 col-md-6 form-group" id="result">
+                     <select name="id_time" id="id_time" class="form-control" required>
+                        <option value="">Chọn giờ hẹn</option>
+                        <?php foreach ($time as $t) : ?>
+                                <option value="<?= $t['id'] ?>"><?= $t['time'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn giờ hẹn
+                    </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-xl-6 col-md-6 form-group">
+                         <input type="text" name="name" value="<?=isset($name)?$name:''?>" placeholder="Tên của bạn" class="form-control" title="Họ tên không bao gồm số" pattern="[a-zA-Z\s'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ? ?ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ? ??ÊỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]{1,20}" required />
+                         <div class="invalid-feedback">
+                             Họ tên không đúng định dạng
+                         </div>
+                     </div>
+                     <div class="col-xl-6 col-md-6 form-group">
+                         <input type="text" name="phone" value="<?=isset($phone)?$phone:''?>" placeholder="Số điện thoại" class="form-control" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required />
+                         <div class="invalid-feedback">
+                             SĐT không hợp lệ
+                         </div>
                      </div>
                  </div>
                  <div class="row mt-3">
-                     <div class="col-xl-6 col-md-6">
-                         <input type="text" placeholder="Tên của bạn" />
-                     </div>
-                     <div class="col-xl-6 col-md-6">
-                         <input type="text" placeholder="Số điện thoại" />
-                     </div>
-                 </div>
-                 <div class="row">
                      <div class="col-xl-12">
-                         <button type="submit" class="boxed-btn3">Đặt lịch</button>
+                         <button type="submit" name="btnBooking" class="boxed-btn3">Đặt lịch</button>
                      </div>
                  </div>
              </form>
-         </div>
      </div>
- </form>
+ </div>
+ <!-- form itself end-->
+ 
  <!-- form itself end -->
  <!-- form-login -->
- <form  action="" id="login-form" class="white-popup-block mfp-hide">
-        <div class="popup_box">
-            <div class="popup_inner">
-                <form action="">
-                    <h3>Welcome to PolyBarber</h3> 
-                    <div class="row">
-                        <div class="col-xl-6 col-md-6">
-                            <img src="" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-xd-6 col-md-6">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text" class="" placeholder="Tên đăng nhập hoặc số điện thoại ">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <input type="password" class="" placeholder="Mật khẩu">
-                                    
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <input style="width:auto;height:auto; margin-right: 10px" id="my-input"  type="checkbox" name=""><label for="my-input">Nhớ đăng nhập</label>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <button  type="submit" class="btn boxed-btn3">Đăng nhập</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                <a  href="">Quên mật khẩu?</a>
-                                </div>
-                            </div>
-                            
-                        </div>
+ <div id="login-form" class="white-popup-block mfp-hide">
+     <div class="popup_box">
+         <div class="popup_inner">
+         <form class="needs-validation" action="" method="POST" novalidate>
+             <h3>Welcome to PolyBarber</h3>
+             <div class="row">
+                 <div class="col-xl-6 col-md-6">
+                     <img src="" class="img-fluid" alt="">
+                 </div>
+                 <div class="col-xd-6 col-md-6">
+                     <div class="form-group">
+                     <input type="text" name="phone" class="form-control"
+                         placeholder="Tên đăng nhập hoặc số điện thoại" value="<?= isset($phone) ? $phone : '' ?>" autofocus required>
+                     <?php if (isset($error['phone'])) : ?>
+                     <p class="text-danger mt-2"><?= $error['phone'] ?></p>
+                     <?php endif; ?>
+                     <div class="invalid-feedback">
+                         Vui lòng nhập tên đăng nhập hoặc số điện thoại
+                     </div>
+                     </div>
+                    <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Mật khẩu"
+                         title="Mật khẩu chứa ít nhất 6 ký tự" name="password" minlength="6" value="<?= isset($password) ? $password : '' ?>" required>
+                     <?php if (isset($error['password'])) : ?>
+                     <p class="text-danger mt-2"><?= $error['password'] ?></p>
+                     <?php endif; ?>
+                     <div class="invalid-feedback">
+                         Mật khẩu chứa ít nhất 6 ký tự
+                     </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </form>
+                     <div class="form-group">
+                     <input style="width:auto;height:auto; margin-right: 10px" id="my-input" type="checkbox"
+                         name="remember"><label for="my-input">Nhớ đăng nhập</label>
+                     </div>
+                     <div class="row mb-3">
+                         <button type="submit" name="btnLogin" class="btn boxed-btn3">Đăng nhập</button>
+                     </div>
+                     <a href="">Quên mật khẩu?</a>
+
+                 </div>
+             </div>
+         </form>
+         </div>
+     </div>
+ </div>
  <!-- form-login -->
 
  <script src="content/js/vendor/jquery-2.1.3.min.js"></script>
@@ -238,49 +262,51 @@
 
  <script src="content/js/main.js"></script>
  <script>
-$(document).ready(function() {
-    $(".mul-select").select2({
-        placeholder: "Chọn dịch vụ",
-        tags: true,
-        tokenSeparators: ['/', ',', ',', " "]
-    });
-    $('#default-select').change(function() {
-        var id = $('#default-select').val();
-        var day = $('#day').val();
-        $.post("site/xulyTime.php", {
-            id: id,
-            day: day
-        }, function(data) {
-            $('#result').html(data);
-        });
-    });
-    $('#day').change(function() {
-        var id = $('#default-select').val();
-        var day = $('#day').val();
-        $.post("site/xulyTime.php", {
-            id: id,
-            day: day
-        }, function(data) {
-            $('#result').html(data);
-        });
-    });
-});
-$("#datepicker").datepicker({
-    iconsLibrary: "fontawesome",
-    disableDaysOfWeek: [0, 0],
-    //     icons: {
-    //      rightIcon: '<span class="fa fa-caret-down"></span>'
-    //  }
-});
-$("#datepicker2").datepicker({
-    iconsLibrary: "fontawesome",
-    icons: {
-        rightIcon: '<span class="fa fa-caret-down"></span>',
-    },
-});
-var timepicker = $("#timepicker").timepicker({
-    format: "HH.MM",
-});
+     $(document).ready(function() {
+         $(".mul-select").select2({
+             placeholder: "Chọn dịch vụ",
+             tags: true,
+             tokenSeparators: ['/', ',', ',', " "]
+         });
+         $('#default-select').change(function() {
+             var id = $('#default-select').val();
+             var day = $('#day').val();
+             $.post("site/xulyTime.php", {
+                 id: id,
+                 day: day
+             }, function(data) {
+                 $('#result').html(data);
+             });
+         });
+         $('#day').change(function() {
+             var id = $('#default-select').val();
+             var day = $('#day').val();
+             $.post("site/xulyTime.php", {
+                 id: id,
+                 day: day
+             }, function(data) {
+                 $('#result').html(data);
+             });
+         });
+     });
+     //Validate form
+     (function() {
+         'use strict';
+         window.addEventListener('load', function() {
+             // Fetch all the forms we want to apply custom Bootstrap validation styles to
+             var forms = document.getElementsByClassName('needs-validation');
+             // Loop over them and prevent submission
+             var validation = Array.prototype.filter.call(forms, function(form) {
+                 form.addEventListener('submit', function(event) {
+                     if (form.checkValidity() === false) {
+                         event.preventDefault();
+                         event.stopPropagation();
+                     }
+                     form.classList.add('was-validated');
+                 }, false);
+             });
+         }, false);
+     })();
  </script>
  </body>
 

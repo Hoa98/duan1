@@ -40,7 +40,7 @@ if(isset($_GET['id'])){
                                 <th>Tên dịch vụ</th>
                                 <th>Ảnh dịch vụ</th>
                                 <th>Đơn giá</th>
-                                <th>Thời gian</th>
+                                <th>Thời gian phục vụ</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -53,7 +53,7 @@ if(isset($_GET['id'])){
                                 <th>Tên dịch vụ</th>
                                 <th>Ảnh dịch vụ</th>
                                 <th>Đơn giá</th>
-                                <th>Thời gian</th>
+                                <th>Thời gian phục vụ</th>
                             </tr>
                         </tfoot>
                         <tbody>

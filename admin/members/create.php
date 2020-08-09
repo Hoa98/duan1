@@ -18,8 +18,8 @@ if (isset($_POST['btnsave'])) {
     if (member_check('account', $account) > 0) {
         $errors['errors_account'] = 'Tên tài khoản đã tồn tại';
     }
-    if (empty($fullname)) {
-        $errors['errors_fullname'] = 'Vui lòng nhập họ tên';
+    if (empty($name)) {
+        $errors['errors_name'] = 'Vui lòng nhập họ tên';
     }
     if (empty($phone)) {
         $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
@@ -40,7 +40,7 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_address'] = 'Địa chỉ không được để trống';
     }
     if (array_filter($errors) == false) {
-        member_insert($account, $password, $fullname,$address,$phone, $email, $images, $role);
+        member_insert($account, $password, $name,$address,$phone, $email, $images, $role);
         if ($okUpload) {
             move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
         }
@@ -75,14 +75,14 @@ if (isset($_POST['btnsave'])) {
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
-                            <label for="fullname">Họ tên</label>
-                            <input type="text" name="fullname" id="fullname" class="form-control" pattern="[a-zA-Z\s'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ? ?ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ? ??ỀÊỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]{1,20}" title="Họ tên không bao gồm số" 
-                            placeholder="Nhập họ tên" value="<?= isset($fullname) ? $fullname : '' ?>" required>
+                            <label for="name">Họ tên</label>
+                            <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z\s'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ? ?ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ? ??ỀÊỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]{1,20}" title="Họ tên không bao gồm số" 
+                            placeholder="Nhập họ tên" value="<?= isset($name) ? $name : '' ?>" required>
                             <div class="invalid-feedback">
                                 Vui lòng nhập họ tên
                             </div>
-                            <?php if (isset($errors['errors_fullname'])) : ?>
-                                <p class="text-danger mt-2"><?= $errors['errors_fullname'] ?></p>
+                            <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
                             <?php endif; ?>
                         </div>
 

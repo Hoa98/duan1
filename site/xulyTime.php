@@ -9,13 +9,13 @@ if (isset($_POST['id']) && isset($_POST['day'])) {
     $time = list_all_time();
 }
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-$date=date('H:i:s');
+$date_time=date('H:i:s');
 $date_now=date("Y-m-d");
 ?>
-<select name="id_time" id="id_time" class="form-select wide form-control" required>
+<select name="id_time" id="id_time" class="form-control" required>
     <option value="" selected>Chọn giờ hẹn</option>
     <?php foreach ($time as $t) : ?>
-        <?php if((strtotime($t['time']) > strtotime($date)) && (strtotime($day) == strtotime($date_now))): ?>
+        <?php if((strtotime($t['time']) > strtotime($date_time)) && (strtotime($day) == strtotime($date_now))): ?>
         <option value="<?= $t['id'] ?>"><?= $t['time'] ?></option>
         <?php elseif(strtotime($day) > strtotime($date_now)): ?>
             <option value="<?= $t['id'] ?>"><?= $t['time'] ?></option>

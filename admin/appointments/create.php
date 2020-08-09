@@ -9,7 +9,7 @@ if (isset($_POST['btnsave'])) {
     if($custom>0){
         $id_customer = $custom['id'];
     }else{
-       $cu = custom_insert('', '', $phone,'', '', '');
+       $cu = custom_insert('', '', $phone,'', '', 'user.svg');
        $cus = custom_check('phone', $phone);
        $id_customer = $cus['id'];
     }
@@ -57,7 +57,7 @@ $customers = custom_list_all();
                             <label for="id_member">Chọn stylelist</label>
                             <select name="id_member" id="multi-selectbox" class="form-control">
                                 <?php foreach ($member as $m) : ?>
-                                    <option value="<?= $m['id'] ?>"><?= $m['fullname'] ?></option>
+                                    <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -79,14 +79,18 @@ $customers = custom_list_all();
                         <div class="form-group">
                             <!--Load categories (danh mục sản phẩm)-->
                             <label class="d-block">Chọn dịch vụ</label>
-                            <?php foreach ($service as $s) : ?>
-                                <input type="checkbox" id="service<?= $s['id'] ?>" name="id_service[]" value="<?= $s['id'] ?>">
-                                <label for="service<?= $s['id'] ?>"><?= $s['name'] ?></label><br>
-                            <?php endforeach; ?>
-                            <?php if (isset($errors['errors_service'])) : ?>
+                            <select class="mul-select form-control" name="id_service[]" multiple="true" required>
+                             <option value="">Chọn dịch vụ</option>
+                             <?php foreach ($service as $s) : ?>
+                                 <option value="<?= $s['id'] ?>"><?= $s['name'] ?></option>
+                             <?php endforeach; ?>
+                         </select>
+                         <?php if (isset($errors['errors_service'])) : ?>
                                 <p class="text-danger mt-2"><?= $errors['errors_service'] ?></p>
                             <?php endif; ?>
-                            <p class="text-danger mt-2" id="msg-service"></p>
+                         <div class="invalid-feedback">
+                             Vui lòng chọn dịch vụ
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +98,6 @@ $customers = custom_list_all();
             </form>
         </div>
     </div>
-
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
@@ -114,23 +117,5 @@ $customers = custom_list_all();
       });
   });
 });
-function check(){
-  var flag = true;
-  console.log('dsss');
-  var service = document.getElementsByName("id_service[]");
-    var str = '';
-    for (var i = 0; i < service.length; i++) {
-        if (service[i].checked) {
-            str = service[i].value;
-        }
-    }
-    if (str == "" || str == null) {
-      document.getElementById('msg-service').innerHTML = "Vui lòng chọn ít nhất một dịch vụ";
-       flag=false;
-  } if (!flag) {
-     return false;
-} else {
-    return true;
-}
-}
+
 </script>

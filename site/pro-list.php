@@ -30,9 +30,13 @@ if(isset($_GET['id'])){
  											<div class="sale pp-sale"><?= ($p['sale'] * 100) . '%' ?></div>
  										<?php endif; ?>
  										<ul>
- 											<li class="w-icon active"><a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
- 											<li class="quick-view"><a href="shopping-cart.html">+ Thêm</a></li>
- 											<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+											 <li class="w-icon active">
+											 <form action="<?=ROOT?>?page=cart&id=<?=$p['id']?>&qty=1" method="post">
+												 <button class="btn" name="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+												 </form>
+											 </li>
+ 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$p['id']?>&qty=1&add-to-cart">Mua ngay</a></li>
+ 											<li class="w-icon"><a href="<?=ROOT?>?page=product-detail&id=<?=$p['id']?>"><i class="fa fa-random"></i></a></li>
  										</ul>
  									</div>
  									<div class="pi-text">

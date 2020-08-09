@@ -3,7 +3,7 @@ require_once "database.php";
 
 //Hàm hiển thị toàn bộ bình luan cua khach
 function list_all_comment_custom(){
-    $sql = "SELECT comments.*,products.name as product_name,customers.name as custom_name,phone from comments 
+    $sql = "SELECT comments.*,products.name as product_name,customers.name,phone from comments 
     inner join customers on comments.id_customer = customers.id
     inner join products on comments.id_product = products.id
      ORDER BY comments.id DESC";
@@ -12,7 +12,7 @@ function list_all_comment_custom(){
 
 //Hàm hiển thị toàn bộ bình luan cua thanh vien
 function list_all_comment_member(){
-    $sql = "SELECT comments.*,products.name as product_name, phone, fullname from comments 
+    $sql = "SELECT comments.*,products.name as product_name, phone, members.name from comments 
     inner join products on comments.id_product = products.id
     inner join members on comments.id_member = members.id
      ORDER BY comments.id DESC";
@@ -21,7 +21,7 @@ function list_all_comment_member(){
 
 //Hàm hiển thị toàn bộ bình luan cua thanh vien
 function list_parent_comment_member($parent_id){
-    $sql = "SELECT comments.*,products.name as product_name, phone, fullname from comments 
+    $sql = "SELECT comments.*,products.name as product_name, phone, members.name from comments 
     inner join products on comments.id_product = products.id
     inner join members on comments.id_member = members.id where parent_id =$parent_id
      ORDER BY comments.id DESC";
@@ -29,7 +29,7 @@ function list_parent_comment_member($parent_id){
 }
 //Hàm hiển thị toàn bộ bình luan cua khach
 function list_parent_comment_custom($parent_id){
-    $sql = "SELECT comments.*,products.name as product_name,customers.name as custom_name,phone from comments 
+    $sql = "SELECT comments.*,products.name as product_name,customers.name,phone from comments 
     inner join customers on comments.id_customer = customers.id
     inner join products on comments.id_product = products.id where parent_id =$parent_id
      ORDER BY comments.id DESC";
@@ -63,14 +63,14 @@ function comment_delete($id) {
     delete('comments', 'id', $id);
 }
 //Hiển thị tất cả comment thành viên đã được duyệt
-function comment_custom_list_approve($id_product) {
-    $sql = "SELECT comments.*,members.images as m_images,fullname from comments 
+function comment_member_list_approve($id_product) {
+    $sql = "SELECT comments.*,members.images as c_images, name from comments 
     inner join members on members.id = comments.id_member
     WHERE approve=1 and id_product=$id_product ORDER BY comments.id DESC";
     return query_exe($sql);
 }
 //Khách
-function comment_member_list_approve($id_product) {
+function comment_custom_list_approve($id_product) {
     $sql = "SELECT comments.*,customers.images as c_images, name from comments 
     inner join customers on comments.id_customer = customers.id
     WHERE approve=1 and id_product=$id_product ORDER BY comments.id DESC";
@@ -89,7 +89,9 @@ function statistical_comment(){
 
 //Hiển thị comment khach sử dụng đệ quy
 function comment_recursive($parent,$level,$id_product,&$newArray){
-    $source = comment_custom_list_approve($id_product);
+    $source1 = comment_custom_list_approve($id_product);
+    $source2 = comment_member_list_approve($id_product);
+    $source= array_merge($source1,$source2);
     if(count($source)>0){
         foreach ($source as $key => $value){
             if($value['parent_id'] == $parent){

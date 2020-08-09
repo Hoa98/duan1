@@ -1,13 +1,16 @@
 <?php
+require_once "site/login.php";
+require_once "site/booking.php";
+if(isset($_GET['page'])){
+    $page=$_GET['page'];
+}
+//dat lich hen
 $type = list_limit_type(0, 7);
 $member = member_list_role(3);
-$date = date_create();
 $service = service_list_all();
 $customers = custom_list_all();
+$date = date_create();
 $time = list_all_time();
-date_default_timezone_set('Asia/Ho_Chi_Minh');
-$dateTime=date('H:i:s');
-$date_now=date("Y-m-d");
  ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -61,38 +64,40 @@ $date_now=date("Y-m-d");
                                     <div class="main-menu">
                                         <nav>
                                             <ul id="navigation" class="mt-3">
-                                                <li><a class="<?= ($_GET['page'] == 'home' || $_GET['page'] == '') ? 'active' : '' ?>" href="<?= ROOT ?>">Trang chủ</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'introduce') ? 'active' : '' ?>" href="<?= ROOT ?>?page=introduce">Giới thiệu</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'service' || $_GET['page'] == 'service-list') ? 'active' : '' ?>" href="<?= ROOT ?>?page=service">Dịch vụ</a>
+                                                <li><a class="<?= ($page == 'home' || $page == '') ? 'active' : '' ?>" href="<?= ROOT ?>">Trang chủ</a></li>
+                                                <li><a class="<?= ($page == 'introduce') ? 'active' : '' ?>" href="<?= ROOT ?>?page=introduce">Giới thiệu</a></li>
+                                                <li><a class="<?= ($page == 'service' || $page == 'service-list') ? 'active' : '' ?>" href="<?= ROOT ?>?page=service">Dịch vụ</a>
                                                 <ul class="submenu">
                                                     <?php foreach($type as $t): ?>
 													<li><a href="<?=ROOT?>?page=service-list&id=<?=$t['id']?>"><img src="images/categories/<?=$t['images']?>" class="mr-2" alt="" width="20" height="20"><?=$t['name']?></a></li>
                                                     <?php endforeach; ?>
 												</ul>
                                             </li>
-                                                <li><a class="<?= ($_GET['page'] == 'product-list' || $_GET['page'] == 'pro-list' || $_GET['page'] == 'product-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=product-list">Sản phẩm</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'blog' || $_GET['page'] == 'blog-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=blog">Tin tức</a></li>
-                                                <li><a class="<?= ($_GET['page'] == 'contact') ? 'active' : '' ?>" href="<?= ROOT ?>?page=contact">Liên hệ</a></li>
+                                                <li><a class="<?= ($page == 'product-list' || $page == 'pro-list' || $page == 'product-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=product-list">Sản phẩm</a></li>
+                                                <li><a class="<?= ($page == 'blog' || $page == 'blog-detail') ? 'active' : '' ?>" href="<?= ROOT ?>?page=blog">Tin tức</a></li>
+                                                <li><a class="<?= ($page == 'contact') ? 'active' : '' ?>" href="<?= ROOT ?>?page=contact">Liên hệ</a></li>
                                             </ul>
                                         </nav>
                                     </div>
 
                                     <div class="icon">
                                         <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
-                                        <!-- <a href=""><i class="fa fa-search text-white ml-2" aria-hidden="true"></i></a> -->
                                     </div>
 
                                     <div class="dropdown no-arrow mr-1">
                                         <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
-                                        <i class="fa fa-user-o ml-2 mr-2" aria-hidden="true"></i>
+                                        <i class="fa fa-user-o ml-2" aria-hidden="true"></i>
+                                        <?=isset($_SESSION['customer'])?$_SESSION['customer']['name']:'' ?>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                            <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                                            <a class="dropdown-item" href="#">Lịch hẹn</a>
-                                            <a class="dropdown-item" href="#">Đăng xuất</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=purchase">Lịch hẹn</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>
                                         </div>
                                     </div>
+                                    <?php if(!isset($_SESSION['customer'])): ?>                        
                                     <a href="#login-form" class="popup-with-form text-white text-uppercase">Đăng nhập</a>
+                                    <?php endif; ?>
                                     <div class="book_room">
                                         <div class="book_btn">
                                             <a class="popup-with-form" href="#test-form">Đặt lịch ngay</a>

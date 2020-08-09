@@ -3,6 +3,40 @@ $pro = product_list_one('id',isset($_GET['id']) ? $_GET['id'] : '');
 $gallery = gallery_list(isset($_GET['id']) ? $_GET['id'] : '');
 $product_list = product_list_category($pro['id_category'], $pro['id'],0,4);
 update_view($pro['id']);
+if (isset($_POST['btnGui'])) {
+    extract($_REQUEST);
+    #reply
+    if ($_SESSION['member']['role'] == 1) {
+       
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    } else {
+      
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    }
+}
+#comment
+if (isset($_POST['btnSave'])) {
+    extract($_REQUEST);
+    if ($_SESSION['user']['role'] == 1) {
+        
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    } else {
+        
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    }
+}
 ?>
  <!-- bradcam_area_start -->
  <div class="bradcam_area breadcam_bg overlay">
@@ -88,7 +122,96 @@ update_view($pro['id']);
                                 <div class="tab-content mb-5">
                                     <div class="tab-pane fade show active p-3 border border-top-0" id="tabs-5-1">
                                      <!-- Binh luan  -->
+                                     <div class="box-comment">
+                                     <h5 class="mb-3">KHÁCH HÀNG NHẬN XÉT</h5>
+                                            <?php
+                                            comment_recursive(0, 1, $pro['id'], $listArray);
+                                            ?>
+                                            <?php if (!empty($listArray)) : ?>
+                                               
+                                                <?php foreach ($listArray as $key => $value) : ?>
+                                                    
+                                                    <?php if ($value['level'] == 1) : ?>
+                                                        <div class="row">
+                                                            <div class="col-1">
+                                                                <div class="box-comment-figure"><img src="images/users/<?= $value['c_images'] ?>" alt="" width="50" height="50" class="rounded-circle"></div>
+                                                            </div>
+                                                            <div class="col-10  mb-3">
+                                                                <div class="comment">
+                                                                    <p class="box-comment-author m-0 font-weight-bold"> <?= $value['name'] ?></p>
+                                                                    <div class="box-comment-time font-italic">
+                                                                        <time datetime="<?= $value['created_at'] ?>"><?= $value['created_at'] ?></time>
+                                                                    </div>
+                                                                    <p class="box-comment-text mb-0"><?= $value['content'] ?></p>
+                                                                    <!-- Bị ẩn khi người dùng chưa đăng nhập  -->
+                                                                    <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                                                        <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
+                                                                        lời</button>
+                                                                        <form action="" class="collapse mt-3" id="reply<?= $value['id'] ?>" method="post">
+                                                                            <div class="form-group">
+                                                                                <input type="hidden" name="value" value="<?= $value['id'] ?>">
+                                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhận xét của bạn..." name="content" required></textarea>
+                                                                            </div>
+                                                                            <button type="submit" class="btn btn-primary pl-5 pr-5" name="btnGui">Gửi</button>
+                                                                            <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
+                                                                            bỏ</button>
+                                                                        </form>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php else : ?>
+                                                            <?php $padding = ($value['level'] - 1) * 90; ?>
+                                                            <div class="row" style="padding-left:<?= $padding ?>px">
+                                                                <div class="col-1">
+                                                                    <div class="box-comment-figure"><img src="images/users/<?= $value['c_images'] ?>" alt="" width="50" height="50" class="rounded-circle"></div>
+                                                                </div>
+                                                                <div class="col-10 mb-3">
+                                                                    <div class="comment">
+                                                                        <p class="box-comment-author m-0 font-weight-bold"><?= $value['name'] ?></p>
+                                                                        <div class="box-comment-time font-italic">
+                                                                            <time datetime="<?= $value['created_at'] ?>"><?= $value['created_at'] ?></time>
+                                                                        </div>
+                                                                        <p class="box-comment-text mb-0"><?= $value['content'] ?></p>
+                                                                        <!-- Bị ẩn khi người dùng chưa đăng nhập  -->
+                                                                        <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                                                            <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
+                                                                            lời</button>
+                                                                            <form action="" class="collapse mt-3" id="reply<?= $value['id'] ?>" method="post">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden" name="value" value="<?= $value['id'] ?>">
+                                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                                                </div>
+                                                                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="btnGui">Gửi</button>
+                                                                                <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
+                                                                                bỏ</button>
+                                                                            </form>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
 
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+
+                                                <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                                    <button type="button" class="btn mt-5 mb-3" data-toggle="collapse" data-target="#comment" aria-controls="comment">Viết nhận xét của
+                                                    bạn</button>
+                                                    <!-- Bị ẩn khi khách hàng chưa đăng nhập -->
+                                                    <form action="" method="post" class="collapse" id="comment">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary" name="btnSave">Gửi nhận xét</button>
+                                                        <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#comment" aria-controls="comment">Hủy
+                                                        bỏ</button>
+
+                                                    </form>
+                                                    <?php else : ?>
+                                                        <p class="ml-3"><strong>Bạn cần đăng nhập mới có thể bình luận</strong></p>
+                                                    <?php endif; ?>
+                                     </div>
                                     </div>
                                     <div class="tab-pane fade p-3 border border-top-0" id="tabs-5-2">
                                         <p class="text-justify"><?= $pro['description'] ?></p>
@@ -115,9 +238,13 @@ update_view($pro['id']);
  											<div class="sale pp-sale"><?= ($pro_list['sale'] * 100) . '%' ?></div>
  										<?php endif; ?>
  										<ul>
- 											<li class="w-icon active"><a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
- 											<li class="quick-view"><a href="shopping-cart.html">+ Thêm</a></li>
- 											<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                         <li class="w-icon active">
+											 <form action="<?=ROOT?>?page=cart&id=<?=$pro_list['id']?>&qty=1" method="post">
+												 <button class="btn" name="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+												 </form>
+											 </li>
+ 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$pro_list['id']?>&qty=1&add-to-cart">Mua ngay</a></li>
+ 											<li class="w-icon"><a href="<?=ROOT?>?page=product-detail&id=<?=$pro_list['id']?>"><i class="fa fa-random"></i></a></li>
  										</ul>
  									</div>
  									<div class="pi-text">

@@ -41,10 +41,12 @@
     </div>
 </div>
 
+
 <!--Trình soạn thảo văn bản cho phần nội dung của sản phẩm tinymce-->
 <script src="resource/js/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="resource/vendor/jquery/jquery.min.js"></script>
+<script src="resource/vendor/select2.min.js"></script>
 <script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->

@@ -43,11 +43,11 @@ function member_list_limit($limit, $nRows) {
 }
 
 //Thêm
-function member_insert($account, $password, $fullname,$address,$phone, $email, $images, $role) {
+function member_insert($account, $password, $name,$address,$phone, $email, $images, $role) {
     $data = [
         'account'=>$account,
         'password'=>password_hash($password,PASSWORD_DEFAULT),
-        'fullname'=>$fullname,
+        'name'=>$name,
         'address'=>$address,
         'phone'=>$phone,
         'email'=>$email,
@@ -87,9 +87,9 @@ function member_change_phone($id, $phone) {
     update('members', $data, 'id', $id);
 }
 //Đổi địa chỉ
-function member_update_limit($id, $fullname,$address,$images) {
+function member_update_limit($id, $name,$address,$images) {
     $data = [
-        'fullname'=>$fullname,
+        'name'=>$name,
         'address'=>$address,
         'images'=>$images
     ];

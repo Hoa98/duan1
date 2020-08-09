@@ -33,9 +33,9 @@ if (isset($_POST['btnsave'])) {
                             <input type="text" name="account" id="account" class="form-control"  value="<?= $member['account'] ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="fullname">Họ tên</label>
-                            <input type="text" name="fullname" id="fullname" class="form-control" 
-                              value="<?= $member['fullname'] ?>" readonly>
+                            <label for="name">Họ tên</label>
+                            <input type="text" name="name" id="name" class="form-control" 
+                              value="<?= $member['name'] ?>" readonly>
                         </div>
 
                         <div class="form-group">

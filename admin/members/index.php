@@ -74,7 +74,7 @@ $member =  member_list();
                                     </td>
                                     <td><?= $r['id'] ?></td>
                                     <td><?= $r['account'] ?></td>
-                                    <td><?= $r['fullname'] ?></td>
+                                    <td><?= $r['name'] ?></td>
                                     <td><?= $r['phone'] ?></td>
                                     <td>
                                         <img src="../images/users/<?= $r['images'] ?>" width="90" alt="">

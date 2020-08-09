@@ -18,6 +18,7 @@ if (isset($_POST['btn-del'])) {
 
 $comment_custom = list_all_comment_custom();
 $comment_member = list_all_comment_member();
+$comment = array_merge($comment_custom,$comment_member);
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -66,49 +67,26 @@ $comment_member = list_all_comment_member();
                             </tr>
                         </tfoot>
                         <tbody>
-                            <?php foreach ($comment_custom as $cc) : ?>
+                            <?php foreach ($comment as $c) : ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id[]" id="" value="<?= $cc['id'] ?>">
+                                        <input type="checkbox" name="id[]" id="" value="<?= $c['id'] ?>">
                                     </td>
-                                    <td><?= $cc['id'] ?></td>
-                                    <td><?= $cc['custom_name'] ?></td>
-                                    <td><?= $cc['phone'] ?></td>
-                                    <td><?= $cc['product_name'] ?></td>
-                                    <td><?= $cc['content'] ?></td>
-                                    <td><?= $cc['rating'] ?></td>
-                                    <td><?= $cc['created_at'] ?></td>
+                                    <td><?= $c['id'] ?></td>
+                                    <td><?= $c['name'] ?></td>
+                                    <td><?= $c['phone'] ?></td>
+                                    <td><?= $c['product_name'] ?></td>
+                                    <td><?= $c['content'] ?></td>
+                                    <td><?= $c['rating'] ?></td>
+                                    <td><?= $c['created_at'] ?></td>
                                     <td>
-                                        <?php if ($cc['approve'] == 1) : ?>
-                                            <a href="<?= ROOT ?>admin/?page=comment&action=reply&id=<?= $cc['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-reply"></i></a>
+                                        <?php if ($c['approve'] == 1) : ?>
+                                            <a href="<?= ROOT ?>admin/?page=comment&action=reply&id=<?= $c['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-reply"></i></a>
                                         <?php else : ?>
-                                            <a href="<?= ROOT ?>admin/?page=comment&action=edit&id=<?= $cc['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-check"></i></a>
+                                            <a href="<?= ROOT ?>admin/?page=comment&action=edit&id=<?= $c['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-check"></i></a>
                                         <?php endif; ?>
-                                        <a href="<?= ROOT ?>admin/?page=comment&action=detail&id=<?= $cc['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=comment&id=<?= $cc['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            <?php foreach ($comment_member as $cm) : ?>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="id[]" id="" value="<?= $cm['id'] ?>">
-                                    </td>
-                                    <td><?= $cm['id'] ?></td>
-                                    <td><?= $cm['fullname'] ?></td>
-                                    <td><?= $cm['phone'] ?></td>
-                                    <td><?= $cm['product_name'] ?></td>
-                                    <td><?= $cm['content'] ?></td>
-                                    <td><?= $cm['rating'] ?></td>
-                                    <td><?= $cm['created_at'] ?></td>
-                                    <td>
-                                        <?php if ($cm['approve'] == 1) : ?>
-                                            <a href="<?= ROOT ?>admin/?page=comment&action=reply&id=<?= $cm['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-reply"></i></a>
-                                        <?php else : ?>
-                                            <a href="<?= ROOT ?>admin/?page=comment&action=edit&id=<?= $cm['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-check"></i></a>
-                                        <?php endif; ?>
-                                        <a href="<?= ROOT ?>admin/?page=comment&action=detail&id=<?= $cm['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=comment&id=<?= $cm['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=comment&action=detail&id=<?= $c['id'] ?>" class="btn btn-primary  d-block p-2 w-75 mb-2"><i class="fas fa-info-circle"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=comment&id=<?= $c['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
