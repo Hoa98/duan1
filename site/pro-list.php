@@ -23,7 +23,8 @@ if(isset($_GET['id'])){
 					 </div>
 					 <div class="col-4">
 						<form action="" method="post" class="form-contact">
-						<select name="sort" class="form-control" id="sort">
+							<input type="hidden" name="id" id="id_cate" value="<?=$id?>">
+						<select name="sortCate" class="form-control" id="sortCate">
 							 <option value="">Sắp xếp theo</option>
 							 <option value="new">Mới nhất</option>
 							 <option value="sale">Khuyến mãi</option>
@@ -34,7 +35,7 @@ if(isset($_GET['id'])){
 						</form>
 					 </div>
 				 </div>
- 				<div class="product-list" id="list_pro">
+ 				<div class="product-list" id="list_pro_cate">
  					<div class="row">
  						<!-- dùng vòng lăp -->
  						<?php foreach ($products as $p) : ?>

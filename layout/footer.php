@@ -296,6 +296,15 @@
         $('#list_pro').html(data);
     });
 });
+$('#sortCate').change(function() {
+    var sort = $('#sortCate').val();
+    var id = $('#id_cate').val();
+    $.post("site/xulySortCate.php", {
+        sort: sort,id: id
+    }, function(data) {
+        $('#list_pro_cate').html(data);
+    });
+});
      });
      //Validate form
      (function() {

@@ -3,17 +3,17 @@ require_once "../golbal.php";
 require_once "../libs/products.php";
 extract($_REQUEST);
 if($sort=='new'){
-    $products = product_list_all();
+    $products = product_list_cate($id);
 } elseif($sort=='sale'){
-    $products =product_list_all_sale();
+    $products =product_list_cate_sale($id);
 }elseif($sort=='view'){
-    $products =product_list_all_view();
+    $products =product_list_cate_view($id);
 }elseif($sort=='price_low'){
-    $products =product_list_price_low();
+    $products =product_list_cate_price_low($id);
 }elseif($sort=='price_high'){
-    $products =product_list_price_high();
+    $products =product_list_cate_price_high($id);
 }else{
-    $products = product_list_all();
+    $products = product_list_cate($id);
 }
 ?>
 <div class="row">

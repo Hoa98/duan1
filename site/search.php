@@ -1,6 +1,7 @@
 <?php 
 extract($_REQUEST);
 $products = search_product($keyword);
+$count_pro = count($products);
 if(empty($keyword)){
     if (isset($_SERVER["HTTP_REFERER"])) {
         header("Location: " . $_SERVER["HTTP_REFERER"]);
@@ -8,7 +9,7 @@ if(empty($keyword)){
         header("Location: " .ROOT);
     }
 }
-$category = list_all_category();
+    $category = list_all_category();
 	$pro_sale = product_list_sale(0, 5);
 	?>
  <!-- bradcam_area_start -->
@@ -21,24 +22,12 @@ $category = list_all_category();
  	<div class="container">
  		<div class="row">
  			<div class="col-lg-9 order-1 order-lg-2">
-				 <div class="row mb-5">
-					 <div class="col-8">
-						 <h4>Sản phẩm tìm được với từ khóa: "<?=isset($keyword)?$keyword:''?>"</h4>
+             <div class="text-center mb-5">
+						 <h3>
+                             <span>Có <strong><?=$count_pro?></strong> sản phẩm với từ khóa: <strong><?=isset($keyword)?$keyword:''?></strong></span>
+                         </h3>
 					 </div>
-					 <div class="col-4">
-						<form action="" method="post" class="form-contact">
-						<select name="sort" class="form-control" id="sort">
-							 <option value="">Sắp xếp theo</option>
-							 <option value="new">Mới nhất</option>
-							 <option value="sale">Khuyến mãi</option>
-							 <option value="price_low">Giá từ thấp tới cao</option>
-							 <option value="price_high">Giá từ cao tới thấp</option>
-							 <option value="view">Xem nhiều</option>
-						 </select>
-						</form>
-					 </div>
-				 </div>
- 				<div class="product-list" id="list_pro">
+ 				<div class="product-list">
  					<div class="row">
  						<!-- dùng vòng lăp -->
  						<?php foreach ($products as $p) : ?>

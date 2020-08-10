@@ -28,13 +28,32 @@ function product_list_one($id,$value) {
     return listOne('products',$id,$value);
 }
 
-//function lấy ra dữ liệu theo loại hàng
+//function lấy ra dữ liệu theo loại hàng======sắp xep 
 //$id_cate là dữ liệu được lọc
 function product_list_cate($id_category) {
     $sql = "SELECT * from products Where id_category=$id_category ORDER BY id DESC";
     return query_exe($sql);
 }
-
+//$id_cate là dữ liệu được lọc
+function product_list_cate_sale($id_category) {
+    $sql = "SELECT * from products Where id_category=$id_category ORDER BY sale DESC";
+    return query_exe($sql);
+}
+//$id_cate là dữ liệu được lọc
+function product_list_cate_view($id_category) {
+    $sql = "SELECT * from products Where id_category=$id_category ORDER BY views DESC";
+    return query_exe($sql);
+}
+//$id_cate là dữ liệu được lọc
+function product_list_cate_price_low($id_category) {
+    $sql = "SELECT * from products Where id_category=$id_category ORDER BY price";
+    return query_exe($sql);
+}
+//$id_cate là dữ liệu được lọc
+function product_list_cate_price_high($id_category) {
+    $sql = "SELECT * from products Where id_category=$id_category ORDER BY price DESC";
+    return query_exe($sql);
+}
 //hàm lấy ra dữ liệu danh sách hàng hóa theo danh mục và giới hạn
 function product_list_categories($id_category,$limit, $nRows) {
     $sql = "SELECT products.* from products inner join categories on products.id_category = categories.id 
