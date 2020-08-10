@@ -11,7 +11,6 @@ if(empty($keyword)){
 $category = list_all_category();
 	$pro_sale = product_list_sale(0, 5);
 	?>
-?>
  <!-- bradcam_area_start -->
  <div class="bradcam_area breadcam_bg overlay">
  	<h3>Tìm kiếm</h3>
@@ -39,7 +38,7 @@ $category = list_all_category();
 						</form>
 					 </div>
 				 </div>
- 				<div class="product-list">
+ 				<div class="product-list" id="list_pro">
  					<div class="row">
  						<!-- dùng vòng lăp -->
  						<?php foreach ($products as $p) : ?>

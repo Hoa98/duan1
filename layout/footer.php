@@ -288,6 +288,14 @@
                  $('#result').html(data);
              });
          });
+         $('#sort').change(function() {
+    var sort = $('#sort').val();
+    $.post("site/xulySort.php", {
+        sort: sort
+    }, function(data) {
+        $('#list_pro').html(data);
+    });
+});
      });
      //Validate form
      (function() {

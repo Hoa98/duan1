@@ -7,7 +7,22 @@ function product_list_all() {
     ORDER BY id DESC";
     return query_exe($sql);
 }
-
+function product_list_all_sale() {
+    $sql = "SELECT * from products order by sale desc";
+    return query_exe($sql);
+}
+function product_list_all_view() {
+    $sql = "SELECT * from products order by views desc";
+    return query_exe($sql);
+}
+function product_list_price_low() {
+    $sql = "SELECT * from products order by price asc";
+    return query_exe($sql);
+}
+function product_list_price_high() {
+    $sql = "SELECT * from products order by price desc";
+    return query_exe($sql);
+}
 //Lấy ra 1 bản ghi hàng hóa theo điều kiện id
 function product_list_one($id,$value) {
     return listOne('products',$id,$value);

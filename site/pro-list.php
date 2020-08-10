@@ -34,7 +34,7 @@ if(isset($_GET['id'])){
 						</form>
 					 </div>
 				 </div>
- 				<div class="product-list">
+ 				<div class="product-list" id="list_pro">
  					<div class="row">
  						<!-- dùng vòng lăp -->
  						<?php foreach ($products as $p) : ?>
