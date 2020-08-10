@@ -11,6 +11,7 @@ $service = service_list_all();
 $customers = custom_list_all();
 $date = date_create();
 $time = list_all_time();
+$setting = list_limit_setting();
  ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -18,12 +19,12 @@ $time = list_all_time();
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Poly-barber</title>
+    <title><?=$setting['title']?></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/<?=$setting['file_ico']?>" />
     <!-- Place favicon.ico in the root directory -->
    
 
@@ -54,7 +55,7 @@ $time = list_all_time();
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="<?= ROOT ?>">
-                                    <img src="images/logo1.png" alt="" width="100" height="80">
+                                    <img src="images/<?=$setting['logo']?>" alt="" width="100" height="80">
                                 </a>
                             </div>
                         </div>

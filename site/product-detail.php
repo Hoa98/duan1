@@ -165,8 +165,8 @@ if (isset($_POST['btnSave'])) {
                                                                                 <input type="hidden" name="value" value="<?= $value['id'] ?>">
                                                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhận xét của bạn..." name="content" required></textarea>
                                                                             </div>
-                                                                            <button type="submit" class="btn btn-primary pl-5 pr-5" name="btnGui">Gửi</button>
-                                                                            <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
+                                                                            <button type="submit" class="boxed-btn3" name="btnGui">Gửi</button>
+                                                                            <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
                                                                             bỏ</button>
                                                                         </form>
                                                                     <?php endif; ?>
@@ -195,8 +195,8 @@ if (isset($_POST['btnSave'])) {
                                                                                     <input type="hidden" name="value" value="<?= $value['id'] ?>">
                                                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
                                                                                 </div>
-                                                                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="btnGui">Gửi</button>
-                                                                                <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
+                                                                                <button type="submit" class="boxed-btn3" name="btnGui">Gửi</button>
+                                                                                <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
                                                                                 bỏ</button>
                                                                             </form>
                                                                         <?php endif; ?>
@@ -216,8 +216,8 @@ if (isset($_POST['btnSave'])) {
                                                         <div class="form-group">
                                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary" name="btnSave">Gửi nhận xét</button>
-                                                        <button type="button" class="btn ml-5 pl-5 pr-5 btn-outline-primary" data-toggle="collapse" data-target="#comment" aria-controls="comment">Hủy
+                                                        <button type="submit" class="boxed-btn3" name="btnSave">Gửi nhận xét</button>
+                                                        <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#comment" aria-controls="comment">Hủy
                                                         bỏ</button>
 
                                                     </form>

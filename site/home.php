@@ -4,6 +4,7 @@
     $service2 = service_list_limit(5, 5);
     $gallery = library_list_limit(0, 5);
     $barber = member_list_limit(0, 4);
+    $setting = list_limit_setting();
     ?>
  <!-- about_area_start -->
  <div class="about_area">
@@ -16,8 +17,8 @@
                          <i class="flaticon-clock"></i>
                          <h3>Giờ hoạt động</h3>
                          <p>
-                             Mon-Fri (9.00-11.00) <br />
-                             Sat (10.00-4.00)
+                             Mon-Fri (8.30-20.00) <br />
+                             Sat (9.00-5.00)
                          </p>
                      </div>
                  </div>
@@ -26,7 +27,7 @@
                  <div class="about_info">
                      <div class="section_title mb-20px">
                          <span>Về chúng tôi</span>
-                         <h3>Kinh nghiệm và Sáng tạo không ngừng cùng Barber Shop</h3>
+                         <h3><?=$setting['slogan']?></h3>
                      </div>
                      <p>
                          Truyền cảm hứng cùng sự tậm tâm với khách hàng cho các nhân viên

@@ -1,3 +1,4 @@
+<?php $setting = list_limit_setting(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Poly-barber</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+    <title><?=$setting['title']?></title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/<?=$setting['file_ico']?>" />
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -30,11 +31,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=ROOT?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">POLY-BARBER </div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center mb-3 pt-5" href="<?=ROOT?>">
+                <img src="../images/<?=$setting['logo']?>" alt="logo" width="90" height="70">
             </a>
 
             <!-- Divider -->
