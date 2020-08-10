@@ -18,7 +18,9 @@ require_once "libs/comments.php";
 require_once "libs/appointments.php";
 require_once "libs/app_detail.php";
 
-
+if(isset($_SESSION['member'])){
+    $_SESSION['customer'] = $_SESSION['member'];
+}
 extract($_REQUEST);
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 switch ($page) {
@@ -68,6 +70,7 @@ switch ($page) {
         $view_page = "site/search.php";
         break;
     case 'logout':
+        unset($_SESSION['member']);
         unset($_SESSION['customer']);
         header('location:' . ROOT);
         die();

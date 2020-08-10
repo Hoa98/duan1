@@ -6,6 +6,10 @@ if (isset($_COOKIE['account'])) {
   $account = $_COOKIE['account'];
   $password = $_COOKIE['password'];
 }
+if(isset($_SESSION['customer'])){
+  header('location:' . ROOT);
+  die();
+}
 check_session();
 extract($_REQUEST);
 if (isset($btnlogin)) {

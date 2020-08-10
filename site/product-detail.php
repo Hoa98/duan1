@@ -6,14 +6,20 @@ update_view($pro['id']);
 if (isset($_POST['btnGui'])) {
     extract($_REQUEST);
     #reply
-    if ($_SESSION['member']['role'] == 1) {
-       
+    if ($_SESSION['member']['role'] == 1 || $_SESSION['member']['role'] == 2) {
+        insert_comment($content,$pro['id'],'',$_SESSION['member']['id'],0,true,$value);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
-    } else {
-      
+    } elseif($_SESSION['member']['role'] == 3){
+        insert_comment($content,$pro['id'],'',$_SESSION['member']['id'],0,false,$value);
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    }else {
+        insert_comment($content,$pro['id'],$_SESSION['customer']['id'],'',0,false,$value);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
@@ -23,14 +29,21 @@ if (isset($_POST['btnGui'])) {
 #comment
 if (isset($_POST['btnSave'])) {
     extract($_REQUEST);
-    if ($_SESSION['user']['role'] == 1) {
-        
+    #reply
+    if ($_SESSION['member']['role'] == 1 || $_SESSION['member']['role'] == 2) {
+        insert_comment($content,$pro['id'],'',$_SESSION['member']['id'],0,true,0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
-    } else {
-        
+    } elseif($_SESSION['member']['role'] == 3){
+        insert_comment($content,$pro['id'],'',$_SESSION['member']['id'],0,false,0);
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        }
+    }else {
+        insert_comment($content,$pro['id'],$_SESSION['customer']['id'],'',0,false,0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
@@ -40,7 +53,7 @@ if (isset($_POST['btnSave'])) {
 ?>
  <!-- bradcam_area_start -->
  <div class="bradcam_area breadcam_bg overlay">
- 	<h3>Chi tiet san pham</h3>
+ 	<h3>Chi tiết sản phẩm</h3>
  </div>
  <!-- bradcam_area_end -->
 

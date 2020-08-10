@@ -4,6 +4,7 @@ if (isset($_COOKIE['customer'])) {
     $phone = $_COOKIE['customer'];
     $password = $_COOKIE['pass'];
   }
+
 extract($_REQUEST);
 if (isset($btnLogin)) {
   if (check_custom($phone)) {
