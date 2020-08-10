@@ -40,6 +40,9 @@ switch ($page) {
     case 'cart':
         $view_page = "site/cart.php";
         break;
+        case 'checkout':
+            $view_page = "site/checkout.php";
+            break;
     case 'contact':
         $view_page = "site/contact.php";
         break;

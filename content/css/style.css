@@ -4749,6 +4749,7 @@ time {
 }
 .old-price del {
   color: gray;
+  font-weight: 400;
 }
 .dropdown-toggle::after {
   content: none;

@@ -3,7 +3,8 @@
 function total_price($cart){
     $total_price = 0;
     foreach ($cart as $key => $value){
-      $total_price += $value['quantity'] * $value['price'];
+      $price = $value['price']- ($value['price']*$value['sale']);
+      $total_price += $value['quantity'] * $price;
     }
     return $total_price;
   }

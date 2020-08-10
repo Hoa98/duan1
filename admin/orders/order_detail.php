@@ -70,7 +70,9 @@ if(isset($_GET['id'])){
                                     <td><?= $o['id_order'] ?></td>
                                     <td><?= $o['name'] ?></td>
                                     <td><img src="../images/products/<?=$o['images'] ?>" alt="" width="100"></td>
-                                    <td><del class="text-gray-500"><?=number_format($o['price'],0,',','.').' đ';?></del>
+                                    <td><?php if($o['sale']>0): ?>
+                                        <del class="text-gray-500"><?=number_format($o['price'],0,',','.').' đ';?></del>
+                                    <?php endif; ?>
                                      <?=number_format($price= $o['price']-($o['price']*$o['sale']),0,',','.').' đ';?></td>
                                     <td><?=($o['sale']*100).'%' ?></td>
                                     <td><?= $o['quantity'] ?></td>

@@ -41,7 +41,6 @@ if(isset($_SESSION['customer'])){
 		$cart = $_SESSION['cart'];
 	}
 }
-
 ?>
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">
@@ -53,104 +52,163 @@ if(isset($_SESSION['customer'])){
     <div class="container">
         <div class="row">
             <?php if(isset($cartCustom) && isset($_SESSION['customer'])): ?>
-            <div class="col-lg-12">
-                <div class="cart-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Ảnh sản phẩm</th>
-                                <th class="p-name">Tên sản phẩm</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th>Xóa</th>
-                                <th>Sửa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($cartCustom as $c): ?>
-                            <tr>
-                                <td class="cart-pic first-row"><img src="images/products/<?=$c['images']?>" alt=""></td>
-                                <td class="cart-title first-row">
-                                    <h5><?=$c['name']?></h5>
-                                </td>
-                                <td class="p-price first-row"><?=$c['price']?></td>
-                                <td class="qua-col first-row">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="<?=$c['quantity']?>">
+                <div class="col-lg-12">
+                <form action="<?=ROOT?>?page=checkout" method="post">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($cartCustom as $c): 
+                                $price= $c['price']-($c['price']*$c['sale']);
+                                $thanhTien = ($price * $c['quantity']);
+                                ?>
+                                <tr>
+                                    <td class="cart-pic first-row">
+                                        <a href="<?=ROOT?>?page=product-detail&id=<?=$c['id']?>"><img
+                                                src="images/products/<?=$c['images']?>" alt="" width="146"
+                                                height="132"></a>
+                                    </td>
+                                    <td class="cart-title first-row">
+                                        <h5><a href="<?=ROOT?>?page=product-detail&id=<?=$c['id']?>"><?=$c['name']?></a>
+                                        </h5>
+                                    </td>
+
+                                    <td class="p-price first-row old-price">
+                                        <?php if($c['sale']>0): ?>
+                                        <del><?=number_format($c['price'],0,',','.').' đ';?></del>
+                                        <?php endif; ?>
+                                        <?=number_format($price,0,',','.').' đ';?></td>
+                                    <input type="hidden" class="price" name="" value="<?=$price?>">
+                                    <td class="qua-col first-row">
+                                        <div class="number-input">
+                                            <input type="number" class="qty" min="1" id="qty<?=$c['id']?>" max="1000"
+                                                name="quantity" value="<?= $c['quantity'] ?>" step="1" />
+                                            <input type="hidden" class="id_pro" name="id_pro" value="<?= $c['id'] ?>">
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="total-price first-row"><?=($c['price']*$c['quantity'])?></td>
-                                <td class="close-td first-row"><i class="ti-close"></i></td>
-                                <td class="close-td first-row"><i class="ti-save"></i></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 offset-lg-8">
-                        <div class="proceed-checkout">
-                            <ul>
-                                <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                <li class="cart-total">Total <span>$240.00</span></li>
-                            </ul>
-                            <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                    </td>
+                                    <td class="total-price sub-total first-row">
+                                        <?=number_format($thanhTien, 0, ',', '.') . 'đ'?>
+                                    </td>
+                                    <td class="close-td first-row">
+                                        <a href="<?= ROOT ?>?page=checkout&id=<?= $c['id'] ?>&btnXoa"
+                                            onclick="return confirm('Bạn chắc chắn muốn bỏ sản phẩm này?')">
+                                            <i class="ti-close"></i></a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="<?=ROOT?>?page=product-list" class="button button-contactForm boxed-btn">Tiếp tục
+                                mua</a>
+                        </div>
+                        <div class="col-lg-3">
+                            <button type="submit" name="btnXoaCartCustom" class="button button-contactForm boxed-btn">Xóa giỏ
+                                hàng</button>
+                        </div>
+                        <div class="col-lg-4 offset-lg-2">
+                            <div class="proceed-checkout">
+                                <ul>
+                                    <li class="cart-total">Tổng tiền
+                                        <span
+                                            id="total-price"><?=number_format(total_price($cartCustom), 0, ',', '.') . 'đ'?></span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="proceed-btn">Đặt hàng</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <?php elseif (isset($cart)) : ?>
             <div class="col-lg-12">
-                <div class="cart-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Ảnh sản phẩm</th>
-                                <th class="p-name">Tên sản phẩm</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th>Xóa</th>
-                                <th>Sửa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($cart as $c): ?>
-                            <tr>
-                                <td class="cart-pic first-row"><img src="images/products/<?=$c['images']?>" alt=""></td>
-                                <td class="cart-title first-row">
-                                    <h5><?=$c['name']?></h5>
-                                </td>
-                                <td class="p-price first-row"><?=$c['price']?></td>
-                                <td class="qua-col first-row">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="<?=$c['quantity']?>">
+                <form action="<?=ROOT?>?page=checkout" method="post">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($cart as $c): 
+                                $price= $c['price']-($c['price']*$c['sale']);
+                                $thanhTien = ($price * $c['quantity']);
+                                ?>
+                                <tr>
+                                    <td class="cart-pic first-row">
+                                        <a href="<?=ROOT?>?page=product-detail&id=<?=$c['id']?>"><img
+                                                src="images/products/<?=$c['images']?>" alt="" width="146"
+                                                height="132"></a>
+                                    </td>
+                                    <td class="cart-title first-row">
+                                        <h5><a href="<?=ROOT?>?page=product-detail&id=<?=$c['id']?>"><?=$c['name']?></a>
+                                        </h5>
+                                    </td>
+
+
+                                    <td class="p-price first-row old-price">
+                                        <?php if($c['sale']>0): ?>
+                                        <del><?=number_format($c['price'],0,',','.').' đ';?></del>
+                                        <?php endif; ?>
+                                        <?=number_format($price,0,',','.').' đ';?></td>
+                                    <input type="hidden" class="price" name="" value="<?=$price?>">
+                                    <td class="qua-col first-row">
+                                        <div class="number-input">
+                                            <input type="number" class="qty" min="1" id="qty<?=$c['id']?>" max="1000"
+                                                name="quantity" value="<?= $c['quantity'] ?>" step="1" />
+                                            <input type="hidden" class="id_pro" name="id_pro" value="<?= $c['id'] ?>">
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="total-price first-row"><?=($c['price']*$c['quantity'])?></td>
-                                <td class="close-td first-row"><i class="ti-close"></i></td>
-                                <td class="close-td first-row"><i class="ti-save"></i></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 offset-lg-8">
-                        <div class="proceed-checkout">
-                            <ul>
-                                <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                <li class="cart-total">Total <span>$240.00</span></li>
-                            </ul>
-                            <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                    </td>
+                                    <td class="total-price sub-total first-row">
+                                        <?=number_format($thanhTien, 0, ',', '.') . 'đ'?>
+                                    </td>
+                                    <td class="close-td first-row">
+                                        <a href="<?= ROOT ?>?page=checkout&id=<?= $c['id'] ?>&btnDelete"
+                                            onclick="return confirm('Bạn chắc chắn muốn bỏ sản phẩm này?')">
+                                            <i class="ti-close"></i></a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="<?=ROOT?>?page=product-list" class="button button-contactForm boxed-btn">Tiếp tục
+                                mua</a>
+                        </div>
+                        <div class="col-lg-3">
+                            <button type="submit" name="btnXoaCart" class="button button-contactForm boxed-btn">Xóa giỏ
+                                hàng</button>
+                        </div>
+                        <div class="col-lg-4 offset-lg-2">
+                            <div class="proceed-checkout">
+                                <ul>
+                                    <li class="cart-total">Tổng tiền
+                                        <span
+                                            id="total-price"><?=number_format(total_price($cart), 0, ',', '.') . 'đ'?></span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="proceed-btn">Đặt hàng</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <?php else: ?>
             <div class="empty-cart">
@@ -162,3 +220,30 @@ if(isset($_SESSION['customer'])){
     </div>
 </section>
 <!-- Shopping Cart Section End -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.qty').change(function() {
+        var qty = $(this).val();
+        var id_pro = $(this).closest('tr').find('.id_pro').val();
+        var price = $(this).closest('tr').find('.price').val();
+        $data = {
+            qty: qty,
+            id_pro: id_pro,
+            price: price,
+        };
+
+        var me = this;
+        $.ajax({
+            url: "site/updateCart.php",
+            method: 'POST',
+            data: $data,
+            dataType: 'json',
+            success: function(data) {
+                $(me).closest('tr').find('.sub-total').text(data.sub_total_new);
+                $('#total-price').text(data.total_new);
+            },
+        });
+    });
+});
+</script>

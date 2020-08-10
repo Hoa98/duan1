@@ -83,11 +83,11 @@ $time = list_all_time();
                                     <div class="icon">
                                         <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
                                     </div>
-
+                                    <?php if(isset($_SESSION['customer'])): ?> 
                                     <div class="dropdown no-arrow mr-1">
                                         <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
                                         <i class="fa fa-user-o ml-2" aria-hidden="true"></i>
-                                        <?=isset($_SESSION['customer'])?$_SESSION['customer']['name']:'' ?>
+                                        <?=$_SESSION['customer']['name'] ?>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
@@ -95,8 +95,8 @@ $time = list_all_time();
                                             <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>
                                         </div>
                                     </div>
-                                    <?php if(!isset($_SESSION['customer'])): ?>                        
-                                    <a href="#login-form" class="popup-with-form text-white text-uppercase">Đăng nhập</a>
+                                    <?php else: ?>                        
+                                    <a href="#login-form" class="popup-with-form text-white text-uppercase ml-3 mt-1">Đăng nhập</a>
                                     <?php endif; ?>
                                     <div class="book_room">
                                         <div class="book_btn">
