@@ -1,5 +1,5 @@
 <?php 
-$service = service_list_limit(0, 10);
+$service = service_list_all();
 $i=0;
 $length = count($service);
 ?>

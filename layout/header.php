@@ -4,8 +4,8 @@ require_once "site/booking.php";
 if(isset($_GET['page'])){
     $page=$_GET['page'];
 }
-//dat lich hen
-$type = list_limit_type(0, 7);
+//dat lich hen 
+$type = list_all_type();
 $member = member_list_role(3);
 $service = service_list_all();
 $customers = custom_list_all();

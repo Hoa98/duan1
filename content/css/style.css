@@ -4548,6 +4548,15 @@ h4.category-widget{
   color: #BC9321;
   font-weight: 500;
 }
+/* Tìm kiếm sản phẩm*/
+.search_pro .input-group input{
+  border-right: none;
+}
+.search_pro .input-group .input-group-append button{
+border: 1px solid #e5e6e9;
+border-left: none;
+border-radius: 0;
+}
 /* Detail-product */
 /* chia se */
 .socials-share {
@@ -4983,6 +4992,17 @@ span.select2.select2-container.select2-container--default{
 
 .product-details .quantity .primary-btn.pd-cart {
     padding: 14px 70px 10px;
+}
+.empty-cart .cart {
+  margin: 0 auto;
+  height: 400px;
+  width: 400px;
+  background-image: url(../../images/cart.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.empty-cart .title{
+  text-align: center;
 }
   /*End gio hang*/
   /*Quan ly tai khoan*/

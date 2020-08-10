@@ -1,7 +1,7 @@
 <?php 
 if(isset($_GET['id'])){
     $id=$_GET['id'];
-    $service = service_list_types($id,0, 10);
+    $service =  service_list_cate($id);
 $i=0;
 $length = count($service);
 }

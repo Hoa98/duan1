@@ -1,6 +1,7 @@
 <?php
 $blog = list_limit_new(0, 5);
 $gallery = library_list_limit(0, 10);
+
 ?>
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">

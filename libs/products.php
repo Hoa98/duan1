@@ -57,8 +57,8 @@ function product_list_limit($limit, $nRows) {
     return query_exe($sql);
 }
 
-//Hiển thị những sản phẩm có lượt view cao
-function product_list_view($limit, $nRows) {
+//Hiển thị những sản phẩm có sale cao
+function product_list_sale($limit, $nRows) {
     $sql = "SELECT * from products order by sale desc limit $limit, $nRows";
     return query_exe($sql);
 }

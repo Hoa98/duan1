@@ -3,13 +3,13 @@ require_once "database.php";
 
 //Hàm hiển thị toàn bộ danh mục
 function list_all_new(){
-    $sql = "SELECT news.*,members.fullname as member from news inner join members on members.id = news.id_member 
+    $sql = "SELECT news.*,members.name as member from news inner join members on members.id = news.id_member 
     ORDER BY id DESC";
     return query_exe($sql);
 }
 
 function list_limit_new($limit, $nRows){
-    $sql = "SELECT news.*,members.fullname as member from news inner join members on members.id = news.id_member 
+    $sql = "SELECT news.*,members.name as member from news inner join members on members.id = news.id_member 
     ORDER BY id DESC limit $limit,$nRows";
     return query_exe($sql);
 }

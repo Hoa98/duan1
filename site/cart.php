@@ -211,10 +211,12 @@ if(isset($_SESSION['customer'])){
                 </form>
             </div>
             <?php else: ?>
-            <div class="empty-cart">
+            <div class="empty-cart col-12">
                 <div class="cart"></div>
                 <div class="title">Giỏ hàng của bạn còn trống</div>
+                <a href="<?=ROOT?>?page=product-list" class="boxed-btn">mua sắm ngay</a>
             </div>
+            
             <?php endif; ?>
         </div>
     </div>

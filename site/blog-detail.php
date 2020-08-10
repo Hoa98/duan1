@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
                     <div class="blog_details">
                         <h2><?= $detail['title'] ?></h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i><?=$member['fullname']?></a></li>
+                            <li><a href="#"><i class="fa fa-user"></i><?=$member['name']?></a></li>
                             <li><a href="#"><i class="fa fa-eye mr-1" aria-hidden="true"></i> <?= $detail['views'] ?></a></li>
                         </ul>
                         <p>

@@ -3,7 +3,8 @@ if(isset($_GET['id'])){
     $id=$_GET['id'];
     $category = list_all_category();
 	$products = product_list_categories($id,0, 9);
-	$pro_view = product_list_view(0, 5);
+	$pro_sale = product_list_sale(0, 5);
+	$cate = list_one_category('id',$id);
 }
 	?>
  <!-- bradcam_area_start -->
@@ -16,6 +17,23 @@ if(isset($_GET['id'])){
  	<div class="container">
  		<div class="row">
  			<div class="col-lg-9 order-1 order-lg-2">
+				 <div class="row mb-5">
+					 <div class="col-8">
+						 <h2><?=$cate['name']?></h2>
+					 </div>
+					 <div class="col-4">
+						<form action="" method="post" class="form-contact">
+						<select name="sort" class="form-control" id="sort">
+							 <option value="">Sắp xếp theo</option>
+							 <option value="new">Mới nhất</option>
+							 <option value="sale">Khuyến mãi</option>
+							 <option value="price_low">Giá từ thấp tới cao</option>
+							 <option value="price_high">Giá từ cao tới thấp</option>
+							 <option value="view">Xem nhiều</option>
+						 </select>
+						</form>
+					 </div>
+				 </div>
  				<div class="product-list">
  					<div class="row">
  						<!-- dùng vòng lăp -->
@@ -56,6 +74,18 @@ if(isset($_GET['id'])){
  			</div>
  			<div class="col-lg-3 pr-3">
  				<aside class="">
+				<div class="search_pro">
+				<form action="<?=ROOT?>?page=search" method="POST" class="form-contact">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input type="search" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="submit"><i class="ti-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+				</div>
  					<h4 class="category-widget">Danh mục</h4>
  					<ul class="list-cate">
  						<?php foreach ($category as $c) : ?>
@@ -71,7 +101,7 @@ if(isset($_GET['id'])){
 					 <!-- sản phẩm yêu thích -->
  						<h4 class="category-widget mt-3 rounded">Sản phẩm nổi bật</h4>
  						<div class="pro-top">
- 							<?php foreach ($pro_view as $pv) : ?>
+ 							<?php foreach ($pro_sale as $pv) : ?>
  								<div class="list-group-item-action">
  									<div class="row">
  										<div class="col-4">
