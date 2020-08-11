@@ -1,3 +1,4 @@
+
  <!-- footer -->
  <footer class="footer">
      <div class="footer_top">
@@ -249,6 +250,8 @@
  <script src="content/js/plugins.js"></script>
  <script src="content/js/gijgo.min.js"></script>
  <script src="content/js/pgwslideshow.min.js"></script>
+ <script src="content/js/toastr.min.js"></script>
+
  <!--contact js-->
  <script src="content/js/contact.js"></script>
  <script src="content/js/jquery.ajaxchimp.min.js"></script>
@@ -257,8 +260,10 @@
  <script src="content/js/mail-script.js"></script>
  <script src="content/js/bootstrap-input-spinner.js"></script>
 
-
  <script src="content/js/main.js"></script>
+
+
+
  <script>
      $(document).ready(function() {
          $(".mul-select").select2({
@@ -322,6 +327,7 @@ $('#sortCate').change(function() {
              });
          }, false);
      })();
+    
  </script>
  </body>
 

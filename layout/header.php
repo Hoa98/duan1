@@ -13,6 +13,7 @@ $date = date_create();
 $time = list_all_time();
 $setting = list_limit_setting();
  ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -31,6 +32,7 @@ $setting = list_limit_setting();
     <!-- CSS here -->
     <link rel="stylesheet" href="content/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" />
+    <link rel="stylesheet" href="content/css/toastr.min.css" />
     <link rel="stylesheet" href="content/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="content/css/magnific-popup.css" />
     <link rel="stylesheet" href="content/css/font-awesome.min.css" />

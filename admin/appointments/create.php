@@ -9,7 +9,7 @@ if (isset($_POST['btnsave'])) {
     if($custom>0){
         $id_customer = $custom['id'];
     }else{
-       $cu = custom_insert('', '', $phone,'', '', 'user.svg');
+        $cu = guest_insert('', $phone,'', 'user.svg');
        $cus = custom_check('phone', $phone);
        $id_customer = $cus['id'];
     }

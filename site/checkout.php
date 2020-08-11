@@ -60,7 +60,7 @@ if (isset($_REQUEST['btnOrder'])) {
         $id_customer = $cus['id'];
       }
   }else{
-     $cu = custom_insert($name, '', $phone,$address, '', 'user.svg');
+    $cu = guest_insert($name, $phone,$address, 'user.svg');
      $cus = custom_check('phone', $phone);
      $id_customer = $cus['id'];
   }

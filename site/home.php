@@ -143,7 +143,7 @@
                              <img src="images/users/<?= $b['images'] ?>" alt="" />
                          </div>
                          <div class="master_name text-center">
-                             <h3><?= $b['fullname'] ?></h3>
+                             <h3><?= $b['name'] ?></h3>
                              <?php if ($b['role'] == 1) : ?>
                                  <p>Quản trị</p>
                              <?php elseif ($b['role'] == 2) : ?>

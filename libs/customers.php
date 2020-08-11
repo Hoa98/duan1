@@ -31,6 +31,16 @@ function custom_insert($name, $password, $phone,$address, $email, $images) {
     insert('customers', $data);
 }
 
+function guest_insert($name, $phone,$address, $images) {
+    $data = [
+        'name'=>$name,
+        'phone'=>$phone,
+        'address'=>$address,
+        'images'=>$images
+    ];
+    insert('customers', $data);
+}
+
 //Đổi mật khẩu
 function custom_change_password($id, $password) {
     $data = [

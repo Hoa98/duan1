@@ -12,7 +12,7 @@ if (isset($_POST['btnBooking'])) {
     if($custom>0){
         $id_customer = $custom['id'];
     }else{
-       $cu = custom_insert($name, '', $phone,'', '', 'user.svg');
+        $cu = guest_insert($name, $phone,'', 'user.svg');
        $cus = custom_check('phone', $phone);
        $id_customer = $cus['id'];
     }
