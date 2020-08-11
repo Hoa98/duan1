@@ -104,11 +104,12 @@ if (isset($_POST['btnSave'])) {
                                       
                                         <form action="?page=cart&id=<?= $pro['id'] ?>" method="post">
                                             <div class="group-sm group-middle mt-3 d-inline-block">
-                                                <div class="product-stepper d-inline-block mr-5">
+                                                <div class="product-stepper d-inline-block">
                                                     <input class="form-input" type="number" name="qty" value="1" min="1" max="1000">
                                                 </div>
-                                                <div class="add-cart d-inline-block ml-5">
-                                                    <button class="btn text-uppercase" name="add-to-cart">Thêm vào giỏ</button>
+                                                <div class="add-cart d-inline-block">
+                                                    <button class="btn text-uppercase ml-5" name="add-to-cart">Thêm vào giỏ</button>
+                                                    <a href="<?=ROOT?>?page=cart&id=<?=$pro['id']?>&qty=1&add-to-cart&checkout" class="boxed-btn btn ml-2">mua ngay</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -160,10 +161,13 @@ if (isset($_POST['btnSave'])) {
                                                                     <?php if (isset($_SESSION['customer']['id'])) : ?>
                                                                         <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
                                                                         lời</button>
-                                                                        <form action="" class="collapse mt-3" id="reply<?= $value['id'] ?>" method="post">
+                                                                        <form action="" class="collapse form-contact mt-3 needs-validation" id="reply<?= $value['id'] ?>" method="post" novalidate>
                                                                             <div class="form-group">
                                                                                 <input type="hidden" name="value" value="<?= $value['id'] ?>">
-                                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhận xét của bạn..." name="content" required></textarea>
+                                                                                <textarea class="form-control" id="exampleFormControlTextarea1" minlength="5" rows="3" placeholder="Nhận xét của bạn..." name="content" required></textarea>
+                                                                                <div class="invalid-feedback">
+                             Nhận xét có ít nhất 5 ký tự
+                         </div>
                                                                             </div>
                                                                             <button type="submit" class="boxed-btn3" name="btnGui">Gửi</button>
                                                                             <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
@@ -190,10 +194,13 @@ if (isset($_POST['btnSave'])) {
                                                                         <?php if (isset($_SESSION['customer']['id'])) : ?>
                                                                             <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
                                                                             lời</button>
-                                                                            <form action="" class="collapse mt-3" id="reply<?= $value['id'] ?>" method="post">
+                                                                            <form action="" class="collapse needs-validation form-contact mt-3" id="reply<?= $value['id'] ?>" method="post" novalidate>
                                                                                 <div class="form-group">
                                                                                     <input type="hidden" name="value" value="<?= $value['id'] ?>">
-                                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" minlength="5" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                                                    <div class="invalid-feedback">
+   Nhận xét có ít nhất 5 ký tự
+                         </div>
                                                                                 </div>
                                                                                 <button type="submit" class="boxed-btn3" name="btnGui">Gửi</button>
                                                                                 <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Hủy
@@ -212,9 +219,12 @@ if (isset($_POST['btnSave'])) {
                                                     <button type="button" class="btn mt-5 mb-3" data-toggle="collapse" data-target="#comment" aria-controls="comment">Viết nhận xét của
                                                     bạn</button>
                                                     <!-- Bị ẩn khi khách hàng chưa đăng nhập -->
-                                                    <form action="" method="post" class="collapse" id="comment">
+                                                    <form action="" method="post" class="collapse needs-validation form-contact" id="comment" novalidate>
                                                         <div class="form-group">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="5" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                            <div class="invalid-feedback">
+   Nhận xét có ít nhất 5 ký tự
+                         </div>
                                                         </div>
                                                         <button type="submit" class="boxed-btn3" name="btnSave">Gửi nhận xét</button>
                                                         <button type="button" class="boxed-btn3 ml-3" data-toggle="collapse" data-target="#comment" aria-controls="comment">Hủy
@@ -256,7 +266,7 @@ if (isset($_POST['btnSave'])) {
 												 <button class="btn" name="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
 												 </form>
 											 </li>
- 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$pro_list['id']?>&qty=1&add-to-cart">Mua ngay</a></li>
+ 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$pro_list['id']?>&qty=1&add-to-cart&checkout">Mua ngay</a></li>
  											<li class="w-icon"><a href="<?=ROOT?>?page=product-detail&id=<?=$pro_list['id']?>"><i class="fa fa-random"></i></a></li>
  										</ul>
  									</div>

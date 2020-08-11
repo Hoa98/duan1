@@ -19,7 +19,7 @@ $setting = list_limit_setting();
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title><?=$setting['title']?></title>
+    <title><?=isset($title)?$title.'-':''?><?=$setting['title']?></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 

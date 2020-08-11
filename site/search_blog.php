@@ -1,12 +1,20 @@
 <?php
-$blog = list_all_new();
+extract($_REQUEST);
+$blog = search_new($keyword);
+$count_blog = count($blog);
+if(empty($keyword)){
+    if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }else{
+        header("Location: " .ROOT);
+    }
+}
 $blog_new = list_limit_new(0, 5);
 $gallery = library_list_limit(0, 10);
-
-?>
-<!-- bradcam_area_start -->
+    ?> 
+    <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">
-    <h3>Bài viết</h3>
+    <h3>Tìm kiếm bài viết</h3>
 </div>
 <!-- bradcam_area_end -->
 
@@ -16,6 +24,11 @@ $gallery = library_list_limit(0, 10);
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="text-center mb-5">
+						 <h3>
+                             <span>Có <strong><?=$count_blog?></strong> bài viết với từ khóa: <strong><?=isset($keyword)?$keyword:''?></strong></span>
+                         </h3>
+					 </div>
                 <div class="blog_left_sidebar">
                     <?php foreach ($blog as $b) : ?>
                         <article class="blog_item">
@@ -68,7 +81,7 @@ $gallery = library_list_limit(0, 10);
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget search_widget">
-                        <form action="<?=ROOT?>?page=search_blog" class="needs-validation" method="POST" novalidate>
+                    <form action="<?=ROOT?>?page=search_blog" class="needs-validation" method="POST" novalidate>
                             <div class="form-group">
                                 <div class="input-group mb-3">
                                     <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm bài viết" required>

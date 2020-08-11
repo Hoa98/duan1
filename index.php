@@ -17,8 +17,11 @@ require_once "libs/cart.php";
 require_once "libs/comments.php";
 require_once "libs/appointments.php";
 require_once "libs/app_detail.php";
+require_once "libs/order.php";
+require_once "libs/order-detail.php";
 
-if(isset($_SESSION['member'])){
+
+if (isset($_SESSION['member'])) {
     $_SESSION['customer'] = $_SESSION['member'];
 }
 extract($_REQUEST);
@@ -29,22 +32,22 @@ switch ($page) {
         $view_page = "site/home.php";
         break;
     case 'product-detail':
-        // $pro = product_list_one($id);
-        // $title = $pro['name'];
+        $pro = product_list_one('id',$id);
+        $title = $pro['name'];
         $view_page = "site/product-detail.php";
         break;
     case 'product-list':
         $view_page = "site/product-list.php";
         break;
-        case 'pro-list':
-            $view_page = "site/pro-list.php";
-            break;
+    case 'pro-list':
+        $view_page = "site/pro-list.php";
+        break;
     case 'cart':
         $view_page = "site/cart.php";
         break;
-        case 'checkout':
-            $view_page = "site/checkout.php";
-            break;
+    case 'checkout':
+        $view_page = "site/checkout.php";
+        break;
     case 'contact':
         $view_page = "site/contact.php";
         break;
@@ -54,21 +57,26 @@ switch ($page) {
     case 'service':
         $view_page = "site/service.php";
         break;
-        case 'service-list':
-            $view_page = "site/service-list.php";
-            break;
+    case 'service-list':
+        $view_page = "site/service-list.php";
+        break;
     case 'blog':
         $view_page = "site/blog.php";
         break;
-        case 'blog-detail':
-            $view_page = "site/blog-detail.php";
-            break;
+    case 'blog-detail':
+        $blog = list_one_new($id);
+        $title = $blog['title'];
+        $view_page = "site/blog-detail.php";
+        break;
     case 'profile':
         $view_page = "site/profile.php";
         break;
     case 'search':
         $view_page = "site/search.php";
         break;
+        case 'search_blog':
+            $view_page = "site/search_blog.php";
+            break;
     case 'logout':
         unset($_SESSION['member']);
         unset($_SESSION['customer']);
@@ -76,7 +84,7 @@ switch ($page) {
         die();
         break;
     default:
-    $view_page = "site/404.php";
+        $view_page = "site/404.php";
         break;
 }
 include_once "layout/layout.php";

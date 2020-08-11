@@ -68,13 +68,16 @@ if(empty($keyword)){
  			<div class="col-lg-3 pr-3">
  				<aside class="">
 				<div class="search_pro">
-				<form action="" method="POST" class="form-contact">
+				<form action="<?=ROOT?>?page=search" method="POST" class="form-contact needs-validation" novalidate>
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="search" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm">
+                                    <input type="search" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm" required>
                                     <div class="input-group-append">
                                         <button class="btn" type="submit"><i class="ti-search"></i></button>
-                                    </div>
+									</div>
+									<div class="invalid-feedback">
+             Vui lòng nhập từ khóa tìm kiếm
+            </div>
                                 </div>
                             </div>
                         </form>

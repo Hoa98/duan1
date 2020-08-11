@@ -4692,7 +4692,7 @@ border-radius: 0;
 .add-cart button {
   background: #eb6e6e;
   color: #fff;
-  padding: 18px 48px;
+  padding: 18px 30px;
   border-radius: 0;
   font-size: 20px;
   border: 2px solid transparent;
@@ -4702,6 +4702,11 @@ border-radius: 0;
   background-color: #fff;
   color: #000000;
 }  
+.add-cart .boxed-btn{
+  padding: 19px 30px;
+  font-size: 20px;
+  border-radius: 0;
+}
 /*css slider img_product*/
 .pgwSlideshow{
   background-color: transparent;
@@ -5031,3 +5036,14 @@ a.change:hover{
     color: #e7ab3c;
   }
   /*end quan ly tai khoan*/
+
+  /*Dat hang*/
+  .checkout-table table tr td{
+    padding: 20px 10px ;
+  }
+  .checkout-table table tr{
+    border-bottom: 1px solid #f4f4f4;
+  }
+  .checkout-table table tr:last-child{
+    border: none;
+  }

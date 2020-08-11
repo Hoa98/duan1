@@ -29,11 +29,11 @@ function list_one_order($id,$value){
 }
 
 //Thêm dữ liệu vào bảng
-function insert_order($id_customer,$adress,$phone){
+function insert_order($id_customer,$address,$phone){
     $data =[
         'id_customer' => $id_customer,
         'status'=>'Chờ lấy hàng',
-        'adress' => $adress,
+        'address' => $address,
         'phone' => $phone
     ];
     return insert('orders',$data);

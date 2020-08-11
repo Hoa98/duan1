@@ -185,11 +185,11 @@
  <div id="login-form" class="white-popup-block mfp-hide">
      <div class="popup_box">
          <div class="popup_inner">
-         <form class="needs-validation" action="" method="POST" novalidate>
-             <h3>Welcome to PolyBarber</h3>
+         <form class="needs-validation form-contact" action="" method="POST" novalidate>
+             <h3>Đăng nhập</h3>
              <div class="row">
                  <div class="col-xl-6 col-md-6">
-                     <img src="" class="img-fluid" alt="">
+                     <img src="images/login_image.png" class="img-fluid" alt="">
                  </div>
                  <div class="col-xd-6 col-md-6">
                      <div class="form-group">
@@ -216,9 +216,7 @@
                      <input style="width:auto;height:auto; margin-right: 10px" id="my-input" type="checkbox"
                          name="remember"><label for="my-input">Nhớ đăng nhập</label>
                      </div>
-                     <div class="row mb-3">
-                         <button type="submit" name="btnLogin" class="btn boxed-btn3">Đăng nhập</button>
-                     </div>
+                         <button type="submit" name="btnLogin" class="boxed-btn3 mb-3">Đăng nhập</button>
                      <a href="">Quên mật khẩu?</a>
 
                  </div>

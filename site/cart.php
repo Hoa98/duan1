@@ -15,7 +15,14 @@ if(isset($_SESSION['customer'])){
 			);
 		} else {
 			$_SESSION['cartCustom'][$_SESSION['customer']['id']][$id]['quantity'] += $quantity;
-		}
+        }
+        if(!isset($_REQUEST['checkout'])){
+            if (isset($_SERVER["HTTP_REFERER"])) {
+                header("Location: " . $_SERVER["HTTP_REFERER"]);
+            }
+        }else{
+            header("Location: " . ROOT.'?page=checkout');
+        }
 	}
 	if (!empty($_SESSION['cartCustom'][$_SESSION['customer']['id']])) {
 		$cartCustom = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
@@ -35,7 +42,13 @@ if(isset($_SESSION['customer'])){
 		} else {
 			$_SESSION['cart'][$id]['quantity'] += $quantity;
 		}
-		
+        if(!isset($_REQUEST['checkout'])){
+            if (isset($_SERVER["HTTP_REFERER"])) {
+                header("Location: " . $_SERVER["HTTP_REFERER"]);
+            }
+        }else{
+            header("Location: " . ROOT.'?page=checkout');
+        }
 	}
 	if (!empty($_SESSION['cart'])) {
 		$cart = $_SESSION['cart'];
@@ -113,7 +126,7 @@ if(isset($_SESSION['customer'])){
                                 mua</a>
                         </div>
                         <div class="col-lg-3">
-                            <button type="submit" name="btnXoaCartCustom" class="button button-contactForm boxed-btn">Xóa giỏ
+                            <button type="submit" name="btnXoaCartCustom" class="button button-contactForm boxed-btn" onclick="return confirm('Bạn chắc chắn muốn xóa giỏ hàng?')">Xóa giỏ
                                 hàng</button>
                         </div>
                         <div class="col-lg-4 offset-lg-2">
@@ -124,7 +137,7 @@ if(isset($_SESSION['customer'])){
                                             id="total-price"><?=number_format(total_price($cartCustom), 0, ',', '.') . 'đ'?></span>
                                     </li>
                                 </ul>
-                                <a href="#" class="proceed-btn">Đặt hàng</a>
+                                 <button type="submit" class="proceed-btn rounded-0 btn w-100">Đặt hàng</button>
                             </div>
                         </div>
                     </div>
@@ -193,7 +206,7 @@ if(isset($_SESSION['customer'])){
                                 mua</a>
                         </div>
                         <div class="col-lg-3">
-                            <button type="submit" name="btnXoaCart" class="button button-contactForm boxed-btn">Xóa giỏ
+                            <button type="submit" name="btnXoaCart" class="button button-contactForm boxed-btn" onclick="return confirm('Bạn chắc chắn muốn xóa giỏ hàng?')">Xóa giỏ
                                 hàng</button>
                         </div>
                         <div class="col-lg-4 offset-lg-2">
@@ -204,7 +217,8 @@ if(isset($_SESSION['customer'])){
                                             id="total-price"><?=number_format(total_price($cart), 0, ',', '.') . 'đ'?></span>
                                     </li>
                                 </ul>
-                                <a href="#" class="proceed-btn">Đặt hàng</a>
+                               
+                                 <button type="submit" class="proceed-btn rounded-0 btn w-100">Đặt hàng</button>
                             </div>
                         </div>
                     </div>

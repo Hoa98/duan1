@@ -54,7 +54,7 @@ if(isset($_GET['id'])){
 												 <button class="btn" name="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
 												 </form>
 											 </li>
- 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$p['id']?>&qty=1&add-to-cart">Mua ngay</a></li>
+ 											<li class="quick-view"><a href="<?=ROOT?>?page=cart&id=<?=$p['id']?>&qty=1&add-to-cart&checkout">Mua ngay</a></li>
  											<li class="w-icon"><a href="<?=ROOT?>?page=product-detail&id=<?=$p['id']?>"><i class="fa fa-random"></i></a></li>
  										</ul>
  									</div>
@@ -76,13 +76,16 @@ if(isset($_GET['id'])){
  			<div class="col-lg-3 pr-3">
  				<aside class="">
 				<div class="search_pro">
-				<form action="<?=ROOT?>?page=search" method="POST" class="form-contact">
+				<form action="<?=ROOT?>?page=search" method="POST" class="form-contact needs-validation" novalidate>
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="search" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm">
+                                    <input type="search" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm" required>
                                     <div class="input-group-append">
                                         <button class="btn" type="submit"><i class="ti-search"></i></button>
-                                    </div>
+									</div>
+									<div class="invalid-feedback">
+             Vui lòng nhập từ khóa tìm kiếm
+            </div>
                                 </div>
                             </div>
                         </form>

@@ -61,6 +61,6 @@ function new_delete($id) {
 
 //Ham tim kiem theo tieu de
 function search_new($title){
-    $sql = "SELECT *  FROM news Where title Like '%$title%'";
+    $sql = "SELECT news.*,members.name as member from news inner join members on members.id = news.id_member Where title Like '%$title%'";
     return query_exe($sql);
 }
