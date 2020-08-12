@@ -47,4 +47,48 @@ if (isset($btnLogin)) {
   }
 }
 
+if (isset($_POST['btnRegister'])) {
+  extract($_REQUEST);
+  $okUpload = false;
+  if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
+      $okUpload = true;
+      $images = uniqid() . $_FILES['images']['name'];
+  }else {
+      $images = 'user.svg';
+  }
+  if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) == false && $_FILES['images']['size'] > 0) {
+      $errors['errors_img'] = 'File không đúng định dạng';
+  }
+  if (empty($name)) {
+      $errors['errors_name'] = 'Vui lòng nhập họ tên';
+  }
+  if (empty($phone)) {
+      $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
+  }
+  if (custom_check('phone', $phone) > 0) {
+      $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
+  }
+  if (empty($email)) {
+      $errors['errors_email'] = 'Vui lòng nhập một địa chỉ email hợp lệ';
+  }
+  if (custom_check('email', $email) > 0) {
+      $errors['errors_email'] = 'Địa chỉ email đã tồn tại';
+  }
+  if (empty($password)) {
+      $errors['errors_password'] = 'Vui lòng nhập mật khẩu';
+  }
+  if (empty($address)) {
+      $errors['errors_address'] = 'Địa chỉ không được để trống';
+  }
+  if (array_filter($errors) == false) {
+      custom_insert($name, $password, $phone, $address, $email, $images);
+      if ($okUpload) {
+          move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
+      }
+      $_SESSION['message'] = "Đăng ký thành công";
+      header('location:' . $_SERVER['REQUEST_URI']);
+      die();
+  }
+}
+
 ?>

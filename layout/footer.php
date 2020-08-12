@@ -186,7 +186,10 @@
  <div id="login-form" class="white-popup-block mfp-hide">
      <div class="popup_box">
          <div class="popup_inner">
-         <form class="needs-validation form-contact" action="" method="POST" novalidate>
+        <div class="flip">
+            <div class="card border-0">
+                <div class="face front">
+            <form class="needs-validation form-contact" action="" method="POST" novalidate>
              <h3>Đăng nhập</h3>
              <div class="row">
                  <div class="col-xl-6 col-md-6">
@@ -214,15 +217,87 @@
                      </div>
                     </div>
                      <div class="form-group">
-                     <input style="width:auto;height:auto; margin-right: 10px" id="my-input" type="checkbox"
+                     <input style="width:auto;height:auto; margin-right: 10px;" id="my-input" type="checkbox"
                          name="remember"><label for="my-input">Nhớ đăng nhập</label>
                      </div>
                          <button type="submit" name="btnLogin" class="boxed-btn3 mb-3">Đăng nhập</button>
-                     <a href="">Quên mật khẩu?</a>
-
+                         <a href="">Quên mật khẩu?</a>
+                     <button type="button" class="btn rounded-0 border-0" data-toggle="flip">Bạn chưa có tài khoản? Đăng ký</button>
+                        
                  </div>
              </div>
          </form>
+         </div>
+         <div class="face back">
+         <form class="needs-validation form-contact" action="" method="POST" novalidate enctype="multipart/form-data">
+             <h3>Đăng ký</h3>
+             <div class="row">
+                 <div class="col-xl-6 col-md-6">
+                 <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z\s'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ? ?ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ? ??ỀÊỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]{1,20}" title="Họ tên không bao gồm số" 
+                            placeholder="Nhập họ tên" value="<?= isset($name) ? $name : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập họ tên
+                            </div>
+                            <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" name="phone" id="phone" class="form-control" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" placeholder="Nhập số điện thoại" value="<?= isset($phone) ? $phone : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Số điện thoại không đúng định dạng
+                            </div>
+                            <?php if (isset($errors['errors_phone'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_phone'] ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control-file border" id="images" name="images">
+                            <?php if (isset($errors['errors_img'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_img'] ?></p>
+                            <?php endif; ?>
+                        </div>
+                 </div>
+                 <div class="col-xd-6 col-md-6">
+                     <div class="form-group">
+                            <input type="password" name="password" id="password" class="form-control" title="Mật khẩu chứa ít nhất 6 ký tự" minlength="6" placeholder="Nhập mật khẩu" value="<?= isset($password) ? $password : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Mật khẩu chứa ít nhất 6 ký tự
+                            </div>
+                            <?php if (isset($errors['errors_password'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_password'] ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Nhập email" value="<?= isset($email) ? $email : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Địa chỉ email không đúng định dạng
+                            </div>
+                            <?php if (isset($errors['errors_email'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_email'] ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="form-group">
+                    <textarea class="form-control" minlength="15" name="address" rows="2" placeholder="Địa chỉ..." required><?= isset($address) ? $address : '' ?></textarea>
+                    <div class="invalid-feedback">
+                    Địa chỉ tối thiểu 15 ký tự
+                    </div>
+                    <?php if (isset($errors['errors_address'])) : ?>
+                        <p class="text-danger mt-2"><?= $errors['errors_address'] ?></p>
+                    <?php endif; ?>
+                </div>
+              </div>
+                 
+                <button type="submit" name="btnRegister" class="boxed-btn3 mb-3">Đăng ký</button>
+                         <button type="button" class="btn rounded-0 border-0" data-toggle="flip">Bạn đã có tài khoản? Đăng nhập</button>
+
+             </div>
+         </form>
+         </div>
+            </div>
+        </div>
          </div>
      </div>
  </div>
@@ -308,6 +383,10 @@ $('#sortCate').change(function() {
         $('#list_pro_cate').html(data);
     });
 });
+$('.flip [data-toggle="flip"]').click(function(){
+        $('.card').toggleClass('flipped');
+
+    });
      });
      //Validate form
      (function() {
