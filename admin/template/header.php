@@ -145,9 +145,9 @@
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=product">Thống kê sản phẩm</a>
-                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=">Thống kê bình luận</a>
-                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=">Thống kê dịch vụ</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=statistic&action=product">Thống kê sản phẩm</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=statistic&action=comment">Thống kê bình luận</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=statistic&action=service">Thống kê dịch vụ</a>
                     </div>
                 </div>
             </li>

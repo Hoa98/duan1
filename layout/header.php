@@ -99,7 +99,7 @@ $setting = list_limit_setting();
                                             <?php endif; ?>
                                             <?php endif; ?>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
-                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=purchase">Lịch hẹn</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=booking">Lịch hẹn</a>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>
                                         </div>
                                     </div>

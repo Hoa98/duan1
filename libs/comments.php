@@ -79,11 +79,27 @@ function comment_custom_list_approve($id_product) {
 
 //Thống kê bình luận theo hàng hóa
 function statistical_comment(){
-    $sql = "SELECT p.id, p.name, COUNT(*) so_luong, MIN(c.date) cu_nhat, MAX(c.date) moi_nhat
+    $sql = "SELECT p.id, p.name, COUNT(*) so_luong, MIN(c.created_at) cu_nhat, MAX(c.created_at) moi_nhat
     FROM comments c 
     JOIN products p ON p.id=c.id_product 
     GROUP BY p.id, p.name
     HAVING so_luong > 0";
+    return query_exe($sql);
+}
+
+//Hàm hiển thị chi tiết bình luận của khách theo mã hàng hóa
+function comment_custom_by_pro($id_product){
+    $sql = "SELECT comments.*, name from comments 
+    inner join customers on comments.id_customer = customers.id
+    WHERE id_product=$id_product ORDER BY comments.id DESC";
+    return query_exe($sql);
+}
+
+//Hàm hiển thị chi tiết bình luận của member theo mã hàng hóa
+function comment_member_by_pro($id_product){
+    $sql = "SELECT comments.*, name from comments 
+    inner join members on members.id = comments.id_member
+    WHERE id_product=$id_product ORDER BY comments.id DESC";
     return query_exe($sql);
 }
 
