@@ -1,9 +1,20 @@
 <?php
-if (isset($_SESSION['customer'])) {
+if (isset($_SESSION['member'])) {
+  $customer = list_one_member($_SESSION['member']['id']);
+  $phone = $customer['phone'];
+  $name = $customer['name'];
+  $address = $customer['address'];
+  if (empty($_SESSION['cartCustom'][$_SESSION['customer']['id']])) {
+    header('location: ' . ROOT . '?page=cart');
+  }
+} elseif (isset($_SESSION['customer'])) {
   $customer = custom_list_one($_SESSION['customer']['id']);
-  $phone=$customer['phone'];
-  $name=$customer['name'];
-  $address=$customer['address'];
+  $phone = $customer['phone'];
+  $name = $customer['name'];
+  $address = $customer['address'];
+  if (empty($_SESSION['cart'])) {
+    header('location: ' . ROOT . '?page=cart');
+  }
 }
 //nguoi dung chua dăng nhap
 //Xoa 1 san pham trong gio
@@ -41,38 +52,55 @@ if (isset($_REQUEST['btnXoaCartCustom'])) {
 
 if (isset($_REQUEST['btnOrder'])) {
   extract($_REQUEST);
- if(isset($_SESSION['customer'])){
-  $cart = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
-  insert_order($_SESSION['customer']['id'],$address,$phone);
-    $order = list_top_order($_SESSION['customer']['id']);
-    foreach ($cart as $key => $value) {
-      $pro = product_list_one('id',$value['id']);
-      insert_detail($order['id'],$value['id'],$value['quantity']);
+  if (isset($_SESSION['customer'])) {
+    $cart = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
+    if (isset($_SESSION['member'])) {
+      $customer = custom_check('phone', $_SESSION['member']['phone']);
+      if ($customer > 0) {
+        insert_order($customer['id'], $address, $phone);
+        $order = list_top_order($customer['id']);
+      } else {
+        $cu = guest_insert($name, $phone, $address, 'user.svg');
+        $customer = custom_check('phone', $phone);
+        insert_order($customer['id'], $address, $phone);
+        $order = list_top_order($customer['id']);
+      }
+      foreach ($cart as $key => $value) {
+        $pro = product_list_one('id', $value['id']);
+        insert_detail($order['id'], $value['id'], $value['quantity']);
+      }
+    } else {
+      insert_order($_SESSION['customer']['id'], $address, $phone);
+      $order = list_top_order($_SESSION['customer']['id']);
+      foreach ($cart as $key => $value) {
+        $pro = product_list_one('id', $value['id']);
+        insert_detail($order['id'], $value['id'], $value['quantity']);
+      }
     }
     unset($_SESSION['cartCustom'][$_SESSION['customer']['id']]);
- }else{
-  $cart = $_SESSION['cart'];
-  $custom = custom_check('phone', $phone);
-  if($custom>0){
-      if(empty($custom['password'])){
-        custom_update($custom['id'], $name,$address,'user.svg');
+  } else {
+    $cart = $_SESSION['cart'];
+    $custom = custom_check('phone', $phone);
+    if ($custom > 0) {
+      if (empty($custom['password'])) {
+        custom_update($custom['id'], $name, $address, 'user.svg');
         $cus = custom_check('phone', $phone);
         $id_customer = $cus['id'];
       }
-  }else{
-    $cu = guest_insert($name, $phone,$address, 'user.svg');
-     $cus = custom_check('phone', $phone);
-     $id_customer = $cus['id'];
-  }
-  insert_order($id_customer,$address,$phone);
+    } else {
+      $cu = guest_insert($name, $phone, $address, 'user.svg');
+      $cus = custom_check('phone', $phone);
+      $id_customer = $cus['id'];
+    }
+    insert_order($id_customer, $address, $phone);
     $order = list_top_order($id_customer);
     foreach ($cart as $key => $value) {
-      $pro = product_list_one('id',$value['id']);
-      insert_detail($order['id'],$value['id'],$value['quantity']);
+      $pro = product_list_one('id', $value['id']);
+      insert_detail($order['id'], $value['id'], $value['quantity']);
     }
     unset($_SESSION['cart']);
- }
-    
+  }
+
   header('Location: ' . ROOT . '?page=cart');
   die();
 }

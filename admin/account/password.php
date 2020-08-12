@@ -1,18 +1,12 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
- if(password_verify($password, $custom['password'])){
+ if(password_verify($password, $member['password'])){
     if($newPassword==$newPasswordRepeat){
-        if(isset($_SESSION['member'])){
             member_change_password($_SESSION['member']['id'], $newPassword);
-            $_SESSION['customer']['password']=$newPassword;
             $_SESSION['member']['password']=$newPassword;
-        }else{
-            custom_change_password($_SESSION['customer']['id'], $newPassword);
-            $_SESSION['customer']['password']=$newPassword;
-        }
         $_SESSION['message']= 'Cập nhật liệu thành công';
-        header('location: '.ROOT.'?page=profile&action=profile');
+        header('location: '.ROOT.'admin/?page=profile&action=profile');
     die();
     }else{
         $error['newPasswordRepeat'] = 'Mật khẩu và Mật khẩu xác nhận không giống nhau';

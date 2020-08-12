@@ -28,21 +28,21 @@ function detail_delete($id) {
 
 //Hàm hiển thị toàn bộ hóa đơn theo id_customer
 function list_all_purchase($id_customer,$id_order){
-    $sql = "SELECT id_product,name,images,price,quantity from order_detail 
+    $sql = "SELECT id_product,name,images,price,sale,quantity from order_detail 
     inner join products on products.id= order_detail.id_product
     inner join orders on orders.id = order_detail.id_order
     where orders.id_customer = $id_customer and id_order=$id_order
-     ORDER BY id DESC";
+     ORDER BY orders.id DESC";
     return query_exe($sql);
 }
 
 //Hàm hiển thị toàn bộ hóa đơn theo id_customer và trạng thai
 function order_status($id_customer,$id_order,$status){
-    $sql = "SELECT id_product,name,images,price,quantity from order_detail 
+    $sql = "SELECT id_product,name,images,price,sale,quantity from order_detail 
     inner join products on products.id= order_detail.id_product
     inner join orders on orders.id = order_detail.id_order
     where orders.id_customer = $id_customer and id_order=$id_order and orders.status like '%$status%'
-     ORDER BY id DESC";
+     ORDER BY orders.id DESC";
     return query_exe($sql);
 }
 
@@ -50,6 +50,6 @@ function custom_order_status($id_customer,$status){
     $sql = "SELECT order_detail.* from order_detail 
     inner join orders on orders.id = order_detail.id_order
     where orders.id_customer = $id_customer and  orders.status like '%$status%'
-     ORDER BY id DESC";
+     ORDER BY orders.id DESC";
     return query_exe($sql);
 }

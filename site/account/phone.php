@@ -1,3 +1,14 @@
+<?php
+if(isset($_POST['btnSave'])){
+extract($_REQUEST);
+ if(password_verify($password, $custom['password'])){
+    header('location: '.ROOT.'?page=profile&action=resetPhone');
+    die();
+ }else{
+    $error['password'] = "Mật khẩu không đúng";
+ }
+}
+?>
 <div class="my-account">
                     <p class="my-account-title">Đổi Số Điện Thoại</p>
                     <p>Để đảm bảo tính bảo mật, vui lòng làm theo các bước sau để đổi số điện thoại</p>

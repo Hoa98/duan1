@@ -316,7 +316,7 @@ $(document).ready(function() {
 		}
 	});
 });
-
+$('[data-toggle="popover"]').popover();
 //Slider anh detail
 $('.pgwSlideshow').pgwSlideshow({
   autoSlide: false,

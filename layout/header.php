@@ -93,6 +93,11 @@ $setting = list_limit_setting();
                                         <?=$_SESSION['customer']['name'] ?>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                            <?php if(isset($_SESSION['member'])): ?>
+                                            <?php if($_SESSION['member']['role'] == 1): ?>
+                                            <a class="dropdown-item" href="<?=ROOT?>admin">Trang quản trị</a>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=purchase">Lịch hẹn</a>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>

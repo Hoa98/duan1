@@ -11002,3 +11002,56 @@ body.sidebar-toggled footer.sticky-footer {
 .qty-3x{
   font-size: 30px;
 }
+.form-contact .form-control {
+  border: 1px solid #e5e6e9;
+  border-radius: 0px;
+  height: 48px;
+  padding-left: 18px;
+  font-size: 13px;
+}
+.boxed-btn {
+  background: #fff;
+  color: #4A3600;
+  display: inline-block;
+  padding: 18px 44px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: 0;
+  border: 1px solid #4A3600;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #4A3600 !important;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.boxed-btn:hover {
+  background: #4A3600;
+  color: #fff !important;
+  border: 1px solid #4A3600;
+}
+/*Quan ly tai khoan*/
+.avatar_user {
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 15px;
+}
+.my-account {
+border-bottom: 1px solid #e1e1e1;
+margin-bottom: 25px;
+}
+.my-account p{
+line-height: 15px;
+}
+a.change{
+color: #fdc21e;
+}
+a.change:hover{
+color: #583b07;
+}
+ul.app-menu li a{
+  color: #4c4c4c;
+  line-height: 35px;
+}
+ul.app-menu li a i{
+  color: #e7ab3c;
+}

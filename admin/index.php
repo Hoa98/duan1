@@ -277,6 +277,9 @@ switch ($page) {
                 break;
         }
         break;
+        case 'profile':
+            include_once "account/index.php";
+        break;
         case 'setting':
             include_once 'setting/setting.php';
             break;
