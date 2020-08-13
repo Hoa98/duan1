@@ -11055,3 +11055,6 @@ ul.app-menu li a{
 ul.app-menu li a i{
   color: #e7ab3c;
 }
+select.form-control.form-control-sm.select-search{
+  height: 38px;
+}

@@ -3,6 +3,10 @@ $custom = count_row('customers');
 $member = count_row('members');
 $service = count_row('services');
 $appointments = count_row('appointments');
+$product = count_row('products');
+$orders = count_row('orders');
+$category = count_row('categories');
+$news = count_row('news');
 $appointment = list_all_appointment();
 $app_com = appointment_list_cancel('0');
 $app_cancel = appointment_list_cancel('4');
@@ -104,6 +108,92 @@ $order_cancelled =list_status_order('Đã hủy');
             </div>
         </div>
     </div>
+    <div class="row">
+
+<!-- Earnings (Monthly) Card Example -->
+
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="bg-danger p-3 text-white rounded-top">
+        <div class="row">
+            <div class="col-6">
+            <i class="fas fa-file-invoice icon-3x"></i>
+            </div>
+            <div class="col-6 text-right">
+                <p class="qty-3x"><?= $orders ?></p>
+                Hóa đơn
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 border-top p-3 rounded-bottom">
+        <div class="row">
+            <div class="col-6"><a href="<?= ROOT ?>/admin/?page=order" class="text-danger">Xem chi tiết</a></div>
+            <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=order" class="text-danger"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+        </div>
+    </div>
+</div>
+<!-- Earnings (Monthly) Card Example -->
+
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="bg-success p-3 text-white rounded-top">
+        <div class="row">
+            <div class="col-6">
+            <i class="fas fa-book icon-3x"></i>
+            </div>
+            <div class="col-6 text-right">
+                <p class="qty-3x"><?= $category ?></p>
+                Danh mục
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 border-top p-3 rounded-bottom">
+        <div class="row">
+            <div class="col-6"><a href="<?= ROOT ?>/admin/?page=category" class="text-success">Xem chi tiết</a></div>
+            <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=category" class="text-success"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="bg-primary p-3 text-white rounded-top">
+        <div class="row">
+            <div class="col-6">
+            <i class="fas fa-newspaper icon-3x"></i>
+            </div>
+            <div class="col-6 text-right">
+                <p class="qty-3x"><?= $news ?></p>
+                Tin tức
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 border-top p-3 rounded-bottom">
+        <div class="row">
+            <div class="col-6"><a href="<?= ROOT ?>/admin/?page=new" class="text-primary">Xem chi tiết</a></div>
+            <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=new" class="text-primary"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+        </div>
+    </div>
+</div>
+<!-- Earnings (Monthly) Card Example -->
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="bg-warning p-3 text-white rounded-top">
+        <div class="row">
+            <div class="col-6">
+            <i class="fab fa-product-hunt icon-3x"></i>
+            </div>
+            <div class="col-6 text-right">
+                <p class="qty-3x"><?= $product ?></p>
+                Sản phẩm
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 border-top p-3 rounded-bottom">
+        <div class="row">
+            <div class="col-6"><a href="<?= ROOT ?>/admin/?page=product" class="text-warning">Xem chi tiết</a></div>
+            <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=product" class="text-warning"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+        </div>
+    </div>
+</div>
+
+</div>
     <!-- Lịch hẹn  -->
 
     <nav>
