@@ -1,5 +1,5 @@
 <?php
-
+$blog = list_all_new();
 if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     $okUpload = false;
@@ -47,7 +47,12 @@ if (isset($_POST['btnsave'])) {
                         </div>
                         <div class="form-group">
                             <label for="link">Đường dẫn</label>
-                            <input type="text" name="link" id="link" class="form-control" placeholder="Nhập đường dẫn" value="<?=isset($link)?$link:''?>" required>
+                            <select name="link" id="link" class="form-control" required>
+                            <option value="">Đường dẫn đến bài viết</option>
+                                <?php foreach ($blog as $b) : ?>
+                                        <option value="<?= $b['id'] ?>"><?= $b['title'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                             <div class="invalid-feedback">
                                 Vui lòng nhập đường dẫn
                                 </div>

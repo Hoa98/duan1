@@ -1,4 +1,5 @@
 <?php
+$blog = list_all_new();
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $hair = list_one_library($id);
@@ -49,7 +50,15 @@ if (isset($_POST['btnsave'])) {
                         </div>
                         <div class="form-group">
                             <label for="link">Đường dẫn</label>
-                            <input type="text" name="link" id="link" class="form-control" placeholder="Nhập đường dẫn" value="<?=isset($link)?$link:$hair['link']?>" required>
+                            <select name="link" id="link" class="form-control" required>
+                                <?php foreach ($blog as $b) : ?>
+                                    <?php if ($b['id'] == $hair['link']) : ?>
+                                        <option value="<?= $b['id'] ?>" selected><?= $b['title'] ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $b['id'] ?>"><?= $b['title'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
                             <div class="invalid-feedback">
                                 Vui lòng nhập đường dẫn
                                 </div>
