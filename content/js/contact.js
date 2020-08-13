@@ -22,7 +22,7 @@ $(document).ready(function(){
                 },
                 number: {
                     required: true,
-                    minlength: 5
+                    minlength: 10
                 },
                 email: {
                     required: true,
@@ -30,28 +30,28 @@ $(document).ready(function(){
                 },
                 message: {
                     required: true,
-                    minlength: 20
+                    minlength: 15
                 }
             },
             messages: {
                 name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
+                    required: "Vui lòng nhập họ tên",
+                    minlength: "Họ tên có ít nhất 2 ký tự"
                 },
                 subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
+                    required: "Vui lòng nhập tiêu đề",
+                    minlength: "Tiêu đề có ít nhất 4 ký tự"
                 },
                 number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
+                    required: "Vui lòng nhập số điện thoại",
+                    minlength: "Số điện thoại chứa ít nhất 10 ký tự"
                 },
                 email: {
-                    required: "no email, no message"
+                    required: "Vui lòng nhập địa chỉ email"
                 },
                 message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
+                    required: "Bạn chưa nhập nội dung góp ý",
+                    minlength: "Nội dung góp ý có ít nhất 15 ký tự"
                 }
             },
             submitHandler: function(form) {

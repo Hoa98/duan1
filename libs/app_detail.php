@@ -1,5 +1,5 @@
 <?php 
-//Hàm hiển thị toàn bộ danh mục
+//Hàm hiển thị toàn bộ lich hen chi tiet theo id_appointment
 function all_app_detail($appointment){
     $sql = "SELECT app_detail.*, name,images,price,time from app_detail inner join services on services.id= app_detail.id_service
     where id_appointment = $appointment

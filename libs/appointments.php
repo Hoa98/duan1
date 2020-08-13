@@ -51,3 +51,42 @@ function appointment_update($id,$cancel) {
 function appointment_delete($id) {
    return delete('appointments', 'id', $id);
 }
+
+//Ham hien thi toan bo lich hen theo id_customer
+function appointment_custom($id_customer){
+    $sql = "SELECT appointments.*, account,time,members.images
+    from appointments inner join customers on customers.id = appointments.id_customer
+    inner join members on members.id = appointments.id_member
+    inner join word_time on word_time.id = appointments.id_time 
+    where id_customer= $id_customer ORDER BY id DESC";
+    return query_exe($sql);
+}
+
+//Ham hien thi toan bo lich hen theo id_member
+function appointment_member($id_member){
+    $sql = "SELECT appointments.*, account, customers.name,customers.phone ,time
+    from appointments inner join customers on customers.id = appointments.id_customer
+    inner join members on members.id = appointments.id_member
+    inner join word_time on word_time.id = appointments.id_time 
+    where id_member= $id_member ORDER BY id DESC";
+    return query_exe($sql);
+}
+//Ham hien thi lich hen theo id_customer va trang thai
+function appointment_custom_status($id_customer,$cancel){
+    $sql = "SELECT appointments.*, account,time,members.images
+    from appointments inner join customers on customers.id = appointments.id_customer
+    inner join members on members.id = appointments.id_member
+    inner join word_time on word_time.id = appointments.id_time 
+    where id_customer= $id_customer and cancel=$cancel ORDER BY id DESC";
+    return query_exe($sql);
+}
+
+//Ham hien thi lich hen theo id_member va trang thai
+function appointment_member_status($id_member,$cancel){
+    $sql = "SELECT appointments.*, account,time,members.images
+    from appointments inner join customers on customers.id = appointments.id_customer
+    inner join members on members.id = appointments.id_member
+    inner join word_time on word_time.id = appointments.id_time 
+    where id_member= $id_member and cancel=$cancel ORDER BY id DESC";
+    return query_exe($sql);
+}

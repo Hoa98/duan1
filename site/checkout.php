@@ -167,6 +167,7 @@ if (isset($_REQUEST['btnOrder'])) {
                       <img src="images/products/<?= $cartCustom['images'] ?>" alt="ảnh sản phẩm" width="50">
                     </td>
                     <td><?= $cartCustom['name'] ?></td>
+                    <td>X<?=$cartCustom['quantity']?></td>
                     <td><?= number_format(($cartCustom['price'] - ($cartCustom['price'] * $cartCustom['sale'])) * $cartCustom['quantity'], 0, ',', '.') . 'đ' ?></td>
                   </tr>
                 <?php endforeach; ?>
@@ -187,6 +188,7 @@ if (isset($_REQUEST['btnOrder'])) {
                     <img src="images/products/<?= $cart['images'] ?>" alt="ảnh sản phẩm" width="50">
                   </td>
                   <td><?= $cart['name'] ?></td>
+                  <td>X<?=$cart['quantity']?></td>
                   <td><?= number_format(($cart['price'] - ($cart['price'] * $cart['sale'])) * $cart['quantity'], 0, ',', '.') . 'đ' ?></td>
                 </tr>
               <?php endforeach; ?>
