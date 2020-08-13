@@ -101,7 +101,7 @@ $gallery = library_list_limit(0, 10);
                         <h3 class="widget_title">Bài viết mới nhất</h3>
                         <?php foreach ($blog_new as $bl) : ?>
                             <div class="media post_item">
-                                <img src="images/sliders/<?= $bl['images'] ?>" alt="post" width="80" height="80">
+                                <a href="<?= ROOT ?>?page=blog-detail&id=<?= $bl['id'] ?>"><img src="images/sliders/<?= $bl['images'] ?>" alt="post" width="80" height="80"></a>
                                 <div class="media-body">
                                     <a href="<?= ROOT ?>?page=blog-detail&id=<?= $bl['id'] ?>">
                                         <h3><?= substr($bl['title'], 0, 24) . $str = (strlen($bl['title']) > 24 ? '...' : '') ?></h3>
@@ -120,7 +120,7 @@ $gallery = library_list_limit(0, 10);
                         <ul class="instagram_row flex-wrap">
                             <?php foreach ($gallery as $g) : ?>
                                 <li>
-                                    <a href="#">
+                                    <a href="<?=ROOT?>?page=blog-detail&id=<?=$g['link']?>">
                                         <img class="img-fluid" src="images/sliders/<?= $g['images'] ?>" alt="">
                                     </a>
                                 </li>

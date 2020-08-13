@@ -83,8 +83,14 @@ $setting = list_limit_setting();
                                         </nav>
                                     </div>
 
-                                    <div class="icon">
-                                        <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i></a>
+                                    <div class="icon cart-icon">
+                                        <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i><span class="bag">
+                                            <?php if(isset($_SESSION['customer'])): ?>
+                                                <?= isset($_SESSION['cartCustom'][$_SESSION['customer']['id']]) ? total_item($_SESSION['cartCustom'][$_SESSION['customer']['id']]) : 0; ?>
+                                            <?php else: ?>
+                                        <?= isset($_SESSION['cart']) ? total_item($_SESSION['cart']) : 0; ?>
+                                            <?php endif; ?>
+                                        </span></a>
                                     </div>
                                     <?php if(isset($_SESSION['customer'])): ?> 
                                     <div class="dropdown no-arrow mr-1">

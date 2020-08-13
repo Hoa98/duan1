@@ -1,30 +1,30 @@
 <?php
 $blog = service_list_all();
-if(isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $slider = list_one_library($id);
 }
 if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     $okUpload = false;
-    if (checkType($_FILES['images']['name'],array('jpg','png','gif','tiff')) && checkSize($_FILES['images']['size'],0,5*1024*1024)){
+    if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
         $okUpload = true;
         $images = uniqid() . $_FILES['images']['name'];
-    }else{
-        $images =$image;
-    } 
-    if(checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff'))==false && $_FILES['images']['size']>0){
+    } else {
+        $images = $image;
+    }
+    if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) == false && $_FILES['images']['size'] > 0) {
         $errors['errors_img'] = 'File không đúng định dạng';
     }
-    if(array_filter($errors)==false){
-        library_update($id, $name, $images,$link);
-    if ($okUpload) {
-        move_uploaded_file($_FILES['images']['tmp_name'], '../images/sliders/' . $images);
+    if (array_filter($errors) == false) {
+        library_update($id, $name, $images, $link);
+        if ($okUpload) {
+            move_uploaded_file($_FILES['images']['tmp_name'], '../images/sliders/' . $images);
+        }
+        $_SESSION['message'] = "Cập nhật liệu thành công";
+        header('Location:' . ROOT . 'admin/?page=slider');
+        die();
     }
-    $_SESSION['message'] = "Cập nhật liệu thành công";
-    header('Location:' . ROOT . 'admin/?page=slider');
-    die();
-}
 }
 ?>
 
@@ -43,10 +43,10 @@ if (isset($_POST['btnsave'])) {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Tiêu đề</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tiêu đề" value="<?=isset($name)?$name:$slider['name']?>" required>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tiêu đề" value="<?= isset($name) ? $name : $slider['name'] ?>" required>
                             <div class="invalid-feedback">
                                 Vui lòng nhập tiêu đề
-                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="link">Đường dẫn</label>
@@ -61,11 +61,11 @@ if (isset($_POST['btnsave'])) {
                             </select>
                             <div class="invalid-feedback">
                                 Vui lòng nhập đường dẫn
-                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                    <div class="form-group">
+                        <div class="form-group">
                             <label for="images">Hình ảnh</label>
                             <input type="hidden" name="image" value="<?= $slider['images'] ?>">
                             <input type="file" class="form-control-file border" id="images" name="images">
@@ -76,7 +76,7 @@ if (isset($_POST['btnsave'])) {
                         </div>
                     </div>
                 </div>
-               
+
                 <button type="submit" name="btnsave" class="btn btn-success">Ghi lại</button>
             </form>
         </div>

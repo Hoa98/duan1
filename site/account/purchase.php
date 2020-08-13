@@ -1,10 +1,12 @@
 <?php
+if(custom_check('phone',$custom['phone'])){
 $customer = custom_check('phone',$custom['phone']);
 $order = list_user_order($customer['id']);
 $order_wait = status_all_order('Chờ lấy hàng',$customer['id']);
 $order_delivery = status_all_order('Đang giao',$customer['id']);
 $order_delivered = status_all_order('Đã giao',$customer['id']);
 $order_cancel = status_all_order('Đã hủy',$customer['id']);
+}
 if(isset($_REQUEST['btnUpdate'])){
   extract($_REQUEST);
   order_update($id, 'Đã hủy');
@@ -32,6 +34,7 @@ if(isset($_REQUEST['btnUpdate'])){
 </div>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+    <?php if(custom_check('phone',$custom['phone'])): ?>
     <?php if (!empty($order)) : ?>
       <div class="order mt-5">
         <?php foreach ($order as $o) : ?>
@@ -76,8 +79,15 @@ if(isset($_REQUEST['btnUpdate'])){
         <div class="title text-center">Chưa có đơn hàng</div>
       </div>
     <?php endif; ?>
+    <?php else: ?>
+      <div class="empty-purchase mt-5 mb-3 pt-5">
+        <div class="purchase"></div>
+        <div class="title text-center">Chưa có đơn hàng</div>
+      </div>
+    <?php endif; ?>
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  <?php if(custom_check('phone',$custom['phone'])): ?>
    <?php if (!empty(custom_order_status($customer['id'],'Chờ lấy hàng'))) : ?>
       <div class="order mt-5">
         <?php foreach ($order_wait as $o) : ?>
@@ -123,8 +133,15 @@ if(isset($_REQUEST['btnUpdate'])){
         <div class="title text-center">Chưa có đơn hàng</div>
       </div>
     <?php endif; ?>
+    <?php else: ?>
+      <div class="empty-purchase mt-5 mb-3 pt-5">
+        <div class="purchase"></div>
+        <div class="title text-center">Chưa có đơn hàng</div>
+      </div>
+    <?php endif; ?>
   </div>
   <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+  <?php if(custom_check('phone',$custom['phone'])): ?>
    <?php if (!empty(custom_order_status($customer['id'],'Đang giao'))) : ?>
       <div class="order mt-5">
         <?php foreach ($order_delivery as $o) : ?>
@@ -167,8 +184,15 @@ if(isset($_REQUEST['btnUpdate'])){
         <div class="title text-center">Chưa có đơn hàng</div>
       </div>
     <?php endif; ?>
+    <?php else: ?>
+      <div class="empty-purchase mt-5 mb-3 pt-5">
+        <div class="purchase"></div>
+        <div class="title text-center">Chưa có đơn hàng</div>
+      </div>
+    <?php endif; ?>
   </div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+  <?php if(custom_check('phone',$custom['phone'])): ?>
    <?php if (!empty(custom_order_status($customer['id'],'Đã giao'))) : ?>
       <div class="order mt-5">
         <?php foreach ($order_delivered as $o) : ?>
@@ -211,8 +235,15 @@ if(isset($_REQUEST['btnUpdate'])){
         <div class="title text-center">Chưa có đơn hàng</div>
       </div>
     <?php endif; ?>
+    <?php else: ?>
+      <div class="empty-purchase mt-5 mb-3 pt-5">
+        <div class="purchase"></div>
+        <div class="title text-center">Chưa có đơn hàng</div>
+      </div>
+    <?php endif; ?>
   </div>
   <div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
+  <?php if(custom_check('phone',$custom['phone'])): ?>
    <?php if (!empty(custom_order_status($customer['id'],'Đã hủy'))) : ?>
       <div class="order mt-5">
         <?php foreach ($order_cancel as $o) : ?>
@@ -250,6 +281,12 @@ if(isset($_REQUEST['btnUpdate'])){
         <?php endforeach; ?>
       </div>
     <?php else : ?>
+      <div class="empty-purchase mt-5 mb-3 pt-5">
+        <div class="purchase"></div>
+        <div class="title text-center">Chưa có đơn hàng</div>
+      </div>
+    <?php endif; ?>
+    <?php else: ?>
       <div class="empty-purchase mt-5 mb-3 pt-5">
         <div class="purchase"></div>
         <div class="title text-center">Chưa có đơn hàng</div>
