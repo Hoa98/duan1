@@ -15,7 +15,7 @@ if (isset($_POST['btn-del'])) {
     header('location:' . ROOT . 'admin/?page=member');
     die;
 }
-$member =  member_list();
+$member =  member_list_all($_SESSION['member']['id']);
 ?>
 
 <!-- Begin Page Content -->

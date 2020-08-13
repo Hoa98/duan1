@@ -44,7 +44,6 @@ if (isset($_POST['btn-del'])) {
                                 <th>Đơn giá</th>
                                 <th>Giảm giá</th>
                                 <th>Lượt xem</th>
-                                <th>Mô tả</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -61,7 +60,6 @@ if (isset($_POST['btn-del'])) {
                                 <th>Đơn giá</th>
                                 <th>Giảm giá</th>
                                 <th>Lượt xem</th>
-                                <th>Mô tả</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
@@ -81,10 +79,10 @@ if (isset($_POST['btn-del'])) {
                                     <td><?= number_format($r['price'],0,',','.').'đ' ?></td>
                                     <td><?=($r['sale']*100).'%'?></td>
                                     <td><?=$r['views']?></td>
-                                    <td><?=substr($r['description'], 0, 150).$str=(strlen($r['description'])>150?'...':'')?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=gallery&id=<?= $r['id'] ?>" class="btn btn-success d-block p-2 w-75 mb-2"><i class="fas fa-images"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75 mb-2"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

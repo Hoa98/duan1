@@ -183,9 +183,9 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST" action="<?= ROOT ?>admin/?page=product&action=search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST" action="<?= ROOT ?>admin/search.php">
                         <div class="input-group">
-                            <input name="keyword" type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input name="keyword" type="text" title="Vui lòng nhập nội dung tìm kiếm" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" required>
                             <select name="select_search" id="" class="form-control form-control-sm select-search">
                         <option value="1">Sản phẩm</option>
                         <option value="2">Dịch vụ</option>

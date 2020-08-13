@@ -1,6 +1,6 @@
 <?php
 extract($_REQUEST);
-$result = search_member($keyword,$id,$value);
+$result = search_member($keyword,$_SESSION['member']['id']);
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     member_delete($id);
@@ -64,7 +64,7 @@ if (isset($_POST['btn-del'])) {
                             </tr>
                         </tfoot>
                         <tbody>
-                            <?php foreach ($member as $r) : ?>
+                            <?php foreach ($result as $r) : ?>
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="id[]" value="<?= $r['id'] ?>">

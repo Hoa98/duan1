@@ -100,8 +100,8 @@ function member_delete($id) {
     return delete('members', 'id', $id);
 }
 //Tìm kiếm theo account khác tai khoan dang nhap
-function search_member($name,$id,$value){
-    $sql = "SELECT *  FROM members Where account Like '%$name%' and $id != $value ORDER BY id DESC";
+function search_member($name,$id){
+    $sql = "SELECT *  FROM members Where account Like '%$name%' and id != $id ORDER BY id DESC";
     return query_exe($sql);
 }
 

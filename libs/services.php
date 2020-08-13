@@ -97,7 +97,7 @@ function service_delete($id) {
 
 //Tìm kiếm theo tên dich vu
 function search_service($name){
-    $sql = "SELECT services.*, types.name
+    $sql = "SELECT services.*, types.name as name_type
     FROM services  INNER JOIN types on services.id_type = types.id 
     Where services.name Like '%$name%'";
     return query_exe($sql);

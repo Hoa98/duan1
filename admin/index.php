@@ -41,6 +41,9 @@ switch ($page) {
             case 'edit':
                 include_once 'categories/edit.php';
                 break;
+                case 'search':
+                    include_once 'categories/search.php';
+                    break;
         }
         break;
     case 'product':

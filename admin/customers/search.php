@@ -60,7 +60,7 @@ if (isset($_POST['btn-del'])) {
                             </tr>
                         </tfoot>
                         <tbody>
-                            <?php foreach ($custom as $r) : ?>
+                            <?php foreach ($result as $r) : ?>
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="id[]"  value="<?= $r['id'] ?>">
