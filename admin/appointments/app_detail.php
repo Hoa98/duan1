@@ -66,7 +66,10 @@ if(isset($_GET['id'])){
                                     <td><?= $d['id_appointment'] ?></td>
                                     <td><?= $d['name'] ?></td>
                                     <td><img src="../images/products/<?=$d['images'] ?>" alt="" width="100"></td>
-                                    <td><?=number_format($d['price'],0,',','.').' đ';?></td>
+                                    <td><?php if($d['sale']>0): ?>
+                                        <del class="text-gray-500"><?=number_format($d['price'],0,',','.').' đ';?></del>
+                                    <?php endif; ?>
+                                     <?=number_format($price= $d['price']-($d['price']*$d['sale']),0,',','.').' đ';?></td>
                                     <td><?= $d['time'] ?></td>
                                 </tr>
                             <?php endforeach; ?>

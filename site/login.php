@@ -9,38 +9,44 @@ extract($_REQUEST);
 if (isset($btnLogin)) {
   if (check_custom($phone)) {
     $customer = check_custom($phone);
-    if (password_verify($password, $customer['password'])) {
-      $_SESSION['customer'] = $customer;
-      header('location:' . $_SERVER['REQUEST_URI']);
-      if (isset($remember)) {
-        //Nếu người dùng nhớ mật khẩu thì lưu lại trong 30 ngày trong cookie
-        setcookie('customer', $phone, time() + 3600 * 30, "/");
-        setcookie('pass', $password, time() + 3600 * 30, "/");
+    if(empty($customer['password'])){
+      if(check_member($phone)){
+        $member = check_member($phone);
+        if (password_verify($password, $member['password'])) {
+          $_SESSION['member'] = $member;
+          $_SESSION['customer'] = $member;
+          header('location:' . $_SERVER['REQUEST_URI']);
+          if (isset($remember)) {
+            //Nếu người dùng nhớ mật khẩu thì lưu lại trong 30 ngày trong cookie
+            setcookie('customer', $customer, time() + 3600 * 30, "/");
+            setcookie('pass', $pass, time() + 3600 * 30, "/");
+          } else {
+            //Ngược lại thì xóa cookie cũ đi
+            setcookie('member', $customer, time() - 3600 * 30, "/");
+            setcookie('pass', $pass, time() - 3600 * 30, "/");
+          }
+        } else {
+          $error['password'] = "Mật khẩu không đúng";
+        }
       } else {
-        //Ngược lại thì xóa cookie cũ đi
-        setcookie('customer', $phone, time() - 3600 * 30, "/");
-        setcookie('pass', $password, time() - 3600 * 30, "/");
+        $error['phone'] = "Tên đăng nhập không đúng";
       }
-    } else {
-      $error['password'] = "Mật khẩu không đúng";
-    }
-  }elseif(check_member($phone)){
-    $member = check_member($phone);
-    if (password_verify($password, $member['password'])) {
-      $_SESSION['member'] = $member;
-      $_SESSION['customer'] = $member;
-      header('location:' . $_SERVER['REQUEST_URI']);
-      if (isset($remember)) {
-        //Nếu người dùng nhớ mật khẩu thì lưu lại trong 30 ngày trong cookie
-        setcookie('customer', $customer, time() + 3600 * 30, "/");
-        setcookie('pass', $pass, time() + 3600 * 30, "/");
+    }else{
+      if (password_verify($password, $customer['password'])) {
+        $_SESSION['customer'] = $customer;
+        header('location:' . $_SERVER['REQUEST_URI']);
+        if (isset($remember)) {
+          //Nếu người dùng nhớ mật khẩu thì lưu lại trong 30 ngày trong cookie
+          setcookie('customer', $phone, time() + 3600 * 30, "/");
+          setcookie('pass', $password, time() + 3600 * 30, "/");
+        } else {
+          //Ngược lại thì xóa cookie cũ đi
+          setcookie('customer', $phone, time() - 3600 * 30, "/");
+          setcookie('pass', $password, time() - 3600 * 30, "/");
+        }
       } else {
-        //Ngược lại thì xóa cookie cũ đi
-        setcookie('member', $customer, time() - 3600 * 30, "/");
-        setcookie('pass', $pass, time() - 3600 * 30, "/");
+        $error['password'] = "Mật khẩu không đúng";
       }
-    } else {
-      $error['password'] = "Mật khẩu không đúng";
     }
   } else {
     $error['phone'] = "Tên đăng nhập không đúng";
@@ -50,6 +56,7 @@ if (isset($btnLogin)) {
 if (isset($_POST['btnRegister'])) {
   extract($_REQUEST);
   $okUpload = false;
+  $cus=custom_check('phone', $phone);
   if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
       $okUpload = true;
       $images = uniqid() . $_FILES['images']['name'];
@@ -65,7 +72,7 @@ if (isset($_POST['btnRegister'])) {
   if (empty($phone)) {
       $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
   }
-  if (custom_check('phone', $phone) > 0) {
+  if ($cus=custom_check('phone', $phone) > 0 && !empty($cus['password'])) {
       $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
   }
   if (empty($email)) {
@@ -81,14 +88,17 @@ if (isset($_POST['btnRegister'])) {
       $errors['errors_address'] = 'Địa chỉ không được để trống';
   }
   if (array_filter($errors) == false) {
+    $cus=custom_check('phone', $phone);
+    if(empty($cus['password'])){
+      custom_change($cus['id'], $password,$name,$address, $images,$email);
+    }else{
       custom_insert($name, $password, $phone, $address, $email, $images);
-      if ($okUpload) {
-          move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
-      }
+    }
+    if ($okUpload) {
+      move_uploaded_file($_FILES['images']['tmp_name'], 'images/users/' . $images);
+  }
       $_SESSION['message'] = "Đăng ký thành công";
       header('location:' . $_SERVER['REQUEST_URI']);
       die();
   }
 }
-
-?>

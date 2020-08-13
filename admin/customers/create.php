@@ -3,6 +3,7 @@
 if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     $okUpload = false;
+    $cus=custom_check('phone', $phone);
     if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
         $okUpload = true;
         $images = uniqid() . $_FILES['images']['name'];
@@ -18,7 +19,7 @@ if (isset($_POST['btnsave'])) {
     if (empty($phone)) {
         $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
     }
-    if (custom_check('phone', $phone) > 0) {
+    if (custom_check('phone', $phone) > 0 && !empty($cus['password'])){
         $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
     }
     if (empty($email)) {
@@ -34,7 +35,12 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_address'] = 'Địa chỉ không được để trống';
     }
     if (array_filter($errors) == false) {
+        $cus=custom_check('phone', $phone);
+        if(empty($cus['password'])){
+          custom_change($cus['id'], $password,$name,$address, $images,$email);
+        }else{
         custom_insert($name, $password, $phone, $address, $email, $images);
+        }
         if ($okUpload) {
             move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
         }

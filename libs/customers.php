@@ -41,10 +41,20 @@ function guest_insert($name, $phone,$address, $images) {
     insert('customers', $data);
 }
 
+function custom_change($id, $password,$name,$address, $images,$email) {
+    $data = [
+        'password'=>password_hash($password,PASSWORD_DEFAULT),
+        'name'=>$name,
+        'address'=>$address,
+        'images'=>$images,
+        'email'=>$email
+    ];
+    update('customers', $data, 'id', $id);
+}
 //Đổi mật khẩu
 function custom_change_password($id, $password) {
     $data = [
-        'password'=>password_hash($password,PASSWORD_DEFAULT),
+        'password'=>password_hash($password,PASSWORD_DEFAULT)
     ];
     update('customers', $data, 'id', $id);
 }

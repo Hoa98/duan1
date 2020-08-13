@@ -54,7 +54,7 @@ function appointment_delete($id) {
 
 //Ham hien thi toan bo lich hen theo id_customer
 function appointment_custom($id_customer){
-    $sql = "SELECT appointments.*, account,time,members.images
+    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone,members.name as member_name,members.images as member_images
     from appointments inner join customers on customers.id = appointments.id_customer
     inner join members on members.id = appointments.id_member
     inner join word_time on word_time.id = appointments.id_time 
@@ -73,7 +73,7 @@ function appointment_member($id_member){
 }
 //Ham hien thi lich hen theo id_customer va trang thai
 function appointment_custom_status($id_customer,$cancel){
-    $sql = "SELECT appointments.*, account,time,members.images
+    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone,members.name as member_name,members.images as member_images
     from appointments inner join customers on customers.id = appointments.id_customer
     inner join members on members.id = appointments.id_member
     inner join word_time on word_time.id = appointments.id_time 
@@ -83,7 +83,7 @@ function appointment_custom_status($id_customer,$cancel){
 
 //Ham hien thi lich hen theo id_member va trang thai
 function appointment_member_status($id_member,$cancel){
-    $sql = "SELECT appointments.*, account,time,members.images
+    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone
     from appointments inner join customers on customers.id = appointments.id_customer
     inner join members on members.id = appointments.id_member
     inner join word_time on word_time.id = appointments.id_time 

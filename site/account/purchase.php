@@ -1,5 +1,5 @@
 <?php
-$customer = custom_list_one($custom['id']);
+$customer = custom_check('phone',$custom['phone']);
 $order = list_user_order($customer['id']);
 $order_wait = status_all_order('Chờ lấy hàng',$customer['id']);
 $order_delivery = status_all_order('Đang giao',$customer['id']);

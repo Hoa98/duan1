@@ -75,6 +75,9 @@ if(empty($custom)){
           case 'booking':
             include_once "site/account/booking.php";
             break;
+            case 'detail':
+                include_once "site/account/detail_booking.php";
+                break;
           case 'resetEmail':
             include_once "site/account/resetEmail.php";
             break; 
