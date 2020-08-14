@@ -59,6 +59,7 @@ if(isset($_SESSION['customer'])){
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Giỏ hàng</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 <!-- Shopping Cart Section Begin -->
 <section class="shopping-cart spad">

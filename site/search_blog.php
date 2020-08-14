@@ -16,6 +16,7 @@ $gallery = library_list_limit(0, 10);
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Tìm kiếm bài viết</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 

@@ -3,6 +3,7 @@
    <div class="bradcam_area breadcam_bg overlay">
                 <h3>404</h3>
             </div>
+            <?php include_once "layout/noti.php"; ?>
             <!-- bradcam_area_end -->
  <!-- Begin Page Content -->
  <section class="contact-section">

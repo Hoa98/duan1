@@ -1,6 +1,7 @@
 <?php
 require_once "site/login.php";
 require_once "site/booking.php";
+extract($_REQUEST);
 if(isset($_GET['page'])){
     $page=$_GET['page'];
 }
@@ -130,3 +131,4 @@ $setting = list_limit_setting();
         </div>
     </header>
     <!-- header-end -->
+    

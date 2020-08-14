@@ -1,4 +1,5 @@
  <?php require_once "layout/slider.php"; ?>
+ <?php include_once "layout/noti.php"; ?>
  <?php
     $service1 = service_list_limit(0, 5);
     $service2 = service_list_limit(5, 5);

@@ -109,6 +109,7 @@ if (isset($_REQUEST['btnOrder'])) {
 <div class="bradcam_area breadcam_bg overlay">
   <h3>Thanh toán</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 <section class="checkout section-padding">
   <div class="container">

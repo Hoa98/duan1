@@ -26,6 +26,7 @@ if(isset($_GET['id'])){
  <div class="bradcam_area breadcam_bg overlay">
  	<h3>Sản phẩm</h3>
  </div>
+ <?php include_once "layout/noti.php"; ?>
  <!-- bradcam_area_end -->
  <!-- Product Shop Section Begin -->
  <section class="product-shop spad">

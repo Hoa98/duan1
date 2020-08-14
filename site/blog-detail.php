@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Bài viết chi tiết</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 <!--================Blog Area =================-->

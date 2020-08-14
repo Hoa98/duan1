@@ -55,6 +55,7 @@ if (isset($_POST['btnSave'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Chi tiết sản phẩm</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 <div class="container section-padding">

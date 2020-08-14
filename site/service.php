@@ -7,6 +7,7 @@ $length = count($service);
 <div class="bradcam_area breadcam_bg overlay">
  	<h3>Dịch vụ</h3>
  </div>
+ <?php include_once "layout/noti.php"; ?>
  <!-- bradcam_area_end -->
  <!-- Dịch vụ -->
 <section class="service section-padding">

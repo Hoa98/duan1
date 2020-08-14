@@ -147,6 +147,13 @@ if (isset($_REQUEST['btnUpdate'])) {
                                     <div class="col-12 text-right align-content-end">
                                         <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
                                     </div>
+                                <?php else: ?>
+                                    <div class="col-8 text-right align-content-end">
+                                    <a href="<?= ROOT ?>?page=profile&action=booking&btnUpdate&id=<?= $b['id'] ?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Hủy đơn</a>
+                                </div>
+                                <div class="col-4 text-right align-content-end">
+                                    <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
+                                </div>
                                 <?php endif; ?>
                             <?php else : ?>
                                 <div class="col-8 text-right align-content-end">

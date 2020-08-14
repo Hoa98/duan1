@@ -13,6 +13,7 @@ if (isset($_SESSION['customer'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Tài khoản của tôi</h3>
 </div>
+<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 <div class="section-padding">
     <div class="container">

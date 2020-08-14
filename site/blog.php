@@ -22,7 +22,7 @@ $num_row = count_row('news');
     <h3>Bài viết</h3>
 </div>
 <!-- bradcam_area_end -->
-
+<?php include_once "layout/noti.php"; ?>
 
 <!--================Blog Area =================-->
 <section class="blog_area section-padding">
