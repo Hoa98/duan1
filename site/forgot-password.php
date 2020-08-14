@@ -3,20 +3,30 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 require_once '../golbal.php';
 require_once '../libs/members.php';
+require_once '../libs/customers.php';
 if(isset($_REQUEST['btnReset'])){
   extract($_REQUEST);
+  $c= custom_check('email',$email);
   $m=member_check('email',$email);
-if(!empty($m)){
+if(!empty($c)){
+  $custom = custom_check('email',$email);
+  $code= time().$custom['email'];
+  $codehash=password_hash($code,PASSWORD_DEFAULT);
+  $time_code=time();
+  update_code_member($custom['id'],$codehash,$time_code);
+  $custom = custom_check('email',$email);
+}elseif(!empty($m)){
   $custom=member_check('email',$email);
   $code=time().$custom['email'];
   $codehash=password_hash($code,PASSWORD_DEFAULT);
   $time_code=time();
   update_code_member($custom['id'],$codehash,$time_code);
+  $custom=member_check('email',$email);
 }else{
   $error['email']= 'Địa chỉ email không đúng';
 }if(array_filter($error) == false){
    //Gửi mail
- $custom = member_check('email',$email);
+ 
 require_once "../phpmailer/PHPMailer.php";
 require_once "../phpmailer/SMTP.php";
 $mail = new PHPMailer();
@@ -139,7 +149,7 @@ if(isset($_REQUEST['btnBack'])){
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="<?=ROOT?>admin/">Quay về trang chủ</a>
+                    <a class="small" href="<?=ROOT?>">Quay về trang chủ</a>
                   </div>
                 <?php else: ?>
                   <div class="text-center">

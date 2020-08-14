@@ -5086,6 +5086,9 @@ a.change:hover{
     text-align: center;
     line-height: 15px;
 }
+label.error {
+  color: red;
+}
   /*Dat hang*/
   .checkout-table table tr td{
     padding: 20px 10px ;

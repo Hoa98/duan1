@@ -66,7 +66,7 @@
                              Bản tin
                          </h3>
                          <form action="#" class="newsletter_form">
-                             <input type="text" placeholder="Nhập địa chỉ email của bạn" />
+                             <input type="text" placeholder="Nhập địa chỉ email của bạn" required/>
                              <button type="submit">Đăng ký</button>
                          </form>
                          <p class="newsletter_text">
@@ -221,7 +221,7 @@
                          name="remember"><label for="my-input">Nhớ đăng nhập</label>
                      </div>
                          <button type="submit" name="btnLogin" class="boxed-btn3 mb-3">Đăng nhập</button>
-                         <a href="">Quên mật khẩu?</a>
+                         <a href="<?=ROOT?>site/forgot-password.php">Quên mật khẩu?</a>
                      <button type="button" class="btn rounded-0 border-0" data-toggle="flip">Bạn chưa có tài khoản? Đăng ký</button>
                         
                  </div>
