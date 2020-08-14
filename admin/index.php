@@ -41,9 +41,12 @@ switch ($page) {
             case 'edit':
                 include_once 'categories/edit.php';
                 break;
-                case 'search':
-                    include_once 'categories/search.php';
-                    break;
+            case 'search':
+                include_once 'categories/search.php';
+                break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'product':
@@ -61,6 +64,9 @@ switch ($page) {
             case 'edit':
                 include_once 'products/edit.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'gallery':
@@ -77,6 +83,9 @@ switch ($page) {
                 break;
             case 'delete':
                 include_once 'products/gallery/delete.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;
@@ -111,6 +120,9 @@ switch ($page) {
             case 'edit':
                 include_once 'services/edit.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'member':
@@ -128,6 +140,9 @@ switch ($page) {
             case 'edit':
                 include_once 'members/edit.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'custom':
@@ -141,6 +156,9 @@ switch ($page) {
                 break;
             case 'search':
                 include_once 'customers/search.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;
@@ -156,6 +174,9 @@ switch ($page) {
                 break;
             case 'edit':
                 include_once 'times/edit.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;
@@ -188,6 +209,9 @@ switch ($page) {
             case 'edit':
                 include_once 'libraries/sliders/edit.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'hair':
@@ -201,6 +225,9 @@ switch ($page) {
                 break;
             case 'edit':
                 include_once 'libraries/hairs/edit.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;
@@ -233,6 +260,9 @@ switch ($page) {
             case 'edit':
                 include_once 'orders/edit.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'comment':
@@ -264,6 +294,9 @@ switch ($page) {
             case 'detail':
                 include_once 'feedback/contacts/detail.php';
                 break;
+            default:
+                include_once "404.php";
+                break;
         }
         break;
     case 'evaluate':
@@ -277,6 +310,9 @@ switch ($page) {
                 break;
             case 'detail':
                 include_once 'feedback/evaluates/detail.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;
@@ -300,6 +336,9 @@ switch ($page) {
                 break;
             case 'char_ser':
                 include_once 'statistic/char_ser.php';
+                break;
+            default:
+                include_once "404.php";
                 break;
         }
         break;

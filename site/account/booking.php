@@ -288,7 +288,10 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <?php endif; ?>
                         </div>
                         <div class="row mb-5">
-                            <div class="col-12 text-right align-content-end">
+                            <div class="col-8 text-right align-content-end">
+                                <a href="<?= ROOT ?>?page=profile&action=danhgia&id=<?= $b['id'] ?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Đánh giá</a>
+                            </div>
+                            <div class="col-4 text-right align-content-end">
                                 <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
                             </div>
                         </div>

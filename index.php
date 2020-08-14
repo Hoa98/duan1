@@ -19,6 +19,8 @@ require_once "libs/appointments.php";
 require_once "libs/app_detail.php";
 require_once "libs/order.php";
 require_once "libs/order-detail.php";
+require_once "libs/contact.php";
+
 
 
 if (isset($_SESSION['member'])) {

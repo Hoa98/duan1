@@ -1,16 +1,59 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
 $contact = list_one_contact('id',$_GET['id']);
-if (isset($_POST['btnsave'])) {
+if (isset($_REQUEST['btnsave'])) {
     extract($_REQUEST);
-    if (empty($content)) {
-        $errors['errors-content'] = 'Vui lòng nhập nội dung';
-    }if(array_filter($errors)==false){
+    //Gửi mail
+    require_once "../phpmailer/PHPMailer.php";
+    require_once "../phpmailer/SMTP.php";
+    $mail = new PHPMailer();
+    // Gọi đến lpows smtp
+    $mail->isSMTP();
+
+    // $mail->SMTPDebug = 1;  //Hiển thị thông báo trong quá trình kết nối SMTP
+    // 1 - Hiển thị message + error
+    // 2 - Hiển thị message
+
+    $mail->SMTPAuth     = true;
+    $mail->SMTPSecure   = 'ssl';
+    $mail->Host         = 'smtp.gmail.com';
+    $mail->Port         = 465;
+    $mail->Username     = 'hoact98bg@gmail.com';
+    $mail->Password     = '27B08c98';
+
+
+    //Thiết lập thông tin người gửi và mail người gửi
+    $mail->setFrom('hoact98bg@gmail.com', 'PolyBarber');
+
+    //Thiết lập thông tin người nhận và email người nhận
+        $mail->addAddress($contact['email'], $contact['name']);
+
+    //Thiết lập email reply
+    $mail->addReplyTo($email);
+
+    //Thiết lập tiêu đề
+    $mail->Subject = "Trả lời liên hệ";
+
+    //Thiết lập charset
+    $mail->CharSet = 'utf-8';
+
+    //Thiết lập nội dung
+    $body = '<p>Xin chào,' . $contact['name'] . '</p>
+            <p>Cảm ơn bạn đã liên hệ chúng tôi</p>
+            <p>' . $content . '</p>';
+
+    $mail->msgHTML($body);
+    if ($mail->send() == false) {
+        $_SESSION['message'] = 'Error: ' . $mail->ErrorInfo;
+    } else {
+        $_SESSION['message'] = 'Gửi email thành công';
         insert_reply_contact($content,$_SESSION['member']['id'],$contact['id']);
-    $_SESSION['message'] = "Gửi email thành công";
+    }
     header('Location:' . ROOT . 'admin/?page=contact');
     die();
-    }
 }
+
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">

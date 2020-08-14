@@ -68,7 +68,7 @@ $gallery = library_list_limit(0, 10);
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget search_widget">
-                        <form action="<?=ROOT?>?page=search_blog" class="needs-validation" method="POST" novalidate>
+                        <form action="<?= ROOT ?>?page=search_blog" class="needs-validation" method="POST" novalidate>
                             <div class="form-group">
                                 <div class="input-group mb-3">
                                     <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm bài viết" required>
@@ -76,8 +76,8 @@ $gallery = library_list_limit(0, 10);
                                         <button class="btn" type="submit"><i class="ti-search"></i></button>
                                     </div>
                                     <div class="invalid-feedback">
-             Vui lòng nhập từ khóa tìm kiếm
-            </div>
+                                        Vui lòng nhập từ khóa tìm kiếm
+                                    </div>
                                 </div>
                             </div>
                             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Tìm kiếm</button>
@@ -107,7 +107,7 @@ $gallery = library_list_limit(0, 10);
                         <ul class="instagram_row flex-wrap">
                             <?php foreach ($gallery as $g) : ?>
                                 <li>
-                                    <a href="<?=ROOT?>?page=blog-detail&id=<?=$g['link']?>">
+                                    <a href="<?= ROOT ?>?page=blog-detail&id=<?= $g['link'] ?>">
                                         <img class="img-fluid" src="images/sliders/<?= $g['images'] ?>" alt="">
                                     </a>
                                 </li>
