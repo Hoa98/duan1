@@ -2,10 +2,25 @@
 if(isset($_GET['id'])){
     $id=$_GET['id'];
     $category = list_all_category();
-	$products = product_list_categories($id,0, 9);
 	$pro_sale = product_list_sale(0, 5);
 	$cate = list_one_category('id',$id);
+
+	$num_row = num_row($id);
+	$current_page = isset($_GET['p']) ? $_GET['p'] : 0;
+	$limit = 9;
+	//tổng số trang
+	$total_page = ceil($num_row / $limit);
+	// Giới hạn current_page trong khoảng 1 đến total_page
+	if ($current_page > $total_page) {
+		$current_page = $total_page;
+	} else if ($current_page < 1) {
+		$current_page = 1;
+	}
+	// Tìm Start
+	$start = ($current_page - 1) * $limit;
+	$products =  product_list_categories($id,$start, $limit);
 }
+
 	?>
  <!-- bradcam_area_start -->
  <div class="bradcam_area breadcam_bg overlay">
@@ -70,7 +85,40 @@ if(isset($_GET['id'])){
  								</div>
  							</div>
  						<?php endforeach; ?>
- 					</div>
+					 </div>
+					 <!-- phan trang -->
+ 					<nav class="blog-pagination justify-content-center d-flex">
+ 						<ul class="pagination">
+ 							<?php if ($current_page > 1 && $total_page > 1) : ?>
+ 								<li class="page-item">
+ 									<a href="<?= ROOT ?>?page=pro-list&id=<?=$cate['id']?>&p=<?= ($current_page - 1) ?>" class="page-link" aria-label="Previous">
+ 										<i class="ti-angle-left"></i>
+ 									</a>
+ 								</li>
+ 							<?php endif; ?>
+ 							<?php
+								for ($i = 1; $i <= $total_page; $i++) : ?>
+ 								<!-- // Nếu là trang hiện tại thì hiển thị active
+                    // ngược lại hiển thị thẻ a -->
+ 								<?php if ($i == $current_page) : ?>
+ 									<li class="page-item active">
+ 										<a href="<?= ROOT ?>?page=pro-list&id=<?=$cate['id']?>&p=<?= $i ?>" class="page-link"><?= $i ?></a>
+ 									</li>
+ 								<?php else : ?>
+ 									<li class="page-item">
+ 										<a href="<?= ROOT ?>?page=pro-list&id=<?=$cate['id']?>&p=<?= $i ?>" class="page-link"><?= $i ?></a>
+ 									</li>
+ 								<?php endif; ?>
+ 							<?php endfor;  ?>
+ 							<?php if ($current_page < $total_page && $total_page > 1) : ?>
+ 								<li class="page-item">
+ 									<a href="<?= ROOT ?>?page=pro-list&id=<?=$cate['id']?>&p=<?= ($current_page + 1) ?>" class="page-link" aria-label="Next">
+ 										<i class="ti-angle-right"></i>
+ 									</a>
+ 								</li>
+ 							<?php endif; ?>
+ 						</ul>
+ 					</nav>
  				</div>
  			</div>
  			<div class="col-lg-3 pr-3">

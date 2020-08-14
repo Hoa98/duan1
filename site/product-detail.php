@@ -1,7 +1,7 @@
 <?php
 $pro = product_list_one('id', isset($_GET['id']) ? $_GET['id'] : '');
 $gallery = gallery_list(isset($_GET['id']) ? $_GET['id'] : '');
-$product_list = product_list_category($pro['id_category'], $pro['id'], 0, 4);
+$product_list = product_list_category($pro['id_category'], $pro['id'], 0, 10);
 update_view($pro['id']);
 if (isset($_POST['btnGui'])) {
     extract($_REQUEST);
@@ -249,7 +249,7 @@ if (isset($_POST['btnSave'])) {
                         <div class="container">
                             <h4 class="text-uppercase text-center mb-5">sản phẩm liên quan</h4>
                             <div class="slider">
-                                <div class="product-active">
+                                <div class="product_active owl-carousel">
                                     <?php foreach ($product_list as $pro_list) : ?>
                                         <div class="slider-item">
                                             <div class="product-item">

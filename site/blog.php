@@ -1,8 +1,21 @@
 <?php
-$blog = list_all_new();
 $blog_new = list_limit_new(0, 5);
 $gallery = library_list_limit(0, 10);
 
+$num_row = count_row('news');
+	$current_page = isset($_GET['p']) ? $_GET['p'] : 0;
+	$limit = 4;
+	//tổng số trang
+	$total_page = ceil($num_row / $limit);
+	// Giới hạn current_page trong khoảng 1 đến total_page
+	if ($current_page > $total_page) {
+		$current_page = $total_page;
+	} else if ($current_page < 1) {
+		$current_page = 1;
+	}
+	// Tìm Start
+	$start = ($current_page - 1) * $limit;
+	$blog =  list_limit_new($start, $limit);
 ?>
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">
@@ -42,27 +55,39 @@ $gallery = library_list_limit(0, 10);
                             </div>
                         </article>
                     <?php endforeach; ?>
-                    <!-- phan trang -->
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <i class="ti-angle-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link">1</a>
-                            </li>
-                            <li class="page-item active">
-                                <a href="#" class="page-link">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <i class="ti-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                   <!-- phan trang -->
+ 					<nav class="blog-pagination justify-content-center d-flex">
+ 						<ul class="pagination">
+ 							<?php if ($current_page > 1 && $total_page > 1) : ?>
+ 								<li class="page-item">
+ 									<a href="<?= ROOT ?>?page=blog&p=<?= ($current_page - 1) ?>" class="page-link" aria-label="Previous">
+ 										<i class="ti-angle-left"></i>
+ 									</a>
+ 								</li>
+ 							<?php endif; ?>
+ 							<?php
+								for ($i = 1; $i <= $total_page; $i++) : ?>
+ 								<!-- // Nếu là trang hiện tại thì hiển thị active
+                    // ngược lại hiển thị thẻ a -->
+ 								<?php if ($i == $current_page) : ?>
+ 									<li class="page-item active">
+ 										<a href="<?= ROOT ?>?page=blog&p=<?= $i ?>" class="page-link"><?= $i ?></a>
+ 									</li>
+ 								<?php else : ?>
+ 									<li class="page-item">
+ 										<a href="<?= ROOT ?>?page=blog&p=<?= $i ?>" class="page-link"><?= $i ?></a>
+ 									</li>
+ 								<?php endif; ?>
+ 							<?php endfor;  ?>
+ 							<?php if ($current_page < $total_page && $total_page > 1) : ?>
+ 								<li class="page-item">
+ 									<a href="<?= ROOT ?>?page=blog&p=<?= ($current_page + 1) ?>" class="page-link" aria-label="Next">
+ 										<i class="ti-angle-right"></i>
+ 									</a>
+ 								</li>
+ 							<?php endif; ?>
+ 						</ul>
+ 					</nav>
                 </div>
             </div>
             <div class="col-lg-4">

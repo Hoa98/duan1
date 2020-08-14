@@ -14,6 +14,33 @@ $(window).on('scroll', function () {
 
 
 $(document).ready(function(){
+// slider san pham lien quan
+$(".product_active").owlCarousel({
+  loop: true,
+  margin: 15,
+  nav:true,
+  autoplay:true,
+  navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
+  responsiveClass: true,
+  autoplayHoverPause: true,
+autoplaySpeed: 800,
+  responsive: {
+      0: {
+          items: 1,
+          nav: true
+      },
+      600: {
+          items: 3,
+          nav: false
+      },
+      1000: {
+          items: 4,
+          nav: true,
+          loop: false
+      }
+  }
+});
+
 
 // mobile_menu
 var menu = $('ul#navigation');
@@ -393,33 +420,5 @@ mailChimp();
       $button.parent().find('input').val(newVal);
     });
 
-    // slider san pham lien quan
-    $(".product-active").owlCarousel({
-      loop: true,
-      margin: 15,
-      // navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
-nav:false,
-dots:false,
-      responsiveClass: true,
-      responsive: {
-          0: {
-              items: 1,
-              nav: true
-          },
-          600: {
-              items: 3,
-              nav: false
-          },
-          1000: {
-              items: 4,
-              nav: true,
-              loop: false
-          }
-      }
-  });
-  $(".carousel").carousel({
-      interval: 2000
-  });
-  //select 
-  
+    
 })(jQuery);	
