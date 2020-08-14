@@ -44,6 +44,7 @@ $setting = list_limit_setting();
     <link rel="stylesheet" href="content/css/animate.css" />
     <link rel="stylesheet" href="content/css/slicknav.css" />
     <link rel="stylesheet" href="content/css/pgwslideshow.min.css">
+    <link rel="stylesheet" href="content/css/rateit.css">
     <link rel="stylesheet" href="content/css/style.css" />
     <!-- <link rel="stylesheet" href="content/css/responsive.css"> -->
 </head>

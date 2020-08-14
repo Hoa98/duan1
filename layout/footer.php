@@ -326,7 +326,7 @@
  <script src="content/js/gijgo.min.js"></script>
  <script src="content/js/pgwslideshow.min.js"></script>
  <script src="content/js/toastr.min.js"></script>
-
+ <script src="content/js/jquery.rateit.min.js"></script>
  <!--contact js-->
  <script src="content/js/contact.js"></script>
  <script src="content/js/jquery.ajaxchimp.min.js"></script>

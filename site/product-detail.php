@@ -29,21 +29,21 @@ if (isset($_POST['btnGui'])) {
 #comment
 if (isset($_POST['btnSave'])) {
     extract($_REQUEST);
-    #reply
+    
     if ($_SESSION['member']['role'] == 1 || $_SESSION['member']['role'] == 2) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], 0, true, 0);
+        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], $rating, true, 0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
     } elseif ($_SESSION['member']['role'] == 3) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], 0, false, 0);
+        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], $rating, false, 0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
     } else {
-        insert_comment($content, $pro['id'], $_SESSION['customer']['id'], '', 0, false, 0);
+        insert_comment($content, $pro['id'], $_SESSION['customer']['id'], '', $rating, false, 0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
@@ -153,6 +153,7 @@ if (isset($_POST['btnSave'])) {
                                                             </div>
                                                             <div class="col-10  mb-3">
                                                                 <div class="comment">
+                                                                    <div class="rateit" data-rateit-value="<?= $value['rating'] ?>" data-rateit-readonly="true"></div>
                                                                     <p class="box-comment-author m-0 font-weight-bold"> <?= $value['name'] ?></p>
                                                                     <div class="box-comment-time font-italic">
                                                                         <time datetime="<?= $value['created_at'] ?>"><?= $value['created_at'] ?></time>
@@ -222,6 +223,8 @@ if (isset($_POST['btnSave'])) {
                                                 <!-- Bị ẩn khi khách hàng chưa đăng nhập -->
                                                 <form action="" method="post" class="collapse needs-validation form-contact" id="comment" novalidate>
                                                     <div class="form-group">
+                                                        <input type="range" name="rating" min="0" max="5" value="0" step="0.5" id="backing3">
+                                                        <div class="rateit" data-rateit-backingfld="#backing3"></div>
                                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" minlength="5" name="content" placeholder="Nhận xét của bạn..." required></textarea>
                                                         <div class="invalid-feedback">
                                                             Nhận xét có ít nhất 5 ký tự
@@ -244,6 +247,7 @@ if (isset($_POST['btnSave'])) {
                                 </div>
                             </div>
                         </div>
+
                     </section>
                     <!--Slider sản phẩm liên quan -->
                     <section class="section section-sm section-last bg-default">
