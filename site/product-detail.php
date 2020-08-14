@@ -222,7 +222,7 @@ if (isset($_POST['btnSave'])) {
                                                 <!-- Bị ẩn khi khách hàng chưa đăng nhập -->
                                                 <form action="" method="post" class="collapse needs-validation form-contact" id="comment" novalidate>
                                                     <div class="form-group">
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="5" name="content" placeholder="Nhận xét của bạn..." required></textarea>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" minlength="5" name="content" placeholder="Nhận xét của bạn..." required></textarea>
                                                         <div class="invalid-feedback">
                                                             Nhận xét có ít nhất 5 ký tự
                                                         </div>
