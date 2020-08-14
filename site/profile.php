@@ -84,6 +84,9 @@ if (isset($_SESSION['customer'])) {
                     case 'resetPhone':
                         include_once "site/account/resetPhone.php";
                         break;
+                    case 'rating':
+                        include_once "site/account/rating.php";
+                        break;
                     default:
                         include_once "site/404.php";
                         break;

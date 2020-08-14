@@ -20,8 +20,7 @@ require_once "libs/app_detail.php";
 require_once "libs/order.php";
 require_once "libs/order-detail.php";
 require_once "libs/contact.php";
-
-
+require_once "libs/evaluates.php";
 
 if (isset($_SESSION['member'])) {
     $_SESSION['customer'] = $_SESSION['member'];

@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $booking_detail =  all_app_detail($id);
-    $total=0;
+    $total = 0;
 }
 ?>
 <section>
@@ -41,14 +41,25 @@ if (isset($_GET['id'])) {
                 <p><?= $bd['time'] ?></p>
             </div>
         </div>
-        <?php 
-        $price_new=$bd['price']-($bd['price']*$bd['sale']);
+        <div class="row mb-5">
+            <?php if (isset($_SESSION['member'])) : ?>
+                <div class="col-12 text-right align-content-end">
+                    <a href="<?= ROOT ?>?page=profile&action=rating&id=<?= $bd['id'] ?>&id_booking=<?=$id?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Xem đánh giá</a>
+                </div>
+            <?php else : ?>
+                <div class="col-12 text-right align-content-end">
+                    <a href="<?= ROOT ?>?page=profile&action=rating&id=<?= $bd['id'] ?>&id_booking=<?=$id?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Đánh giá</a>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php
+        $price_new = $bd['price'] - ($bd['price'] * $bd['sale']);
         $total += $price_new;
-         ?>
+        ?>
     <?php endforeach; ?>
     <div class="row mb-5">
-            <div class="col-12 text-right align-content-end">
-              <p class="total">Tổng số tiền: <span class="total-price"><?= number_format($total, 0, ',', '.') . 'đ' ?></span></p>
-            </div>
-          </div>
+        <div class="col-12 text-right align-content-end">
+            <p class="total">Tổng số tiền: <span class="total-price"><?= number_format($total, 0, ',', '.') . 'đ' ?></span></p>
+        </div>
+    </div>
 </section>
