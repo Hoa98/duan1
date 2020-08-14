@@ -33,7 +33,7 @@
               ]);
 
               var options = {
-                title: 'Tỉ lệ hàng hóa',
+                title: 'Tỉ lệ dịch vụ',
                 is3D: true,
               };
 

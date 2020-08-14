@@ -3,7 +3,7 @@
 if (isset($_POST['btn-del'])) {
     extract($_REQUEST);
     foreach ($id as $id_app) {
-        detail_delete($id_app);
+        app_detail_delete($id_app);
     }
     $_SESSION['message'] = "Xóa dữ liệu thành công";
     header('location:' . ROOT . 'admin/?page=appointment');

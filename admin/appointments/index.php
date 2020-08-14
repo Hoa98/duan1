@@ -2,6 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     appointment_delete($id);
+    app_book_delete($id);
     $_SESSION['message'] = "Xóa dữ liệu thành công";
     header('location:' . ROOT . 'admin/?page=appointment');
     die;
@@ -10,6 +11,7 @@ if (isset($_POST['btn-del'])) {
     extract($_REQUEST);
     foreach ($id as $id_appointment) {
         appointment_delete($id_appointment);
+        app_book_delete($id_appointment);
     }
     $_SESSION['message'] = "Xóa dữ liệu thành công";
     header('location:' . ROOT . 'admin/?page=appointment');

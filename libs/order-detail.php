@@ -21,6 +21,10 @@ function insert_detail($id_order,$id_product,$quantity){
     return insert('order_detail',$data);
 }
 
+//Xóa hóa đơn chi tiết theo hóa đơn
+function detail_delete_order($id) {
+    delete('order_detail', 'id_order', $id);
+}
 //function Xóa dữ liệu
 function detail_delete($id) {
     delete('order_detail', 'id', $id);

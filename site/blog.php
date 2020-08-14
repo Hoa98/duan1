@@ -4,7 +4,7 @@ $gallery = library_list_limit(0, 10);
 
 $num_row = count_row('news');
 	$current_page = isset($_GET['p']) ? $_GET['p'] : 0;
-	$limit = 4;
+	$limit = 2;
 	//tổng số trang
 	$total_page = ceil($num_row / $limit);
 	// Giới hạn current_page trong khoảng 1 đến total_page
