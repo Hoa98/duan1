@@ -5,7 +5,6 @@ require_once "libs/libraries.php";
 require_once "libs/members.php";
 require_once "libs/customers.php";
 require_once "libs/services.php";
-require_once "libs/libraries.php";
 require_once "libs/products.php";
 require_once "libs/categories.php";
 require_once "libs/types.php";
