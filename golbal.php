@@ -3,7 +3,7 @@ session_start();
 /*
  * Định nghĩa các url cần thiết được sử dụng trong website
  */
-define('ROOT','http://polybarber.ga/');
+define('ROOT','http://localhost/Ass_Duan1/');
 
 function check_session(){
     if(isset($_SESSION['user'])){
