@@ -1,32 +1,37 @@
 <?php
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $products = product_list_one('id',$id);
-if(isset($_SESSION['customer'])){
+if(isset($_SESSION['user'])){
 	if (isset($_REQUEST['add-to-cart'])) {
 		$quantity = $_REQUEST['qty'];
-		if (!isset($_SESSION['cartCustom'][$_SESSION['customer']['id']][$id])) {
-			$_SESSION['cartCustom'][$_SESSION['customer']['id']][$id] = array(
+		if (!isset($_SESSION['cartCustom'][$_SESSION['user']['id']][$id])) {
+			$_SESSION['cartCustom'][$_SESSION['user']['id']][$id] = array(
 				"id" => $products['id'],
 				"name" => $products['name'],
 				"images" => $products['images'],
 				"quantity" => $quantity,
 				"price" => $products['price'],
 				"sale"=>$products['sale']
-			);
+            );
+           
 		} else {
-			$_SESSION['cartCustom'][$_SESSION['customer']['id']][$id]['quantity'] += $quantity;
+            $_SESSION['cartCustom'][$_SESSION['user']['id']][$id]['quantity'] += $quantity;
         }
         if(!isset($_REQUEST['checkout'])){
             if (isset($_SERVER["HTTP_REFERER"])) {
+                $_SESSION['message']="Sản phẩm đã được thêm vào giỏ hàng";
                 header("Location: " . $_SERVER["HTTP_REFERER"]);
+                die();
             }
         }else{
             header("Location: " . ROOT.'?page=checkout');
+            die();
         }
 	}
-	if (!empty($_SESSION['cartCustom'][$_SESSION['customer']['id']])) {
-		$cartCustom = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
-	}
+	if (!empty($_SESSION['cartCustom'][$_SESSION['user']['id']])) {
+		$cartCustom = $_SESSION['cartCustom'][$_SESSION['user']['id']];
+    }
+   
 }else{
 	if (isset($_REQUEST['add-to-cart'])) {
 		$quantity = $_REQUEST['qty'];
@@ -44,10 +49,13 @@ if(isset($_SESSION['customer'])){
 		}
         if(!isset($_REQUEST['checkout'])){
             if (isset($_SERVER["HTTP_REFERER"])) {
+                $_SESSION['message']="Sản phẩm đã được thêm vào giỏ hàng";
                 header("Location: " . $_SERVER["HTTP_REFERER"]);
+                die();
             }
         }else{
             header("Location: " . ROOT.'?page=checkout');
+            die();
         }
 	}
 	if (!empty($_SESSION['cart'])) {
@@ -59,13 +67,12 @@ if(isset($_SESSION['customer'])){
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Giỏ hàng</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 <!-- Shopping Cart Section Begin -->
 <section class="shopping-cart spad">
     <div class="container">
         <div class="row">
-            <?php if(isset($cartCustom) && isset($_SESSION['customer'])): ?>
+            <?php if(isset($cartCustom) && isset($_SESSION['user'])): ?>
                 <div class="col-lg-12">
                 <form action="<?=ROOT?>?page=checkout" method="post">
                     <div class="cart-table">

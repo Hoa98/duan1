@@ -16,9 +16,7 @@ if (isset($_POST['btn-del'])) {
     die;
 }
 
-$comment_custom = list_all_comment_custom();
-$comment_member = list_all_comment_member();
-$comment = array_merge($comment_custom,$comment_member);
+$comment = list_all_comment();
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">

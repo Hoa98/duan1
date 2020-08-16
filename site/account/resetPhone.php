@@ -1,23 +1,22 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
-if (custom_check('phone', $phone) > 0 || member_check('phone',$phone)>0) {
-    if($custom['phone']==$phone){
-        $_SESSION['message']= 'Cập nhật liệu thành công';
+if (user_check('phone', $phone) > 0 || barber_check('phone',$phone)>0) {
+    if($user['phone']==$phone){
+        $_SESSION['message']= 'Cập nhật số điện thoại thành công';
         header('location: '.ROOT.'?page=profile&action=profile');
         die();
     }
     $error['errors_phone'] = 'Số điện thoại đã tồn tại';
 }if (array_filter($error) == false) {
-  if(isset($_SESSION['member'])){
-    member_change_phone($_SESSION['member']['id'], $phone);
-    $_SESSION['customer']['phone']=$phone;
-    $_SESSION['member']['phone']=$phone;
+  if(isset($_SESSION['barber'])){
+    barber_change_phone($_SESSION['barber']['id'], $phone);
+    $_SESSION['barber']['phone']=$phone;
   }else{
-    custom_change_phone($_SESSION['customer']['id'], $phone);
-    $_SESSION['customer']['phone']=$phone;
+   user_change_phone($_SESSION['user']['id'], $phone);
+    $_SESSION['user']['phone']=$phone;
   }
-    $_SESSION['message']= 'Cập nhật liệu thành công';
+    $_SESSION['message']= 'Cập nhật số điện thoại thành công';
     header('location: '.ROOT.'?page=profile&action=profile');
     die();
 }
@@ -31,7 +30,7 @@ if (custom_check('phone', $phone) > 0 || member_check('phone',$phone)>0) {
                     <div class="form-group row">
                         <div for="" class="col-sm-3 text-right">Số điện thoại</div>
                         <div class="col-sm-9">
-                            <span class=""><?= $custom['phone'] ?></span>
+                            <span class=""><?= $user['phone'] ?></span>
                         </div>
                     </div>
                     <div class="form-group row">

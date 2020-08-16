@@ -4,29 +4,32 @@ if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     if(empty($id_service)){
         $errors['errors_service'] = 'Vui lòng chọn dịch vụ';
-    }if (array_filter($errors) == false) {
-    $custom = custom_check('phone', $phone);
-    if($custom>0){
-        $id_customer = $custom['id'];
-    }else{
-        $cu = guest_insert('', $phone,'', 'user.svg');
-       $cus = custom_check('phone', $phone);
-       $id_customer = $cus['id'];
+    }if(barber_check('phone',$phone)){
+        $errors['errors_phone'] = 'Số điện thoại này là của thợ cắt';
     }
-     insert_appointment($id_member, $id_customer, $day, $id_time);
-    $booking=list_top_app($id_customer);
+    if (array_filter($errors) == false) {
+    $user = user_check('phone', $phone);
+    if($user>0){
+        $id_user = $user['id'];
+    }else{
+        $cu = guest_insert('', $phone,'', 'user.svg',3);
+        $cus = user_check('phone', $phone);
+        $id_user = $cus['id'];
+    }
+     insert_appointment($id_barber, $id_user, $day, $id_time);
+    $booking=list_top_app($id_user);
     foreach($id_service as $s){
         insert_app_detail($booking['id'],$s);
     }
-    $_SESSION['message'] = "Thêm dữ liệu thành công";
+    $_SESSION['message'] = "Đặt lịch hẹn thành công";
     header('Location:' . ROOT . 'admin/?page=appointment');
     die();
 }
 }
-$member = member_list_role(3);
+$barber = barber_list_all();
 $date = date_create();
 $service = service_list_all();
-$customers = custom_list_all();
+$user = user_list();
 $time = list_all_time();
 ?>
 <!-- Begin Page Content -->
@@ -48,19 +51,22 @@ $time = list_all_time();
                                 class="form-control" placeholder="Nhập số điện thoại khách"
                                 pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
                             <datalist id="browsers">
-                                <?php foreach($customers as $c):?>
-                                <option value="<?=$c['phone']?>"><?=$c['name']?>
+                                <?php foreach($user as $u):?>
+                                <option value="<?=$u['phone']?>"><?=$u['name']?>
                                     <?php endforeach; ?>
                             </datalist>
+                            <?php if (isset($errors['errors_phone'])) : ?>
+                            <p class="text-danger mt-2"><?= $errors['errors_phone'] ?></p>
+                            <?php endif; ?>
                             <div class="invalid-feedback">
                                 Số điện thoại không đúng định dạng
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="id_member">Chọn stylelist</label>
-                            <select name="id_member" id="multi-selectbox" class="form-control">
-                                <?php foreach ($member as $m) : ?>
-                                <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
+                            <label for="id_barber">Chọn stylelist</label>
+                            <select name="id_barber" id="multi-selectbox" class="form-control">
+                                <?php foreach ($barber as $b) : ?>
+                                <option value="<?= $b['id'] ?>"><?= $b['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

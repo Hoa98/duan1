@@ -4,7 +4,7 @@ $gallery = library_list_limit(0, 10);
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $detail = list_one_new($id);
-    $member =  member_check('id',$detail['id_member']);
+    $user =  user_check('id',$detail['id_user']);
     update_view_blog($id);
 }
 ?>
@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Bài viết chi tiết</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 <!--================Blog Area =================-->
@@ -27,7 +26,7 @@ if (isset($_GET['id'])) {
                     <div class="blog_details">
                         <h2><?= $detail['title'] ?></h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i><?=$member['name']?></a></li>
+                            <li><a href="#"><i class="fa fa-user"></i><?=$user['name']?></a></li>
                             <li><a href="#"><i class="fa fa-eye mr-1" aria-hidden="true"></i> <?= $detail['views'] ?></a></li>
                         </ul>
                         <p>

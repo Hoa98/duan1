@@ -12,6 +12,10 @@ if (isset($_POST['btnUpdate'])) {
     }
     if(checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff'))==false && $_FILES['images']['size']>0){
         $errors['errors_img'] = 'File không đúng định dạng';
+    }if (list_one_category('name', $name) > 0) {
+        if($cate['name']!=$name){
+            $errors['errors_name'] = 'Tên danh mục sản phẩm đã tồn tại';
+        }
     }
     if(array_filter($errors)==false){
     category_update($id, $name, $images);
@@ -40,6 +44,9 @@ if (isset($_POST['btnUpdate'])) {
                     <div class="invalid-feedback">
                                 Vui lòng nhập tên danh mục sản phẩm
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                 </div>
                 <?php if ($cate['images'] != '') : ?>
                     <img src="../images/categories/<?= $cate['images'] ?>" width="120" alt="">

@@ -3,50 +3,50 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 require_once "../golbal.php";
-require_once "../libs/customers.php";
-require_once "../libs/members.php";
+require_once "../libs/barbers.php";
+require_once "../libs/users.php";
 require_once "../phpmailer/PHPMailer.php";
 require_once "../phpmailer/SMTP.php";
 extract($_REQUEST);
-$c= custom_check('email',$email);
-$m=member_check('email',$email);
+$m= user_check('email',$email);
+$c=barber_check('email',$email);
 $ok=false;
 if (!empty($c)) {
-  $custom = custom_check('email', $email);
-  if ($code == $custom['code'] && (time() - $custom['time_code']) < 600) {
+  $user = barber_check('email', $email);
+  if ($code == $user['code'] && (time() - $user['time_code']) < 600) {
     if (isset($_POST['btnSave'])) {
         if ($newPassword == $newPasswordRepeat) {
-          custom_change_password($custom['id'], $newPassword);
-          update_code_custom($custom['id'], '', '');
+          barber_change_password($user['id'], $newPassword);
+          update_code_barber($user['id'], '', '');
           $ok=true;
         } else {
           $error['newPasswordRepeat'] = 'Mật khẩu và Mật khẩu xác nhận không giống nhau';
         }
     }
   } else {
-    update_code_custom($custom['id'], '', '');
+    update_code_barber($user['id'], '', '');
     header('location: ' . ROOT);
     die();
   }
 } elseif (!empty($m)) {
-  $custom = member_check('email', $email);
-  if ($code == $custom['code'] && (time() - $custom['time_code']) < 600) {
+  $user = user_check('email', $email);
+  if ($code == $user['code'] && (time() - $user['time_code']) < 600) {
     if (isset($_POST['btnSave'])) {
         if ($newPassword == $newPasswordRepeat) {
-          member_change_password($custom['id'], $newPassword);
-          update_code_member($custom['id'], '', '');
+          user_change_password($user['id'], $newPassword);
+          update_code_user($user['id'], '', '');
           $ok=true;
         } else {
           $error['newPasswordRepeat'] = 'Mật khẩu và Mật khẩu xác nhận không giống nhau';
         }
     }
   } else {
-    if ($custom['role'] == 1) {
-      update_code_member($custom['id'], '', '');
+    if ($user['role'] == 1) {
+      update_code_user($user['id'], '', '');
       header('location: ' . ROOT . 'admin');
       die();
     } else {
-      update_code_member($custom['id'], '', '');
+      update_code_user($user['id'], '', '');
       header('location: ' . ROOT);
       die();
     }
@@ -64,13 +64,13 @@ if($ok == true){
   $mail->Host         = 'smtp.gmail.com';
   $mail->Port         = 465;
   $mail->Username     = 'hoact98bg@gmail.com';
-  $mail->Password     = '27B08c98';
+  $mail->Password     = '27B08c98a';
 
   //Thiết lập thông tin người gửi và mail người gửi
   $mail->setFrom('hoact98bg@gmail.com', 'PolyBarber');
 
   //Thiết lập thông tin người nhận và email người nhận
-  $mail->addAddress($email, $custom['name']);
+  $mail->addAddress($email, $user['name']);
 
   //Thiết lập email reply
   $mail->addReplyTo('hoachu938@gmail.com');
@@ -82,7 +82,7 @@ if($ok == true){
   $mail->CharSet = 'utf-8';
 
   //Thiết lập nội dung
-  $body = '<p>Xin chào ' . $custom['name'] . ',</p>
+  $body = '<p>Xin chào ' . $user['name'] . ',</p>
       <p>Mật khẩu đăng nhập vào tài khoản PolyBarber của bạn đã thay đổi</p>
       <p>Nếu bạn không thay đổi mật khẩu, vui lòng liên hệ với chúng tôi qua email: hoact98bg@gmail.com
       </p>
@@ -91,7 +91,7 @@ if($ok == true){
   if ($mail->send() == false) {
     echo  'Error: ' . $mail->ErrorInfo;
   } else {
-    echo  'Vui lòng kiểm tra hộp thư đến của bạn!';
+    $_SESSION['message'] = 'Mật khẩu đăng nhập vào tài khoản PolyBarber của bạn đã thay đổi';
     header('location: ' . ROOT);
     die();
   }
@@ -110,11 +110,11 @@ if($ok == true){
 
   <title>PolyBarber - Reset Password</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- user fonts for this template-->
   <link href="../admin/resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- user styles for this template-->
   <link href="../admin/resource/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
@@ -136,7 +136,7 @@ if($ok == true){
                 <form action="" method="post" novalidate class="needs-validation">
                   <h3 class="login-head mb-5 text-center"><i class="fa fa-lg fa-fw fa-lock"></i>Đặt lại mật khẩu</h3>
                   <div class="text-center">
-                    <p>Đặt mật khẩu mới cho <?=$custom['email']?></p>
+                    <p>Đặt mật khẩu mới cho <?=$user['email']?></p>
                   </div>
                   <div class="form-group row">
                     <div for="" class="col-sm-5 text-right">Mật khẩu mới</div>
@@ -182,13 +182,13 @@ if($ok == true){
   <!-- Core plugin JavaScript-->
   <script src="../admin/resource/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
+  <!-- user scripts for all pages-->
   <script src="../admin/resource/js/sb-admin-2.js"></script>
   <script>
     (function() {
       'use strict';
       window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        // Fetch all the forms we want to apply user Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
         var validation = Array.prototype.filter.call(forms, function(form) {

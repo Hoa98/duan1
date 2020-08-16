@@ -1,24 +1,25 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
- if(password_verify($password, $custom['password'])){
+ if(password_verify($password, $user['password'])){
     if($newPassword==$newPasswordRepeat){
-        if(isset($_SESSION['member'])){
-            member_change_password($_SESSION['member']['id'], $newPassword);
-            $_SESSION['customer']['password']=$newPassword;
-            $_SESSION['member']['password']=$newPassword;
+        if(isset($_SESSION['barber'])){
+            barber_change_password($_SESSION['barber']['id'], $newPassword);
+            $_SESSION['barber']['password']=$newPassword;
         }else{
-            custom_change_password($_SESSION['customer']['id'], $newPassword);
-            $_SESSION['customer']['password']=$newPassword;
+            user_change_password($_SESSION['user']['id'], $newPassword);
+            $_SESSION['user']['password']=$newPassword;
         }
-        $_SESSION['message']= 'Cập nhật liệu thành công';
+        $_SESSION['message']= 'Đổi mật khẩu tài khoản thành công';
         header('location: '.ROOT.'?page=profile&action=profile');
     die();
     }else{
         $error['newPasswordRepeat'] = 'Mật khẩu và Mật khẩu xác nhận không giống nhau';
+        $_SESSION['message']= 'Đổi mật khẩu tài khoản thất bại';
     }
  }else{
     $error['password'] = "Mật khẩu không đúng";
+    $_SESSION['message']= 'Đổi mật khẩu tài khoản thất bại';
  }
 }
 ?>

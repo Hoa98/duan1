@@ -1,10 +1,10 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
- if(password_verify($password, $member['password'])){
+ if(password_verify($password, $user['password'])){
     if($newPassword==$newPasswordRepeat){
-            member_change_password($_SESSION['member']['id'], $newPassword);
-            $_SESSION['member']['password']=$newPassword;
+            user_change_password($_SESSION['user']['id'], $newPassword);
+            $_SESSION['user']['password']=$newPassword;
         $_SESSION['message']= 'Cập nhật liệu thành công';
         header('location: '.ROOT.'admin/?page=profile&action=profile');
     die();

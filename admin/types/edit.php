@@ -12,6 +12,10 @@ if (isset($_POST['btnUpdate'])) {
     }
     if(checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff'))==false && $_FILES['images']['size']>0){
         $errors['errors_img'] = 'File không đúng định dạng';
+    }if (list_one_type('name', $name) > 0) {
+        if($type['name']!=$name){
+        $errors['errors_name'] = 'Tên loại dịch vụ đã tồn tại';
+        }
     }
     if(array_filter($errors)==false){
         type_update($id, $name, $images);
@@ -40,6 +44,9 @@ if (isset($_POST['btnUpdate'])) {
                     <div class="invalid-feedback">
                                 Vui lòng nhập tên loại dịch vụ
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                 </div>
                 <?php if ($type['images'] != '') : ?>
                     <img src="../images/categories/<?= $type['images'] ?>" width="120" alt="">

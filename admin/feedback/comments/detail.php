@@ -11,9 +11,7 @@ if (isset($_POST['btn-del'])) {
 }
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $comment_custom = list_parent_comment_custom($id);
-    $comment_member = list_parent_comment_member($id);
-    $comment = array_merge($comment_custom,$comment_member);
+    $comment = list_parent_comment($id);
 }
 
 ?>

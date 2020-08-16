@@ -47,7 +47,9 @@
 <!-- Bootstrap core JavaScript-->
 <script src="resource/vendor/jquery/jquery.min.js"></script>
 <script src="resource/vendor/select2.min.js"></script>
+<script src="resource/js/popper.min.js"></script>
 <script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
 <!-- Core plugin JavaScript-->
 <script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>

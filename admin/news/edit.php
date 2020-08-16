@@ -14,6 +14,10 @@ if (isset($_POST['btnSave'])) {
     }
     if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) == false && $_FILES['images']['size'] > 0) {
         $errors['errors_img'] = 'File không đúng định dạng';
+    }if(check_new('title',$title)>0){
+        if($new['title']!=$title){
+            $errors['errors_title'] = 'Tiêu đề tin tức đã tồn tại';
+        }
     }
     if (array_filter($errors) == false) {
         new_update($id, $title, $content, $images);
@@ -50,6 +54,9 @@ if (isset($_POST['btnSave'])) {
                             <div class="invalid-feedback">
                                 Vui lòng nhập tiêu đề
                             </div>
+                            <?php if (isset($errors['errors_title'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_title'] ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-md-6">

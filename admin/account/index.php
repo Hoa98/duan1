@@ -1,5 +1,5 @@
 <?php 
-    $member = member_check('id',$_SESSION['member']['id']);
+    $user = user_check('id',$_SESSION['user']['id']);
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -14,9 +14,9 @@
         <div class="row">
             <div class="col-2 mb-5">
                 <div class="avatar_user mb-4">
-                    <img src="../images/users/<?= $member['images'] ?>" alt="" class="rounded-circle mr-2" width="40"
+                    <img src="../images/users/<?= $user['images'] ?>" alt="" class="rounded-circle mr-2" width="40"
                         height="40">
-                    <strong href="?page=profile&action=profile"><?= $member['name'] ?></strong>
+                    <strong href="?page=profile&action=profile"><?= $user['name'] ?></strong>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav_link" href="<?=ROOT?>admin/?page=profile&action=profile">Tài khoản của tôi</a>

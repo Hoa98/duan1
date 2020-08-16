@@ -69,7 +69,7 @@ $('.status').change(function() {
  tinymce.init({
   selector: '#detail'
 });
-
+  $('[data-toggle="popover"]').popover();
 //Validate form
 (function() {
   'use strict';

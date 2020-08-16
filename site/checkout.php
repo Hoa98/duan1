@@ -1,17 +1,9 @@
 <?php
-if (isset($_SESSION['member'])) {
-  $customer = list_one_member($_SESSION['member']['id']);
-  $phone = $customer['phone'];
-  $name = $customer['name'];
-  $address = $customer['address'];
-  if (empty($_SESSION['cartCustom'][$_SESSION['customer']['id']])) {
-    header('location: ' . ROOT . '?page=cart');
-  }
-} elseif (isset($_SESSION['customer'])) {
-  $customer = custom_list_one($_SESSION['customer']['id']);
-  $phone = $customer['phone'];
-  $name = $customer['name'];
-  $address = $customer['address'];
+if (isset($_SESSION['user'])) {
+  $user = list_one_user($_SESSION['user']['id']);
+  $phone = $user['phone'];
+  $name = $user['name'];
+  $address = $user['address'];
   if (empty($_SESSION['cart'])) {
     header('location: ' . ROOT . '?page=cart');
   }
@@ -36,14 +28,14 @@ if (isset($_REQUEST['btnXoaCart'])) {
 //Xoa 1 sp trong gio
 if (isset($_REQUEST['btnXoa'])) {
   extract($_REQUEST);
-  unset($_SESSION['cartCustom'][$_SESSION['customer']['id']][$id]);
+  unset($_SESSION['cartCustom'][$_SESSION['user']['id']][$id]);
   header('Location: ' . ROOT . '?page=cart');
   die();
 }
 //xoa gio
 if (isset($_REQUEST['btnXoaCartCustom'])) {
   extract($_REQUEST);
-  unset($_SESSION['cartCustom'][$_SESSION['customer']['id']]);
+  unset($_SESSION['cartCustom'][$_SESSION['user']['id']]);
   header('Location: ' . ROOT . '?page=cart');
   die();
 }
@@ -52,55 +44,45 @@ if (isset($_REQUEST['btnXoaCartCustom'])) {
 
 if (isset($_REQUEST['btnOrder'])) {
   extract($_REQUEST);
-  if (isset($_SESSION['customer'])) {
-    $cart = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
-    if (isset($_SESSION['member'])) {
-      $customer = custom_check('phone', $_SESSION['member']['phone']);
-      if ($customer > 0) {
-        insert_order($customer['id'], $address, $phone);
-        $order = list_top_order($customer['id']);
-      } else {
-        $cu = guest_insert($name, $phone, $address, 'user.svg');
-        $customer = custom_check('phone', $phone);
-        insert_order($customer['id'], $address, $phone);
-        $order = list_top_order($customer['id']);
-      }
+  if (isset($_SESSION['user'])) {
+    $cart = $_SESSION['cartCustom'][$_SESSION['user']['id']];
+      insert_order($_SESSION['user']['id'], $address, $phone);
+      $order = list_top_order($_SESSION['user']['id']);
       foreach ($cart as $key => $value) {
         $pro = product_list_one('id', $value['id']);
         insert_detail($order['id'], $value['id'], $value['quantity']);
-      }
-    } else {
-      insert_order($_SESSION['customer']['id'], $address, $phone);
-      $order = list_top_order($_SESSION['customer']['id']);
-      foreach ($cart as $key => $value) {
-        $pro = product_list_one('id', $value['id']);
-        insert_detail($order['id'], $value['id'], $value['quantity']);
-      }
     }
-    unset($_SESSION['cartCustom'][$_SESSION['customer']['id']]);
+    unset($_SESSION['cartCustom'][$_SESSION['user']['id']]);
+    $_SESSION['message']= "Đặt hàng thành công";
   } else {
     $cart = $_SESSION['cart'];
-    $custom = custom_check('phone', $phone);
-    if ($custom > 0) {
-      if (empty($custom['password'])) {
-        custom_update($custom['id'], $name, $address, 'user.svg');
-        $cus = custom_check('phone', $phone);
-        $id_customer = $cus['id'];
+    $user = user_check('phone', $phone);
+    if ($user > 0) {
+      if (empty($user['password'])) {
+        user_update($user['id'], $name, $address, 'user.svg');
+        $cus = user_check('phone', $phone);
+        $id_user = $cus['id'];
       }
     } else {
-      $cu = guest_insert($name, $phone, $address, 'user.svg');
-      $cus = custom_check('phone', $phone);
-      $id_customer = $cus['id'];
+      if(barber_check('phone',$phone)){
+        $_SESSION['message']= "Đặt hàng thất bại";
+        header('Location: ' . ROOT . '?page=cart');
+        die();
+      }else{
+        $cu = guest_insert($name, $phone, $address, 'user.svg');
+      $cus = user_check('phone', $phone);
+      $id_user = $cus['id'];
+      }
     }
-    insert_order($id_customer, $address, $phone);
-    $order = list_top_order($id_customer);
+    insert_order($id_user, $address, $phone);
+    $order = list_top_order($id_user);
     foreach ($cart as $key => $value) {
       $pro = product_list_one('id', $value['id']);
       insert_detail($order['id'], $value['id'], $value['quantity']);
     }
     unset($_SESSION['cart']);
+    $_SESSION['message']= "Đặt hàng thành công";
   }
-
   header('Location: ' . ROOT . '?page=cart');
   die();
 }
@@ -109,7 +91,7 @@ if (isset($_REQUEST['btnOrder'])) {
 <div class="bradcam_area breadcam_bg overlay">
   <h3>Thanh toán</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
+
 <!-- bradcam_area_end -->
 <section class="checkout section-padding">
   <div class="container">
@@ -118,13 +100,13 @@ if (isset($_REQUEST['btnOrder'])) {
         <div class="text-center">
           <h3>Thông tin thanh toán</h3>
         </div>
-        <?php if (isset($_SESSION['customer'])) : ?>
+        <?php if (isset($_SESSION['user'])) : ?>
           <div class="row mb-5 mt-3">
             <div class="col-2">
-              <img src="images/users/<?= $customer['images'] ?>" alt="avatar" width="50">
+              <img src="images/users/<?= $user['images'] ?>" alt="avatar" width="50">
             </div>
             <div class="col-10">
-              <p><?= $_SESSION['customer']['name'] ?> (<?= $_SESSION['customer']['phone'] ?>)</p>
+              <p><?= $_SESSION['user']['name'] ?> (<?= $_SESSION['user']['phone'] ?>)</p>
             </div>
           </div>
         <?php endif; ?>
@@ -158,11 +140,11 @@ if (isset($_REQUEST['btnOrder'])) {
 
       <div class="col-5 checkout-table">
         <h4>Giỏ hàng</h4>
-        <?php if (isset($_SESSION['customer'])) : ?>
+        <?php if (isset($_SESSION['user'])) : ?>
           <table>
             <tbody>
-              <?php if (isset($_SESSION['cartCustom'][$_SESSION['customer']['id']])) : ?>
-                <?php foreach ($_SESSION['cartCustom'][$_SESSION['customer']['id']] as $cartCustom) : ?>
+              <?php if (isset($_SESSION['cartCustom'][$_SESSION['user']['id']])) : ?>
+                <?php foreach ($_SESSION['cartCustom'][$_SESSION['user']['id']] as $cartCustom) : ?>
                   <tr>
                     <td>
                       <img src="images/products/<?= $cartCustom['images'] ?>" alt="ảnh sản phẩm" width="50">
@@ -174,7 +156,7 @@ if (isset($_REQUEST['btnOrder'])) {
                 <?php endforeach; ?>
                 <tr>
                   <td colspan="2">Tổng tiền</td>
-                  <td><?= number_format(total_price($_SESSION['cartCustom'][$_SESSION['customer']['id']]), 0, ',', '.') . 'đ' ?></td>
+                  <td><?= number_format(total_price($_SESSION['cartCustom'][$_SESSION['user']['id']]), 0, ',', '.') . 'đ' ?></td>
                 </tr>
               <?php else : header('Location: ' . ROOT . '?page=cart'); ?>
               <?php endif; ?>

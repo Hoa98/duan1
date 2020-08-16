@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
- if(password_verify($password, $custom['password'])){
+ if(password_verify($password, $user['password'])){
     header('location: '.ROOT.'?page=profile&action=resetPhone');
     die();
  }else{
@@ -17,7 +17,7 @@ extract($_REQUEST);
                     <div class="form-group row">
                         <div for="" class="col-sm-3 text-right">Số điện thoại</div>
                         <div class="col-sm-9">
-                            <span class=""><?= $custom['phone'] ?></span>
+                            <span class=""><?= $user['phone'] ?></span>
                         </div>
                     </div>
                     <div class="form-group row">

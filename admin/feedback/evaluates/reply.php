@@ -5,7 +5,7 @@ if (isset($_POST['btnsave'])) {
     if (empty($content)) {
         $errors['errors-content'] = 'Vui lòng nhập nội dung';
     }if(array_filter($errors)==false){
-        insert_evaluate($content,'',$eval['id_customer'],$_SESSION['member']['id'],$eval['id_service'],$eval['id']);
+        insert_evaluate($content,'',$_SESSION['user']['id'],$eval['id_appointment'],$eval['id_service'],$eval['id']);
     $_SESSION['message'] = "Trả lời đánh giá thành công";
     header('Location:' . ROOT . 'admin/?page=evaluate');
     die();

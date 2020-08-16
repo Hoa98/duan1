@@ -7,9 +7,9 @@ if(isset($_GET['page'])){
 }
 //dat lich hen 
 $type = list_all_type();
-$member = member_list_role(3);
+$barber = barber_list_all();
 $service = service_list_all();
-$customers = custom_list_all();
+// $users = custom_list_all();
 $date = date_create();
 $time = list_all_time();
 $setting = list_limit_setting();
@@ -87,25 +87,35 @@ $setting = list_limit_setting();
 
                                     <div class="icon cart-icon">
                                         <a href="<?=ROOT?>?page=cart"><i class="fa fa-shopping-bag text-white ml-2" aria-hidden="true"></i><span class="bag">
-                                            <?php if(isset($_SESSION['customer'])): ?>
-                                                <?= isset($_SESSION['cartCustom'][$_SESSION['customer']['id']]) ? total_item($_SESSION['cartCustom'][$_SESSION['customer']['id']]) : 0; ?>
+                                            <?php if(isset($_SESSION['user'])): ?>
+                                                <?= isset($_SESSION['cartCustom'][$_SESSION['user']['id']]) ? total_item($_SESSION['cartCustom'][$_SESSION['user']['id']]) : 0; ?>
                                             <?php else: ?>
                                         <?= isset($_SESSION['cart']) ? total_item($_SESSION['cart']) : 0; ?>
                                             <?php endif; ?>
                                         </span></a>
                                     </div>
-                                    <?php if(isset($_SESSION['customer'])): ?> 
+                                    <?php if(isset($_SESSION['user'])): ?> 
                                     <div class="dropdown no-arrow mr-1">
                                         <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
                                         <i class="fa fa-user-o ml-2" aria-hidden="true"></i>
-                                        <?=$_SESSION['customer']['name'] ?>
+                                        <?=$_SESSION['user']['name'] ?>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                            <?php if(isset($_SESSION['member'])): ?>
-                                            <?php if($_SESSION['member']['role'] == 1): ?>
+                                            <?php if($_SESSION['user']['role'] == 1): ?>
                                             <a class="dropdown-item" href="<?=ROOT?>admin">Trang quản trị</a>
                                             <?php endif; ?>
-                                            <?php endif; ?>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=booking">Lịch hẹn</a>
+                                            <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>
+                                        </div>
+                                    </div>
+                                    <?php elseif(isset($_SESSION['barber'])): ?>
+                                        <div class="dropdown no-arrow mr-1">
+                                        <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
+                                        <i class="fa fa-user-o ml-2" aria-hidden="true"></i>
+                                        <?=$_SESSION['barber']['name'] ?>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=profile">Tài khoản của tôi</a>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=profile&action=booking">Lịch hẹn</a>
                                             <a class="dropdown-item" href="<?=ROOT?>?page=logout">Đăng xuất</a>
@@ -132,4 +142,3 @@ $setting = list_limit_setting();
         </div>
     </header>
     <!-- header-end -->
-    

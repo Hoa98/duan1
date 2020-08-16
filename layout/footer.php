@@ -53,10 +53,10 @@
                              Menu
                          </h3>
                          <ul>
-                             <li><a href="#">Trang chủ</a></li>
-                             <li><a href="#">Giới thiệu</a></li>
-                             <li><a href="#">Dịch vụ</a></li>
-                             <li><a href="#">Tin tức</a></li>
+                             <li><a href="<?=ROOT?>">Trang chủ</a></li>
+                             <li><a href="<?=ROOT?>?page=introduce">Giới thiệu</a></li>
+                             <li><a href="<?=ROOT?>?page=service">Dịch vụ</a></li>
+                             <li><a href="<?=ROOT?>?page=blog">Tin tức</a></li>
                          </ul>
                      </div>
                  </div>
@@ -119,10 +119,10 @@
                          </div>
                      </div>
                      <div class="col-xl-6 col-md-6 form-group">
-                         <select class="form-control" name="id_member" id="default-select" required>
+                         <select class="form-control" name="id_barber" id="default-select" required>
                              <option value="">Chọn stylelist</option>
-                             <?php foreach ($member as $m) : ?>
-                                 <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
+                             <?php foreach ($barber as $b) : ?>
+                                 <option value="<?= $b['id'] ?>"><?= $b['name'] ?></option>
                              <?php endforeach; ?>
                          </select>
                          <div class="invalid-feedback">
@@ -166,6 +166,9 @@
                      </div>
                      <div class="col-xl-6 col-md-6 form-group">
                          <input type="text" name="phone" value="<?=isset($phone)?$phone:''?>" placeholder="Số điện thoại" class="form-control" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required />
+                         <?php if (isset($errors['errors_phone'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_phone'] ?></p>
+                            <?php endif; ?>
                          <div class="invalid-feedback">
                              SĐT không hợp lệ
                          </div>
@@ -184,7 +187,7 @@
  <!-- form itself end -->
  <!-- form-login -->
  <div id="login-form" class="white-popup-block mfp-hide">
-     <div class="popup_box">
+     <div class="popup_box pb-3">
          <div class="popup_inner">
         <div class="flip">
             <div class="card border-0">
@@ -218,7 +221,7 @@
                     </div>
                      <div class="form-group">
                      <input style="width:auto;height:auto; margin-right: 10px;" id="my-input" type="checkbox"
-                         name="remember"><label for="my-input">Nhớ đăng nhập</label>
+                         name="rebarber"><label for="my-input">Nhớ đăng nhập</label>
                      </div>
                          <button type="submit" name="btnLogin" class="boxed-btn3 mb-3">Đăng nhập</button>
                          <a href="<?=ROOT?>site/forgot-password.php">Quên mật khẩu?</a>
@@ -280,6 +283,17 @@
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
+                            <input type="text" name="account" id="account" class="form-control" placeholder="Nhập tên tài khoản" value="<?= isset($account) ? $account : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập tên tài khoản
+                                </div>
+                            <?php if (isset($errors['errors_account'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_account'] ?></p>
+                            <?php endif; ?>
+                        </div>
+              </div>
+                 <div class="col-12">
+                 <div class="form-group">
                     <textarea class="form-control" minlength="15" name="address" rows="2" placeholder="Địa chỉ..." required><?= isset($address) ? $address : '' ?></textarea>
                     <div class="invalid-feedback">
                     Địa chỉ tối thiểu 15 ký tự
@@ -288,8 +302,8 @@
                         <p class="text-danger mt-2"><?= $errors['errors_address'] ?></p>
                     <?php endif; ?>
                 </div>
-              </div>
-                 
+                 </div>
+                 </div>
                 <button type="submit" name="btnRegister" class="boxed-btn3 mb-3">Đăng ký</button>
                          <button type="button" class="btn rounded-0 border-0" data-toggle="flip">Bạn đã có tài khoản? Đăng nhập</button>
 
@@ -336,8 +350,14 @@
  <script src="content/js/bootstrap-input-spinner.js"></script>
 
  <script src="content/js/main.js"></script>
-
-
+<?php if(isset($_SESSION['message'])){
+  $mes= $_SESSION['message'];
+    echo "<script>
+    $(function () {
+        toastr.success('$mes');
+    });
+</script>";
+} ?>
 
  <script>
      $(document).ready(function() {

@@ -30,15 +30,15 @@ function contact_delete($id) {
 
 //Hàm hiển thị tất cả trả lòi theo id_contact
 function list_reply_contact($id_contact){
-    $sql = "SELECT reply_contact.*,account FROM reply_contact inner join members on members.id = reply_contact.id_member 
+    $sql = "SELECT reply_contact.*,account FROM reply_contact inner join users on users.id = reply_contact.id_user 
     where id_contact = $id_contact";
     return query_exe($sql);
 }
 //Thêm dữ liệu vào bảng
-function insert_reply_contact($content,$id_member,$id_contact){
+function insert_reply_contact($content,$id_user,$id_contact){
     $data =[
         'id_contact' => $id_contact,
-        'id_member' => $id_member,
+        'id_user' => $id_user,
         'content' => $content
     ];
     return insert('reply_contact',$data);

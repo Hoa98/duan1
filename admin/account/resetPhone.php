@@ -1,16 +1,16 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
-if (member_check('phone',$phone)>0) {
-    if($member['phone']==$phone){
+if (user_check('phone',$phone)>0) {
+    if($user['phone']==$phone){
         $_SESSION['message']= 'Cập nhật liệu thành công';
         header('location: '.ROOT.'admin/?page=profile&action=profile');
         die();
     }
     $error['errors_phone'] = 'Số điện thoại đã tồn tại';
 }if (array_filter($error) == false) {
-    member_change_phone($_SESSION['member']['id'], $phone);
-    $_SESSION['member']['phone']=$phone;
+    user_change_phone($_SESSION['user']['id'], $phone);
+    $_SESSION['user']['phone']=$phone;
     $_SESSION['message']= 'Cập nhật liệu thành công';
     header('location: '.ROOT.'admin/?page=profile&action=profile');
     die();
@@ -25,7 +25,7 @@ if (member_check('phone',$phone)>0) {
                     <div class="form-group row">
                         <div for="" class="col-sm-3 text-right">Số điện thoại</div>
                         <div class="col-sm-9">
-                            <span class=""><?= $member['phone'] ?></span>
+                            <span class=""><?= $user['phone'] ?></span>
                         </div>
                     </div>
                     <div class="form-group row">

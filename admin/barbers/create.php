@@ -3,7 +3,7 @@
 if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     $okUpload = false;
-    $cus=custom_check('phone', $phone);
+    $cus=barber_check('phone', $phone);
     if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
         $okUpload = true;
         $images = uniqid() . $_FILES['images']['name'];
@@ -16,16 +16,22 @@ if (isset($_POST['btnsave'])) {
     if (empty($name)) {
         $errors['errors_name'] = 'Vui lòng nhập họ tên';
     }
+    if (empty($account)) {
+        $errors['errors_account'] = 'Vui lòng nhập tên tài khoản';
+    }
+    if (barber_check('account', $account) > 0 || user_check('account',$account)>0) {
+        $errors['errors_account'] = 'Tên tài khoản đã tồn tại';
+    }
     if (empty($phone)) {
         $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
     }
-    if (custom_check('phone', $phone) > 0 && !empty($cus['password'])){
+    if (barber_check('phone', $phone) > 0 || user_check('phone',$phone)>0){
         $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
     }
     if (empty($email)) {
         $errors['errors_email'] = 'Vui lòng nhập một địa chỉ email hợp lệ';
     }
-    if (custom_check('email', $email) > 0) {
+    if (barber_check('email', $email) > 0 || user_check('email',$email)>0) {
         $errors['errors_email'] = 'Địa chỉ email đã tồn tại';
     }
     if (empty($password)) {
@@ -35,17 +41,12 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_address'] = 'Địa chỉ không được để trống';
     }
     if (array_filter($errors) == false) {
-        $cus=custom_check('phone', $phone);
-        if(empty($cus['password'])){
-          custom_change($cus['id'], $password,$name,$address, $images,$email);
-        }else{
-        custom_insert($name, $password, $phone, $address, $email, $images);
-        }
+        barber_insert($name,$account, $password, $phone, $address, $email, $images);
         if ($okUpload) {
             move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
         }
         $_SESSION['message'] = "Thêm dữ liệu thành công";
-        header('Location:' . ROOT . 'admin/?page=custom');
+        header('Location:' . ROOT . 'admin/?page=barber');
         die();
     }
 }
@@ -58,7 +59,7 @@ if (isset($_POST['btnsave'])) {
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Thêm khách hàng</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Thêm thợ cắt</h6>
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -75,7 +76,16 @@ if (isset($_POST['btnsave'])) {
                                 <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
                             <?php endif; ?>
                         </div>
-
+                        <div class="form-group">
+                            <label for="account">Tên tài khoản</label>
+                            <input type="text" name="account" id="account" class="form-control" placeholder="Nhập tên tài khoản" value="<?= isset($account) ? $account : '' ?>" required>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập tên tài khoản
+                                </div>
+                            <?php if (isset($errors['errors_account'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_account'] ?></p>
+                            <?php endif; ?>
+                        </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
                             <input type="tel" name="phone" id="phone" class="form-control" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" placeholder="Nhập số điện thoại" value="<?= isset($phone) ? $phone : '' ?>" required>

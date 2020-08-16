@@ -22,7 +22,6 @@ $num_row = count_row('news');
     <h3>Bài viết</h3>
 </div>
 <!-- bradcam_area_end -->
-<?php include_once "layout/noti.php"; ?>
 
 <!--================Blog Area =================-->
 <section class="blog_area section-padding">
@@ -49,7 +48,7 @@ $num_row = count_row('news');
                                 </a>
                                 <p><?= substr($b['content'], 0, 520) . $str = (strlen($b['content']) > 520 ? '...' : '') ?></p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> <?= $b['member'] ?></a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i> <?= $b['user'] ?></a></li>
                                     <li><a href="#"><i class="fa fa-eye mr-1" aria-hidden="true"></i> <?= $b['views'] ?></a></li>
                                 </ul>
                             </div>

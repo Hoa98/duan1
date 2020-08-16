@@ -11,10 +11,10 @@ if($select_search==1){
     header('Location: ' .ROOT . "admin/?page=new&action=search&keyword=$keyword");
     die();
 }else if($select_search==4){
-    header('Location: ' .ROOT . "admin/?page=custom&action=search&keyword=$keyword");
+    header('Location: ' .ROOT . "admin/?page=barber&action=search&keyword=$keyword");
     die();
 }else if($select_search==5){
-    header('Location: ' .ROOT . "admin/?page=member&action=search&keyword=$keyword");
+    header('Location: ' .ROOT . "admin/?page=user&action=search&keyword=$keyword");
     die();
 }else{
     header('Location: ' .ROOT . "admin/?page=category&action=search&keyword=$keyword");

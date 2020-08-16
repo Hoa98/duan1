@@ -12,9 +12,9 @@ function total_price($cart){
   }
 
 extract($_REQUEST);
-if(isset($_SESSION['customer'])){
-    $_SESSION['cartCustom'][$_SESSION['customer']['id']][$id_pro]['quantity']=$qty;
-    $cart = $_SESSION['cartCustom'][$_SESSION['customer']['id']];
+if(isset($_SESSION['user'])){
+    $_SESSION['cartCustom'][$_SESSION['user']['id']][$id_pro]['quantity']=$qty;
+    $cart = $_SESSION['cartCustom'][$_SESSION['user']['id']];
 }else{
     $_SESSION['cart'][$id_pro]['quantity'] = $qty;
     $cart =$_SESSION['cart'];

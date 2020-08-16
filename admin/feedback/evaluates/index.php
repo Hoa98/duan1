@@ -40,6 +40,7 @@ $evaluate = list_all_evaluate();
                                     <input type="checkbox" name="checkall" class="checkall">
                                 </th>
                                 <th>Mã đánh giá</th>
+                                <th>Mã lịch hẹn</th>
                                 <th>Họ tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Thợ cắt</th>
@@ -55,6 +56,7 @@ $evaluate = list_all_evaluate();
                                 <input type="checkbox" name="checkall" class="checkall">
                                 </th>
                                 <th>Mã đánh giá</th>
+                                <th>Mã lịch hẹn</th>
                                 <th>Họ tên khách hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Thợ cắt</th>
@@ -71,8 +73,9 @@ $evaluate = list_all_evaluate();
                                         <input type="checkbox" name="id[]" id="" value="<?= $e['id'] ?>">
                                     </td>
                                     <td><?= $e['id'] ?></td>
-                                    <td><?= $e['customer_name'] ?></td>
-                                    <td><?=$e['customer_phone']?></td>
+                                    <td><?= $e['id_appointment']?></td>
+                                    <td><?= $e['name'] ?></td>
+                                    <td><?=$e['user_phone']?></td>
                                     <td><?= $e['account'] ?></td>
                                     <td><?= $e['services_name'] ?></td>
                                     <td><?= $e['content'] ?></td>

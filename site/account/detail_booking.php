@@ -42,15 +42,9 @@ if (isset($_GET['id'])) {
             </div>
         </div>
         <div class="row mb-5">
-            <?php if (isset($_SESSION['member'])) : ?>
                 <div class="col-12 text-right align-content-end">
-                    <a href="<?= ROOT ?>?page=profile&action=rating&id=<?= $bd['id'] ?>&id_booking=<?=$id?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Xem đánh giá</a>
+                    <a href="<?= ROOT ?>?page=profile&action=rating&id=<?= $bd['id_service'] ?>&id_booking=<?=$id?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Xem đánh giá</a>
                 </div>
-            <?php else : ?>
-                <div class="col-12 text-right align-content-end">
-                    <a href="<?= ROOT ?>?page=profile&action=rating&id=<?= $bd['id'] ?>&id_booking=<?=$id?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Đánh giá</a>
-                </div>
-            <?php endif; ?>
         </div>
         <?php
         $price_new = $bd['price'] - ($bd['price'] * $bd['sale']);

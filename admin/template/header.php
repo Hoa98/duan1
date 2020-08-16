@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center mb-3 pt-5" href="<?=ROOT?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center mb-3 pt-5" href="<?=ROOT?>admin">
                 <img src="../images/<?=$setting['logo']?>" alt="logo" width="90" height="70">
             </a>
 
@@ -74,12 +74,12 @@
              <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Người dùng</span>
+                    <span>Thành viên</span>
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=member">Quản lý thành viên</a>
-                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=custom">Quản lý khách hàng</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=user">Quản lý người dùng</a>
+                        <a class="collapse-item" href="<?= ROOT ?>admin/?page=barber">Quản lý thợ cắt</a>
                     </div>
                 </div>
             </li>
@@ -190,8 +190,8 @@
                         <option value="1">Sản phẩm</option>
                         <option value="2">Dịch vụ</option>
                         <option value="3">Tin tức</option>
-                        <option value="4">Khách hàng</option>
-                        <option value="5">Nhân viên</option>
+                        <option value="4">Thợ cắt</option>
+                        <option value="5">Người dùng</option>
                         <option value="6">Danh mục</option>
                     </select>
                             <div class="input-group-append">
@@ -231,8 +231,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="../images/users/<?=$_SESSION['member']['images']?>">
-                                <span class="ml-2 mr-2 text-black-50"><?=$_SESSION['member']['account']?></span>
+                                <img class="img-profile rounded-circle" src="../images/users/<?=$_SESSION['user']['images']?>">
+                                <span class="ml-2 mr-2 text-black-50"><?=$_SESSION['user']['account']?></span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

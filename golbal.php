@@ -3,21 +3,21 @@ session_start();
 /*
  * Định nghĩa các url cần thiết được sử dụng trong website
  */
-define('ROOT','http://localhost/Duan1/');
+define('ROOT','http://polybarber.ga/');
 
 function check_session(){
-    if(isset($_SESSION['member'])){
+    if(isset($_SESSION['user'])){
         header('location:'.ROOT.'admin');
         die;
     }
     return;
 }
 function check_role(){
-    if(isset($_SESSION['member'])){
-        if($_SESSION['member']['role']==1){
+    if(isset($_SESSION['user'])){
+        if($_SESSION['user']['role']==1){
             return;
         }
-        if($_SESSION['member']['role']!=1){
+        if($_SESSION['user']['role']!=1){
             header('location:'.ROOT);die();
         }
     }

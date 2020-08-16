@@ -16,7 +16,6 @@ $gallery = library_list_limit(0, 10);
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Tìm kiếm bài viết</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 
@@ -50,7 +49,7 @@ $gallery = library_list_limit(0, 10);
                                 </a>
                                 <p><?= substr($b['content'], 0, 520) . $str = (strlen($b['content']) > 520 ? '...' : '') ?></p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> <?= $b['member'] ?></a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i> <?= $b['user'] ?></a></li>
                                     <li><a href="#"><i class="fa fa-eye mr-1" aria-hidden="true"></i> <?= $b['views'] ?></a></li>
                                 </ul>
                             </div>

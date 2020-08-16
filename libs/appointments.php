@@ -3,18 +3,18 @@ require_once "database.php";
 
 //Hàm hiển thị toàn bộ danh mục
 function list_all_appointment(){
-    $sql = "SELECT appointments.*, account, customers.name,customers.phone ,time
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+    $sql = "SELECT appointments.*, barbers.account, users.name,users.phone ,time,barbers.images as barber_images
+    from appointments inner join barbers on barbers.id = appointments.id_barber
+    inner join users on users.id = appointments.id_user
     inner join word_time on word_time.id = appointments.id_time ORDER BY id DESC";
     return query_exe($sql);
 }
 
 //Ham hien thi lich hen theo cancel
 function appointment_list_cancel($cancel) {
-    $sql = "SELECT appointments.*, account, customers.name,customers.phone ,time
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+    $sql = "SELECT appointments.*, barbers.account, users.name,users.phone ,time,barbers.images as barber_images
+    from appointments inner join barbers on barbers.id = appointments.id_barber
+    inner join users on users.id = appointments.id_user
     inner join word_time on word_time.id = appointments.id_time where cancel = $cancel ORDER BY id DESC";
     return query_exe($sql);
 }
@@ -24,15 +24,15 @@ function list_one_appointment($id){
     return listOne('appointments','id',$id);
 }
 //Hamf lấy 1 dòng  mới thêm vào theo
-function list_top_app($id_customer){
-    $sql = "SELECT * from appointments  where id_customer =$id_customer ORDER BY id DESC limit 0,1";
+function list_top_app($id_user){
+    $sql = "SELECT * from appointments  where id_user =$id_user ORDER BY id DESC limit 0,1";
     return query_limit($sql);
 }
 //Thêm dữ liệu vào bảng
-function insert_appointment($id_member,$id_customer,$day,$id_time){
+function insert_appointment($id_barber,$id_user,$day,$id_time){
     $data =[
-        'id_member' => $id_member,
-        'id_customer'=>$id_customer,
+        'id_barber' => $id_barber,
+        'id_user'=>$id_user,
         'day'=>$day,
         'id_time'=>$id_time,
         'cancel'=>0
@@ -53,40 +53,40 @@ function appointment_delete($id) {
 }
 
 //Ham hien thi toan bo lich hen theo id_customer
-function appointment_custom($id_customer){
-    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone,members.name as member_name,members.images as member_images
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+function appointment_user($id_user){
+    $sql = "SELECT appointments.*, barbers.account,time,users.name,users.phone,barbers.name as barber_name,barbers.images as barber_images
+    from appointments inner join users on users.id = appointments.id_user
+    inner join barbers on barbers.id = appointments.id_barber
     inner join word_time on word_time.id = appointments.id_time 
-    where id_customer= $id_customer ORDER BY id DESC";
+    where id_user= $id_user ORDER BY id DESC";
     return query_exe($sql);
 }
 
-//Ham hien thi toan bo lich hen theo id_member
-function appointment_member($id_member){
-    $sql = "SELECT appointments.*, account, customers.name,customers.phone ,time
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+//Ham hien thi toan bo lich hen theo id_barber
+function appointment_barber($id_barber){
+    $sql = "SELECT appointments.*, barbers.account, users.name,users.phone ,time,barbers.images as barber_images
+    from appointments inner join users on users.id = appointments.id_user
+    inner join barbers on barbers.id = appointments.id_barber
     inner join word_time on word_time.id = appointments.id_time 
-    where id_member= $id_member ORDER BY id DESC";
+    where id_barber= $id_barber ORDER BY id DESC";
     return query_exe($sql);
 }
-//Ham hien thi lich hen theo id_customer va trang thai
-function appointment_custom_status($id_customer,$cancel){
-    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone,members.name as member_name,members.images as member_images
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+//Ham hien thi lich hen theo id_user va trang thai
+function appointment_custom_status($id_user,$cancel){
+    $sql = "SELECT appointments.*, barbers.account,time,users.name,users.phone,barbers.name as barber_name,barbers.images as barber_images
+    from appointments inner join users on users.id = appointments.id_user
+    inner join barbers on barbers.id = appointments.id_barber
     inner join word_time on word_time.id = appointments.id_time 
-    where id_customer= $id_customer and cancel=$cancel ORDER BY id DESC";
+    where id_user= $id_user and cancel=$cancel ORDER BY id DESC";
     return query_exe($sql);
 }
 
-//Ham hien thi lich hen theo id_member va trang thai
-function appointment_member_status($id_member,$cancel){
-    $sql = "SELECT appointments.*, account,time,customers.name,customers.phone
-    from appointments inner join customers on customers.id = appointments.id_customer
-    inner join members on members.id = appointments.id_member
+//Ham hien thi lich hen theo id_barber va trang thai
+function appointment_barber_status($id_barber,$cancel){
+    $sql = "SELECT appointments.*, barbers.account,time,users.name,users.phone,barbers.images as barber_images
+    from appointments inner join users on users.id = appointments.id_user
+    inner join barbers on barbers.id = appointments.id_barber
     inner join word_time on word_time.id = appointments.id_time 
-    where id_member= $id_member and cancel=$cancel ORDER BY id DESC";
+    where id_barber= $id_barber and cancel=$cancel ORDER BY id DESC";
     return query_exe($sql);
 }

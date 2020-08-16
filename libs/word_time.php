@@ -10,10 +10,12 @@ function list_all_time(){
 function list_one_time($id){
     return listOne('word_time','id',$id);
 }
-
+function check_time($id,$val){
+    return listOne('word_time',$id,$val);
+}
 //Ham lay khung gio trống
-function appointment_list_time($id_member,$day) {
-    $sql = "SELECT * from word_time WHERE id not in (SELECT id_time from appointments WHERE id_member=$id_member and day='$day')";
+function appointment_list_time($id_barber,$day) {
+    $sql = "SELECT * from word_time WHERE id not in (SELECT id_time from appointments WHERE id_barber=$id_barber and day='$day')";
     return query_exe($sql);
 }
 

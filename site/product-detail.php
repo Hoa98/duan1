@@ -6,20 +6,14 @@ update_view($pro['id']);
 if (isset($_POST['btnGui'])) {
     extract($_REQUEST);
     #reply
-    if ($_SESSION['member']['role'] == 1 || $_SESSION['member']['role'] == 2) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], 0, true, $value);
-        if (isset($_SERVER["HTTP_REFERER"])) {
-            header("Location: " . $_SERVER["HTTP_REFERER"]);
-            die();
-        }
-    } elseif ($_SESSION['member']['role'] == 3) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], 0, false, $value);
+    if ($_SESSION['user']['role'] == 1 || $_SESSION['user']['role'] == 2) {
+        insert_comment($content, $pro['id'],$_SESSION['user']['id'], 0, true, $value);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
     } else {
-        insert_comment($content, $pro['id'], $_SESSION['customer']['id'], '', 0, false, $value);
+        insert_comment($content, $pro['id'], $_SESSION['user']['id'],0, false, $value);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
@@ -30,20 +24,14 @@ if (isset($_POST['btnGui'])) {
 if (isset($_POST['btnSave'])) {
     extract($_REQUEST);
     
-    if ($_SESSION['member']['role'] == 1 || $_SESSION['member']['role'] == 2) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], $rating, true, 0);
-        if (isset($_SERVER["HTTP_REFERER"])) {
-            header("Location: " . $_SERVER["HTTP_REFERER"]);
-            die();
-        }
-    } elseif ($_SESSION['member']['role'] == 3) {
-        insert_comment($content, $pro['id'], '', $_SESSION['member']['id'], $rating, false, 0);
+    if ($_SESSION['user']['role'] == 1 || $_SESSION['user']['role'] == 2) {
+        insert_comment($content, $pro['id'],$_SESSION['user']['id'], $rating, true, 0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
         }
     } else {
-        insert_comment($content, $pro['id'], $_SESSION['customer']['id'], '', $rating, false, 0);
+        insert_comment($content, $pro['id'], $_SESSION['user']['id'],$rating, false, 0);
         if (isset($_SERVER["HTTP_REFERER"])) {
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             die();
@@ -55,7 +43,6 @@ if (isset($_POST['btnSave'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Chi tiết sản phẩm</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 <div class="container section-padding">
@@ -120,7 +107,7 @@ if (isset($_POST['btnSave'])) {
                                                 <a class="bg-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo getCurURL(); ?>" target="_blank"><span class="fa fa-facebook-f"></span> Share</a>
                                                 <a class="bg-twitter" href="https://twitter.com/share?text=<?php echo urlencode($pro['name']); ?>&url=<?php echo getCurURL(); ?>" target="_blank"><span class="fa fa-twitter"></span> Tweet</a>
                                                 <a class="bg-email" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to&su=<?= $pro['name'] ?>&body=<?php echo getCurURL(); ?>" target="_blank"><span class="fa fa-envelope"></span> Gmail</a>
-                                                <a class="bg-pinterest" href="https://www.pinterest.com/pin/create/button/?url=<?php echo getCurURL(); ?>&media=http://localhost/Ass_duanmau/images/products/<?= $pro['images'] ?>&description=<?= $pro['name'] ?>" target="_blank"><span class="fa fa-pinterest"></span> Pinterest</a>
+                                                <a class="bg-pinterest" href="https://www.pinterest.com/pin/create/button/?url=<?php echo getCurURL(); ?>&media=<?=ROOT?>images/products/<?= $pro['images'] ?>&description=<?= $pro['name'] ?>" target="_blank"><span class="fa fa-pinterest"></span> Pinterest</a>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +147,7 @@ if (isset($_POST['btnSave'])) {
                                                                     </div>
                                                                     <p class="box-comment-text mb-0"><?= $value['content'] ?></p>
                                                                     <!-- Bị ẩn khi người dùng chưa đăng nhập  -->
-                                                                    <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                                                    <?php if (isset($_SESSION['user']['id'])) : ?>
                                                                         <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
                                                                             lời</button>
                                                                         <form action="" class="collapse form-contact mt-3 needs-validation" id="reply<?= $value['id'] ?>" method="post" novalidate>
@@ -193,7 +180,7 @@ if (isset($_POST['btnSave'])) {
                                                                     </div>
                                                                     <p class="box-comment-text mb-0"><?= $value['content'] ?></p>
                                                                     <!-- Bị ẩn khi người dùng chưa đăng nhập  -->
-                                                                    <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                                                    <?php if (isset($_SESSION['user']['id'])) : ?>
                                                                         <button type="button" class="btn p-0 text-primary" data-toggle="collapse" data-target="#reply<?= $value['id'] ?>" aria-controls="reply<?= $value['id'] ?>">Trả
                                                                             lời</button>
                                                                         <form action="" class="collapse needs-validation form-contact mt-3" id="reply<?= $value['id'] ?>" method="post" novalidate>
@@ -217,7 +204,7 @@ if (isset($_POST['btnSave'])) {
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
 
-                                            <?php if (isset($_SESSION['customer']['id'])) : ?>
+                                            <?php if (isset($_SESSION['user']['id'])) : ?>
                                                 <button type="button" class="btn mt-5 mb-3" data-toggle="collapse" data-target="#comment" aria-controls="comment">Viết nhận xét của
                                                     bạn</button>
                                                 <!-- Bị ẩn khi khách hàng chưa đăng nhập -->
@@ -235,6 +222,7 @@ if (isset($_POST['btnSave'])) {
                                                         bỏ</button>
 
                                                 </form>
+                                                <?php elseif(isset($_SESSION['barber'])): ?>
                                             <?php else : ?>
                                                 <p class="ml-3"><strong>Bạn cần đăng nhập mới có thể bình luận</strong></p>
                                             <?php endif; ?>

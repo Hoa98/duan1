@@ -66,7 +66,7 @@ if (isset($_POST['btn-del'])) {
                                     <td>
                                         <img src="../images/sliders/<?= $r['images'] ?>" width="90" alt="">
                                     </td>
-                                    <td><?=$r['member']?></td>
+                                    <td><?=$r['user']?></td>
                                     <td>
                                         <a href="<?= ROOT ?>admin/?page=new&action=edit&id=<?= $r['id'] ?>" class="btn btn-warning d-block p-2 w-75 mb-2"><i class="far fa-edit"></i></a>
                                         <a href="<?= ROOT ?>admin/?page=new&id=<?= $r['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger d-block p-2 w-75"><i class="far fa-trash-alt"></i></a>

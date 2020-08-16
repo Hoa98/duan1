@@ -8,8 +8,8 @@ require_once '../libs/gallery.php';
 require_once '../libs/types.php';
 require_once '../libs/services.php';
 require_once '../libs/word_time.php';
-require_once '../libs/customers.php';
-require_once '../libs/members.php';
+require_once '../libs/barbers.php';
+require_once '../libs/users.php';
 require_once '../libs/news.php';
 require_once '../libs/libraries.php';
 require_once '../libs/appointments.php';
@@ -125,37 +125,37 @@ switch ($page) {
                 break;
         }
         break;
-    case 'member':
+    case 'user':
         $action = isset($_GET['action']) ? $_GET['action'] : '';
         switch ($action) {
             case '':
-                include_once 'members/index.php';
+                include_once 'users/index.php';
                 break;
             case 'add':
-                include_once 'members/create.php';
+                include_once 'users/create.php';
                 break;
             case 'search':
-                include_once 'members/search.php';
+                include_once 'users/search.php';
                 break;
             case 'edit':
-                include_once 'members/edit.php';
+                include_once 'users/edit.php';
                 break;
             default:
                 include_once "404.php";
                 break;
         }
         break;
-    case 'custom':
+    case 'barber':
         $action = isset($_GET['action']) ? $_GET['action'] : '';
         switch ($action) {
             case '':
-                include_once 'customers/index.php';
+                include_once 'barbers/index.php';
                 break;
             case 'add':
-                include_once 'customers/create.php';
+                include_once 'barbers/create.php';
                 break;
             case 'search':
-                include_once 'customers/search.php';
+                include_once 'barbers/search.php';
                 break;
             default:
                 include_once "404.php";

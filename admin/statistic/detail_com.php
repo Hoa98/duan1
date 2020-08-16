@@ -18,9 +18,7 @@ if (isset($_POST['btn-del'])) {
 if (isset($_GET['id'])) {
     $id_product = $_GET['id'];
     $pro = product_list_one('id', $id_product);
-    $comment_custom = comment_custom_by_pro($id_product);
-    $comment_member = comment_member_by_pro($id_product);
-    $comment = array_merge($comment_custom, $comment_member);
+    $comment =  comment_by_pro($id_product);
 }
 
 if (empty($pro)) {

@@ -2,8 +2,8 @@
 ob_start();
 require_once "golbal.php";
 require_once "libs/libraries.php";
-require_once "libs/members.php";
-require_once "libs/customers.php";
+require_once "libs/users.php";
+require_once "libs/barbers.php";
 require_once "libs/services.php";
 require_once "libs/products.php";
 require_once "libs/categories.php";
@@ -21,9 +21,7 @@ require_once "libs/order-detail.php";
 require_once "libs/contact.php";
 require_once "libs/evaluates.php";
 
-if (isset($_SESSION['member'])) {
-    $_SESSION['customer'] = $_SESSION['member'];
-}
+
 extract($_REQUEST);
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 switch ($page) {
@@ -78,8 +76,8 @@ switch ($page) {
             $view_page = "site/search_blog.php";
             break;
     case 'logout':
-        unset($_SESSION['member']);
-        unset($_SESSION['customer']);
+        unset($_SESSION['barber']);
+        unset($_SESSION['user']);
         header('location:' . ROOT);
         die();
         break;

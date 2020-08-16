@@ -1,10 +1,9 @@
  <?php require_once "layout/slider.php"; ?>
- <?php include_once "layout/noti.php"; ?>
  <?php
     $service1 = service_list_limit(0, 5);
     $service2 = service_list_limit(5, 5);
     $gallery = library_list_limit(0, 5);
-    $barber = member_list_limit(0, 4);
+    $barber = barber_limit(0, 4);
     $setting = list_limit_setting();
     ?>
  <!-- about_area_start -->
@@ -35,7 +34,7 @@
                          của chúng tôi . Chúng tối đã sẵn sàng mang đến cho bạn dịch vụ
                          tốt nhất từ trước đến nay.
                      </p>
-                     <a href="#" class="boxed-btn3">Đặt Lịch Ngay</a>
+                     <a href="#test-form" class="boxed-btn3 popup-with-form">Đặt Lịch Ngay</a>
                  </div>
              </div>
          </div>
@@ -145,13 +144,7 @@
                          </div>
                          <div class="master_name text-center">
                              <h3><?= $b['name'] ?></h3>
-                             <?php if ($b['role'] == 1) : ?>
-                                 <p>Quản trị</p>
-                             <?php elseif ($b['role'] == 2) : ?>
-                                 <p>Lễ tân</p>
-                             <?php else : ?>
                                  <p>Thợ cắt</p>
-                             <?php endif; ?>
                          </div>
                      </div>
                  </div>

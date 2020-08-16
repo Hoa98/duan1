@@ -20,7 +20,7 @@ if (isset($_REQUEST['btnsave'])) {
     $mail->Host         = 'smtp.gmail.com';
     $mail->Port         = 465;
     $mail->Username     = 'hoact98bg@gmail.com';
-    $mail->Password     = '27B08c98';
+    $mail->Password     = '27B08c98a';
 
 
     //Thiết lập thông tin người gửi và mail người gửi
@@ -48,7 +48,7 @@ if (isset($_REQUEST['btnsave'])) {
         $_SESSION['message'] = 'Error: ' . $mail->ErrorInfo;
     } else {
         $_SESSION['message'] = 'Gửi email thành công';
-        insert_reply_contact($content,$_SESSION['member']['id'],$contact['id']);
+        insert_reply_contact($content,$_SESSION['user']['id'],$contact['id']);
     }
     header('Location:' . ROOT . 'admin/?page=contact');
     die();

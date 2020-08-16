@@ -3,10 +3,16 @@ $id = $_GET['id'];
 $times = list_one_time($id);
 if (isset($_POST['btnUpdate'])) {
     extract($_REQUEST);
+    if (check_time('time', $time)>0) {
+       if($times['time']!=$time){
+        $errors['errors_time'] = 'Khung giờ đã tồn tại';
+       }
+    }if(array_filter($errors)==false){
     time_update($id, $time);
     $_SESSION['message']= 'Cập nhật dữ liệu thành công';
     header('Location:'. ROOT . 'admin/?page=time');
     die();
+    }
 }
 ?>
 <!-- Begin Page Content -->
@@ -25,6 +31,9 @@ if (isset($_POST['btnUpdate'])) {
                     <div class="invalid-feedback">
                                 Vui lòng nhập khung giờ
                                 </div>
+                                <?php if (isset($errors['errors_time'])) : ?>
+                        <p class="text-danger mt-2"><?= $errors['errors_time'] ?></p>
+                    <?php endif; ?>
                 </div>
                 <input type="hidden" name="id" value="<?= $times['id'] ?>">
                 <button type="submit" name="btnUpdate" class="btn btn-primary">Ghi lại</button>

@@ -11,10 +11,12 @@ if (isset($_POST['btnsave'])) {
     }
     if (!file_exists($_FILES["images"]["tmp_name"])){
         $errors['errors_img'] = 'Vui lòng chọn ảnh tin tức';
+    }if(check_new('title',$title)>0){
+        $errors['errors_title'] = 'Tiêu đề tin tức đã tồn tại';
     }
     if(array_filter($errors)==false){
-        $id_member =$_SESSION['member']['id']; //lấy session member
-        insert_new($title,$content,$images,$id_member);
+        $id_user =$_SESSION['user']['id']; //lấy session user
+        insert_new($title,$content,$images,$id_user);
     if ($okUpload) {
         move_uploaded_file($_FILES['images']['tmp_name'], '../images/sliders/' . $images);
     }
@@ -43,6 +45,9 @@ if (isset($_POST['btnsave'])) {
                             <div class="invalid-feedback">
                                 Vui lòng nhập tiêu đề
                                 </div>
+                                <?php if (isset($errors['errors_title'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_title'] ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-md-6">

@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $app = list_one_appointment($id);
-    $customer = custom_check('id', $app['id_customer']);
+    $user = user_check('id', $app['id_user']);
     $app_detail = all_app_detail($app['id']);
 }
 if (isset($_POST['btnsave'])) {
@@ -38,7 +38,7 @@ $service = service_list_all();
                     <div class="col-6">
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
-                            <input name="phone" id="phone" value="<?= isset($customer['phone']) ? $customer['phone'] : '' ?>" class="form-control" readonly>
+                            <input name="phone" id="phone" value="<?= isset($user['phone']) ? $user['phone'] : '' ?>" class="form-control" readonly>
                         </div>
                         <input type="hidden" name="id" value="<?=$app['id']?>">
                         <div class="form-group">

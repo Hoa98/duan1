@@ -5,7 +5,7 @@ if (isset($_POST['btnsave'])) {
     if (empty($content)) {
         $errors['errors-content'] = 'Vui lòng nhập nội dung';
     }if(array_filter($errors)==false){
-    insert_comment($content,$com['id_product'],'',$_SESSION['member']['id'],'0',true,$com['id']);
+    insert_comment($content,$com['id_product'],$_SESSION['user']['id'],'0',true,$com['id']);
     $_SESSION['message'] = "Trả lời bình luận thành công";
     header('Location:' . ROOT . 'admin/?page=comment');
     die();

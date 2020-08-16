@@ -1,27 +1,24 @@
 <?php
 require_once '../golbal.php';
-require_once '../libs/members.php';
+require_once '../libs/users.php';
 //Nếu đã đăng nhập rồi thì check_session
 if (isset($_COOKIE['account'])) {
   $account = $_COOKIE['account'];
   $password = $_COOKIE['password'];
 }
-if(isset($_SESSION['customer'])){
-  header('location:' . ROOT);
-  die();
-}
+
 check_session();
 extract($_REQUEST);
 if (isset($btnlogin)) {
-  if (check_member($account)) {
+  if (check_user($account)) {
     //Trong trường hợp account tồn tại thì lấy ra dữ liệu
-    $member = check_member($account);
-    if (password_verify($password, $member['password'])) {
-      $_SESSION['member'] = $member;
-      if ($_SESSION['member']['role'] == 1) {
+    $user = check_user($account);
+    if (password_verify($password, $user['password'])) {
+      $_SESSION['user'] = $user;
+      if ($_SESSION['user']['role'] == 1) {
         header('location:' . ROOT . 'admin');
       }
-      if ($_SESSION['member']['role'] != 1) {
+      if ($_SESSION['user']['role'] != 1) {
         header('location:' . ROOT);
       }
       if (isset($remember)) {

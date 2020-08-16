@@ -5,7 +5,6 @@
  <div class="bradcam_area breadcam_bg overlay">
             <h3>Về chúng tôi</h3>
         </div>
-        <?php include_once "layout/noti.php"; ?>
         <!-- bradcam_area_end -->
 <div class="about_area">
 <div class="container">

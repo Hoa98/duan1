@@ -2,7 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-$user = member_list_role(1);
+$user = user_list_role(1);
 if (isset($_REQUEST['btnContact'])) {
     extract($_REQUEST);
     //Gửi mail
@@ -21,7 +21,7 @@ if (isset($_REQUEST['btnContact'])) {
     $mail->Host         = 'smtp.gmail.com';
     $mail->Port         = 465;
     $mail->Username     = 'hoact98bg@gmail.com';
-    $mail->Password     = '27B08c98';
+    $mail->Password     = '27B08c98a';
 
 
     //Thiết lập thông tin người gửi và mail người gửi
@@ -52,10 +52,11 @@ if (isset($_REQUEST['btnContact'])) {
     if ($mail->send() == false) {
         $_SESSION['message'] = 'Error: ' . $mail->ErrorInfo;
     } else {
-        $_SESSION['message'] = 'Thành công';
+        $_SESSION['message'] = 'Gửi liên hệ thành công! Chúng tôi sẽ phản hồi lại sớm.';
         insert_contact($content,$name,$phone,$email);
     }
     header('location:' . $_SERVER['REQUEST_URI']);
+    die();
 }
 
 ?>
@@ -63,7 +64,6 @@ if (isset($_REQUEST['btnContact'])) {
 <div class="bradcam_area breadcam_bg overlay">
     <h3>Liên hệ</h3>
 </div>
-<?php include_once "layout/noti.php"; ?>
 <!-- bradcam_area_end -->
 
 <!-- ================ contact section start ================= -->

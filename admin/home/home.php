@@ -1,6 +1,6 @@
 <?php
-$custom = count_row('customers');
-$member = count_row('members');
+$barber = count_row('barbers');
+$user = count_row('users');
 $service = count_row('services');
 $appointments = count_row('appointments');
 $product = count_row('products');
@@ -34,15 +34,15 @@ $order_cancelled =list_status_order('Đã hủy');
                         <i class="fas fa-users icon-3x"></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?= $custom ?></p>
-                        Khách hàng
+                        <p class="qty-3x"><?= $barber ?></p>
+                       Thợ cắt
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=custom" class="text-success">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=custom" class="text-success"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=barber" class="text-success">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=barber" class="text-success"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -75,15 +75,15 @@ $order_cancelled =list_status_order('Đã hủy');
                         <i class="fas fa-users icon-3x"></i>
                     </div>
                     <div class="col-6 text-right">
-                        <p class="qty-3x"><?= $member ?></p>
-                        Nhân viên
+                        <p class="qty-3x"><?= $user ?></p>
+                        Người dùng
                     </div>
                 </div>
             </div>
             <div class="bg-gray-200 border-top p-3 rounded-bottom">
                 <div class="row">
-                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=member" class="text-warning">Xem chi tiết</a></div>
-                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=member" class="text-warning"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
+                    <div class="col-6"><a href="<?= ROOT ?>/admin/?page=user" class="text-warning">Xem chi tiết</a></div>
+                    <div class="col-6 text-right"><a href="<?= ROOT ?>/admin/?page=user" class="text-warning"><i class="fas fa-arrow-alt-circle-right"></i></a></div>
                 </div>
             </div>
         </div>

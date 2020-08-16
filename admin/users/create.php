@@ -15,7 +15,7 @@ if (isset($_POST['btnsave'])) {
     if (empty($account)) {
         $errors['errors_account'] = 'Vui lòng nhập tên tài khoản';
     }
-    if (member_check('account', $account) > 0) {
+    if (user_check('account', $account) > 0 || barber_check('account', $account) > 0) {
         $errors['errors_account'] = 'Tên tài khoản đã tồn tại';
     }
     if (empty($name)) {
@@ -24,13 +24,13 @@ if (isset($_POST['btnsave'])) {
     if (empty($phone)) {
         $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
     }
-    if (member_check('phone', $phone) > 0) {
+    if (user_check('phone', $phone) > 0 || barber_check('phone', $phone) > 0) {
         $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
     }
     if (empty($email)) {
         $errors['errors_email'] = 'Vui lòng nhập một địa chỉ email hợp lệ';
     }
-    if (member_check('email', $email) > 0) {
+    if (user_check('email', $email) > 0 || barber_check('email', $email) > 0) {
         $errors['errors_email'] = 'Địa chỉ email đã tồn tại';
     }
     if (empty($password)) {
@@ -40,12 +40,12 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_address'] = 'Địa chỉ không được để trống';
     }
     if (array_filter($errors) == false) {
-        member_insert($account, $password, $name,$address,$phone, $email, $images, $role);
+        user_insert($account, $password, $name,$address,$phone, $email, $images, $role);
         if ($okUpload) {
             move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
         }
         $_SESSION['message'] = "Thêm dữ liệu thành công";
-        header('Location:' . ROOT . 'admin/?page=member');
+        header('Location:' . ROOT . 'admin/?page=user');
         die();
     }
 }
@@ -122,7 +122,7 @@ if (isset($_POST['btnsave'])) {
                                 <option value="">Chọn vai trò</option>
                                 <option value="1">Quản trị</option>
                                 <option value="2">Lễ tân</option>
-                                <option value="3">Thợ cắt</option>
+                                <option value="3">Khách hàng</option>
                             </select>
                             <div class="invalid-feedback">
                                 Vui lòng chọn vai trò

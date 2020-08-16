@@ -1,13 +1,20 @@
 <?php
-if (isset($_SESSION['member'])) {
-    if ($_SESSION['member']['role'] == 3) {
-        $booking = appointment_member($_SESSION['member']['id']);
-        $booking_early = appointment_member_status($_SESSION['member']['id'], 0);
-        $booking_wait = appointment_member_status($_SESSION['member']['id'], 1);
-        $booking_doing = appointment_member_status($_SESSION['member']['id'], 2);
-        $booking_did = appointment_member_status($_SESSION['member']['id'], 3);
-        $booking_cancel = appointment_member_status($_SESSION['member']['id'], 4);
-    } else {
+if (isset($_SESSION['barber'])) {
+        $booking =  appointment_barber($_SESSION['barber']['id']);
+        $booking_early = appointment_barber_status($_SESSION['barber']['id'], 0);
+        $booking_wait = appointment_barber_status($_SESSION['barber']['id'], 1);
+        $booking_doing = appointment_barber_status($_SESSION['barber']['id'], 2);
+        $booking_did = appointment_barber_status($_SESSION['barber']['id'], 3);
+        $booking_cancel = appointment_barber_status($_SESSION['barber']['id'], 4);
+} else {
+    if($_SESSION['user']['role']==3){
+        $booking = appointment_user($user['id']);
+        $booking_early = appointment_custom_status($user['id'], 0);
+        $booking_wait = appointment_custom_status($user['id'], 1);
+        $booking_doing = appointment_custom_status($user['id'], 2);
+        $booking_did = appointment_custom_status($user['id'], 3);
+        $booking_cancel = appointment_custom_status($user['id'], 4);
+    }else{
         $booking = list_all_appointment();
         $booking_early = appointment_list_cancel(0);
         $booking_wait = appointment_list_cancel(1);
@@ -15,14 +22,6 @@ if (isset($_SESSION['member'])) {
         $booking_did = appointment_list_cancel(3);
         $booking_cancel = appointment_list_cancel(4);
     }
-} else {
-    $customer = custom_check('phone', $custom['phone']);
-    $booking = appointment_custom($customer['id']);
-    $booking_early = appointment_custom_status($customer['id'], 0);
-    $booking_wait = appointment_custom_status($customer['id'], 1);
-    $booking_doing = appointment_custom_status($customer['id'], 2);
-    $booking_did = appointment_custom_status($customer['id'], 3);
-    $booking_cancel = appointment_custom_status($customer['id'], 4);
 }
 if (isset($_REQUEST['btnUpdate'])) {
     extract($_REQUEST);
@@ -75,27 +74,21 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-12 text-right align-content-end">
@@ -116,34 +109,27 @@ if (isset($_REQUEST['btnUpdate'])) {
                 <div class="order mt-5">
                     <?php foreach ($booking_early as $b) : ?>
                         <div class="row border-bottom pb-2 mb-3">
-                            <div class="col-2">
+                        <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
-                            <?php if (isset($_SESSION['member'])) : ?>
-                                <?php if ($_SESSION['member']['role'] == 3) : ?>
+                            <?php if (isset($_SESSION['barber'])) : ?>
                                     <div class="col-12 text-right align-content-end">
                                         <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
                                     </div>
@@ -155,14 +141,6 @@ if (isset($_REQUEST['btnUpdate'])) {
                                     <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
                                 </div>
                                 <?php endif; ?>
-                            <?php else : ?>
-                                <div class="col-8 text-right align-content-end">
-                                    <a href="<?= ROOT ?>?page=profile&action=booking&btnUpdate&id=<?= $b['id'] ?>" class="btn btn-outline-danger text-uppercase pl-4 pr-4 rounded-0">Hủy đơn</a>
-                                </div>
-                                <div class="col-4 text-right align-content-end">
-                                    <a href="<?= ROOT ?>?page=profile&action=detail&id=<?= $b['id'] ?>" class="btn btn-success text-uppercase pl-4 pr-4 rounded-0">Chi tiết</a>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -181,27 +159,21 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-8 text-right align-content-end">
@@ -228,27 +200,21 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-12 text-right align-content-end">
@@ -272,27 +238,21 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
                            
@@ -317,27 +277,21 @@ if (isset($_REQUEST['btnUpdate'])) {
                             <div class="col-2">
                                 <p><?= $b['day'] ?></p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p><?= $b['time'] ?></p>
                             </div>
                             <div class="col-3">
-                                <p class="text-center"><?= $b['account'] ?></p>
+                                <p class="text-center"><?= $b['name'] ?></p>
                             </div>
-                            <?php if (!isset($_SESSION['member'])) : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['member_name'] ?></p>
-                                </div>
-                                <div class="col-2">
-                                    <img class="rounded-circle" src="images/users/<?= $b['member_images'] ?>" alt="Anh member" width="40" height="40">
-                                </div>
-                            <?php else : ?>
-                                <div class="col-3">
-                                    <p class="text-center"><?= $b['name'] ?></p>
-                                </div>
                                 <div class="col-2">
                                     <p class="text-center"><?= $b['phone'] ?></p>
                                 </div>
-                            <?php endif; ?>
+                                <div class="col-2">
+                                    <p class="text-center"><?= $b['account'] ?></p>
+                                </div>
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="images/users/<?= $b['barber_images'] ?>" alt="Anh barber" width="40" height="40">
+                                </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-12 text-right align-content-end">

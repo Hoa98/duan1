@@ -1,29 +1,34 @@
 <?php 
-if(isset($_SESSION['customer'])){
-    $phone=$_SESSION['customer']['phone'];
-    $name=$_SESSION['customer']['name'];
+if(isset($_SESSION['user'])){
+    $phone=$_SESSION['user']['phone'];
+    $name=$_SESSION['user']['name'];
 }
 if (isset($_POST['btnBooking'])) {
     extract($_REQUEST);
     if(empty($id_service)){
         $errors['errors_service'] = 'Vui lòng chọn dịch vụ';
-    }if (array_filter($errors) == false) {
-    $custom = custom_check('phone', $phone);
-    if($custom>0){
-        $id_customer = $custom['id'];
+    }if(barber_check('phone',$phone)){
+        $errors['errors_phone'] = 'Số điện thoại này là của thợ cắt';
+       }
+    if (array_filter($errors) == false) {
+    $user = user_check('phone', $phone);
+    if($user>0){
+        $id_user = $user['id'];
     }else{
-        $cu = guest_insert($name, $phone,'', 'user.svg');
-       $cus = custom_check('phone', $phone);
-       $id_customer = $cus['id'];
+        $cu = guest_insert($name, $phone,'', 'user.svg',3);
+        $cus = user_check('phone', $phone);
+        $id_user = $cus['id'];
     }
-     insert_appointment($id_member, $id_customer, $day, $id_time);
-    $booking=list_top_app($id_customer);
+     insert_appointment($id_barber, $id_user, $day, $id_time);
+    $booking=list_top_app($id_user);
     foreach($id_service as $s){
         insert_app_detail($booking['id'],$s);
     }
-    $_SESSION['message'] = "Thêm dữ liệu thành công";
+    $_SESSION['message'] = "Đặt lịch hẹn thành công";
     header('location:' . $_SERVER['REQUEST_URI']);
     die();
+}else{
+    $_SESSION['message'] = "Đặt lịch hẹn thất bại";
 }
 }
 ?>

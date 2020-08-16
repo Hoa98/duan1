@@ -1,23 +1,22 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
-if (custom_check('email', $email) > 0 || member_check('email',$email)>0) {
-    if($custom['email']==$email){
-        $_SESSION['message']= 'Cập nhật liệu thành công';
+if (user_check('email', $email) > 0 || barber_check('email',$email)>0) {
+    if($user['email']==$email){
+        $_SESSION['message']= 'Cập nhật địa chỉ email thành công';
         header('location: '.ROOT.'?page=profile&action=profile');
         die();
     }
     $error['errors_email'] = 'Địa chỉ email đã tồn tại';
 }if (array_filter($error) == false) {
-  if(isset($_SESSION['member'])){
-    member_change_email($_SESSION['member']['id'], $email);
-    $_SESSION['customer']['email']=$email;
-    $_SESSION['member']['email']=$email;
+  if(isset($_SESSION['barber'])){
+    barber_change_email($_SESSION['barber']['id'], $email);
+    $_SESSION['barber']['email']=$email;
   }else{
-    custom_change_email($_SESSION['customer']['id'], $email);
-    $_SESSION['customer']['email']=$email;
+    user_change_email($_SESSION['user']['id'], $email);
+    $_SESSION['user']['email']=$email;
   }
-    $_SESSION['message']= 'Cập nhật liệu thành công';
+    $_SESSION['message']= 'Cập nhật địa chỉ email thành công';
     header('location: '.ROOT.'?page=profile&action=profile');
     die();
 }
@@ -31,7 +30,7 @@ if (custom_check('email', $email) > 0 || member_check('email',$email)>0) {
         <div class="form-group row">
             <div for="" class="col-sm-3 text-right">Địa chỉ email</div>
             <div class="col-sm-9">
-                <span class=""><?= $custom['email'] ?></span>
+                <span class=""><?= $user['email'] ?></span>
             </div>
         </div>
         <div class="form-group row">

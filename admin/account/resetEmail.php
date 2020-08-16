@@ -1,16 +1,16 @@
 <?php
 if(isset($_POST['btnSave'])){
 extract($_REQUEST);
-if (member_check('email',$email)>0) {
-    if($member['email']==$email){
+if (user_check('email',$email)>0) {
+    if($user['email']==$email){
         $_SESSION['message']= 'Cập nhật liệu thành công';
         header('location: '.ROOT.'admin/?page=profile&action=profile');
         die();
     }
     $error['errors_email'] = 'Địa chỉ email đã tồn tại';
 }if (array_filter($error) == false) {
-    member_change_email($_SESSION['member']['id'], $email);
-    $_SESSION['member']['email']=$email;
+    user_change_email($_SESSION['user']['id'], $email);
+    $_SESSION['user']['email']=$email;
     $_SESSION['message']= 'Cập nhật liệu thành công';
     header('location: '.ROOT.'admin/?page=profile&action=profile');
     die();
@@ -25,7 +25,7 @@ if (member_check('email',$email)>0) {
         <div class="form-group row">
             <div for="" class="col-sm-3 text-right">Địa chỉ email</div>
             <div class="col-sm-9">
-                <span class=""><?= $member['email'] ?></span>
+                <span class=""><?= $user['email'] ?></span>
             </div>
         </div>
         <div class="form-group row">

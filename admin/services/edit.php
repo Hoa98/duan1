@@ -17,6 +17,10 @@ if (isset($_POST['btnSave'])) {
     }
     if(checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff'))==false && $_FILES['images']['size']>0){
         $errors['errors_img'] = 'File không đúng định dạng';
+    }if (service_list_one('name', $name) > 0) {
+       if($service['name']!=$name){
+        $errors['errors_name'] = 'Tên dịch vụ đã tồn tại';
+       }
     }
     if(array_filter($errors)==false){
         service_update($id, $name, $price,$sale, $images, $id_type, $detail, $time);
@@ -63,6 +67,9 @@ if (isset($_POST['btnSave'])) {
                             <div class="invalid-feedback">
                                 Vui lòng nhập tên dịch vụ
                                 </div>
+                                <?php if (isset($errors['errors_name'])) : ?>
+                                <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>
+                            <?php endif; ?>
                         </div>
                        
                         <div class="form-group">
