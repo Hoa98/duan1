@@ -240,7 +240,7 @@
                             <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z\s'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ? ?ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ? ??ỀÊỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]{1,20}" title="Họ tên không bao gồm số" 
                             placeholder="Nhập họ tên" value="<?= isset($name) ? $name : '' ?>" required>
                             <div class="invalid-feedback">
-                                Vui lòng nhập họ tên
+                                Họ tên không bao gồm số
                             </div>
                             <?php if (isset($errors['errors_name'])) : ?>
                                 <p class="text-danger mt-2"><?= $errors['errors_name'] ?></p>

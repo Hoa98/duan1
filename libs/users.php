@@ -35,14 +35,15 @@ function guest_insert($name, $phone,$address, $images,$role) {
     insert('users', $data);
 }
 
-function user_change($id,$account, $password,$name,$address, $images,$email) {
+function user_change($id,$account, $password,$name,$address, $images,$email,$role) {
     $data = [
         'account'=>$account,
         'password'=>password_hash($password,PASSWORD_DEFAULT),
         'name'=>$name,
         'address'=>$address,
         'images'=>$images,
-        'email'=>$email
+        'email'=>$email,
+        'role'=>$role
     ];
     update('users', $data, 'id', $id);
 }

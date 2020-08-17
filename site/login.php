@@ -71,7 +71,7 @@ if (isset($_POST['btnRegister'])) {
   if (empty($phone)) {
     $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
   }
-  if ($cus = user_check('phone', $phone) > 0 && !empty($cus['password'])) {
+  if (user_check('phone', $phone) > 0 && !empty($cus['password'])) {
     $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
   }if(barber_check('phone',$phone) > 0){
     $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
@@ -96,11 +96,10 @@ if (isset($_POST['btnRegister'])) {
   }
 
   if (array_filter($errors) == false) {
-    $cus = user_check('phone', $phone);
-    if (empty($cus['password'])) {
-      user_change($cus['id'],$account, $password, $name, $address, $images, $email);
+    if (user_check('phone', $phone)>0) {
+      user_change($cus['id'],$account, $password, $name, $address, $images, $email,3);
     } else {
-      user_insert($account, $password, $name, $address, $phone, $email, $images, 3);
+      user_insert($account, $password, $name,$address,$phone, $email, $images,3);
     }
     if ($okUpload) {
       move_uploaded_file($_FILES['images']['tmp_name'], 'images/users/' . $images);

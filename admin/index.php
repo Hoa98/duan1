@@ -349,7 +349,7 @@ switch ($page) {
         include_once 'setting/setting.php';
         break;
     case 'logout':
-        unset($_SESSION['member']);
+        unset($_SESSION['user']);
         header('location:' . ROOT . 'admin/login.php');
         die;
         break;
