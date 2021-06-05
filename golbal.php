@@ -3,8 +3,8 @@ session_start();
 /*
  * Định nghĩa các url cần thiết được sử dụng trong website
  */
-define('ROOT','http://localhost/Ass_Duan1/');
-
+define('ROOT','http://localhost/Duan1/');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 function check_session(){
     if(isset($_SESSION['user'])){
         header('location:'.ROOT.'admin');

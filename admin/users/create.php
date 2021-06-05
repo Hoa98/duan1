@@ -3,6 +3,7 @@
 if (isset($_POST['btnsave'])) {
     extract($_REQUEST);
     $okUpload = false;
+    $cus = user_check('phone', $phone);
     if (checkType($_FILES['images']['name'], array('jpg', 'png', 'gif', 'tiff')) && checkSize($_FILES['images']['size'], 0, 5 * 1024 * 1024)) {
         $okUpload = true;
         $images = uniqid() . $_FILES['images']['name'];
@@ -24,9 +25,11 @@ if (isset($_POST['btnsave'])) {
     if (empty($phone)) {
         $errors['errors_phone'] = 'Vui lòng nhập số điện thoại';
     }
-    if (user_check('phone', $phone) > 0 || barber_check('phone', $phone) > 0) {
+    if (user_check('phone', $phone) > 0 && !empty($cus['password'])) {
         $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
-    }
+      }if(barber_check('phone',$phone) > 0){
+        $errors['errors_phone'] = 'Số điện thoại đã tồn tại';
+      }
     if (empty($email)) {
         $errors['errors_email'] = 'Vui lòng nhập một địa chỉ email hợp lệ';
     }
@@ -40,11 +43,15 @@ if (isset($_POST['btnsave'])) {
         $errors['errors_address'] = 'Địa chỉ không được để trống';
     }
     if (array_filter($errors) == false) {
-        user_insert($account, $password, $name,$address,$phone, $email, $images, $role);
+        if (user_check('phone', $phone)>0) {
+            user_change($cus['id'],$account, $password, $name, $address, $images, $email,3);
+          } else {
+            user_insert($account, $password, $name,$address,$phone, $email, $images,3);
+          }
         if ($okUpload) {
             move_uploaded_file($_FILES['images']['tmp_name'], '../images/users/' . $images);
         }
-        $_SESSION['message'] = "Thêm dữ liệu thành công";
+        $_SESSION['message'] = "Thêm người dùng thành công";
         header('Location:' . ROOT . 'admin/?page=user');
         die();
     }

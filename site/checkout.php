@@ -4,6 +4,10 @@ if (isset($_SESSION['user'])) {
   $phone = $user['phone'];
   $name = $user['name'];
   $address = $user['address'];
+  if (empty($_SESSION['cartCustom'])) {
+    header('location: ' . ROOT . '?page=cart');
+  }
+}else{
   if (empty($_SESSION['cart'])) {
     header('location: ' . ROOT . '?page=cart');
   }
@@ -69,7 +73,7 @@ if (isset($_REQUEST['btnOrder'])) {
         header('Location: ' . ROOT . '?page=cart');
         die();
       }else{
-        $cu = guest_insert($name, $phone, $address, 'user.svg');
+        $cu = guest_insert($name, $phone, $address, 'user.svg',3);
       $cus = user_check('phone', $phone);
       $id_user = $cus['id'];
       }

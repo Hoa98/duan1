@@ -3,6 +3,15 @@ $pro = product_list_one('id', isset($_GET['id']) ? $_GET['id'] : '');
 $gallery = gallery_list(isset($_GET['id']) ? $_GET['id'] : '');
 $product_list = product_list_category($pro['id_category'], $pro['id'], 0, 10);
 update_view($pro['id']);
+if (empty($pro)) {
+    if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
+        die();
+    } else {
+        header("Location: " . ROOT);
+        die();
+    }
+}
 if (isset($_POST['btnGui'])) {
     extract($_REQUEST);
     #reply
@@ -251,7 +260,7 @@ if (isset($_POST['btnSave'])) {
                                                         <img src="images/products/<?= $pro_list['images'] ?>" alt="<?= $pro_list['name'] ?>" width="270" height="303" title="<?= $pro_list['name'] ?>">
                                                     </a>
                                                     <?php if ($pro_list['sale'] > 0) : ?>
-                                                        <div class="sale pp-sale"><?= ($pro_list['sale'] * 100) . '%' ?></div>
+                                                        <div class="sale pp-sale">-<?= ($pro_list['sale'] * 100) . '%' ?></div>
                                                     <?php endif; ?>
                                                     <ul>
                                                         <li class="w-icon active">

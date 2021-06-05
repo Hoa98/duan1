@@ -53,7 +53,7 @@
  											<img src="images/products/<?= $p['images'] ?>" alt="<?= $p['name'] ?>" width="270" height="303" title="<?= $p['name'] ?>">
  										</a>
  										<?php if ($p['sale'] > 0) : ?>
- 											<div class="sale pp-sale"><?= ($p['sale'] * 100) . '%' ?></div>
+ 											<div class="sale pp-sale">-<?= ($p['sale'] * 100) . '%' ?></div>
  										<?php endif; ?>
  										<ul>
  											<li class="w-icon active">

@@ -98,7 +98,7 @@ $setting = list_limit_setting();
                                     <div class="dropdown no-arrow mr-1">
                                         <button type="button" class="btn bg-transparent p-0 ml-2 dropdown-toggle text-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
                                         <i class="fa fa-user-o ml-2" aria-hidden="true"></i>
-                                        <?=$_SESSION['user']['name'] ?>
+                                        <?=$_SESSION['user']['account'] ?>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                             <?php if($_SESSION['user']['role'] == 1): ?>

@@ -4,7 +4,7 @@
 function connection()
 {
     try {
-       $conn = new PDO("mysql:host=localhost; dbname=polybarber; charset=utf8", "root", "");
+       $conn = new PDO("mysql:host=localhost; dbname=duan1; charset=utf8", "root", "");
     } catch (PDOException $e) {
         echo "Lỗi Kết nối" . $e->getMessage();
     }

@@ -6,6 +6,15 @@ if (isset($_GET['id'])) {
     $detail = list_one_new($id);
     $user =  user_check('id',$detail['id_user']);
     update_view_blog($id);
+    if (empty($detail)) {
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            die();
+        } else {
+            header("Location: " . ROOT);
+            die();
+        }
+    }
 }
 ?>
 <!-- bradcam_area_start -->
